@@ -1,8 +1,7 @@
 import React from 'react'
-import Link from 'next/link'
 import Massick1x1 from '@/assets/svg/massick-1x1.svg'
 import LanguageSwitcher from './LanguageSwitcher'
-import { useTranslation } from '@/app/i18n'
+import Link from './Link'
 
 export default function Menu({ t }: { t: (value: string) => any }) {
     return (
