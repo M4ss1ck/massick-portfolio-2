@@ -1,5 +1,7 @@
+"use client"
 import NextLink, { LinkProps } from "next/link";
 import { fallbackLng } from "@/app/i18n/settings";
+import { useStore } from "@/state/store";
 
 type MyLinkI = {
     lng?: string
@@ -11,8 +13,8 @@ const replaceLocaleInPath = (locale: string, path: string) => {
     return `/${locale}${path}`
 }
 const Link = (props: MyLinkI) => {
-    console.log(props)
-    const lng = props.lng ?? fallbackLng
+    const { lng: fallbackLngState } = useStore()
+    const lng = props.lng ?? fallbackLngState ?? fallbackLng
     const url = props.href.toString().startsWith('/') ? replaceLocaleInPath(lng, props.href.toString()) : props.href
     return <NextLink {...props} href={url}></NextLink>
 }
