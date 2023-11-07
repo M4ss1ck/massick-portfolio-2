@@ -1,10 +1,9 @@
 import { useTranslation } from '../i18n'
-import { useEffect } from 'react'
 import Hacker from '@/assets/svg/hacker.svg'
-import LanguageSwitcher from '@/components/LanguageSwitcher'
 import Canvas from '@/components/Canvas'
 import Menu from '@/components/Menu'
 import LettersAnimation from '@/components/LettersAnimation'
+import Helper from '@/components/Helper'
 
 export default async function Page({ params: { lng } }: { params: { lng: string } }) {
     const { t } = await useTranslation(lng)
@@ -13,6 +12,7 @@ export default async function Page({ params: { lng } }: { params: { lng: string 
 
     return (
         <main className="flex flex-col items-center justify-center w-full h-screen">
+            <Helper lng={lng} />
             <Canvas r={250} g={250} b={250} />
             <LettersAnimation />
             <Menu t={t} />
