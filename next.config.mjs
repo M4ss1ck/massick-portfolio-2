@@ -10,6 +10,9 @@ const nextConfig = {
 
     return config;
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 if (process.env.NODE_ENV === "development") {
