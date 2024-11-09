@@ -6,7 +6,6 @@ import LettersAnimation from '@/components/LettersAnimation'
 import Helper from '@/components/Helper'
 
 export default async function Page({ params: { lng } }: { params: { lng: string } }) {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const { t } = await useTranslation(lng)
     const title = t("titulo_portada")
 
