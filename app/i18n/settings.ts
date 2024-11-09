@@ -11,6 +11,11 @@ export function getOptions(lng = fallbackLng, ns = defaultNS) {
         lng,
         fallbackNS: defaultNS,
         defaultNS,
-        ns
+        ns,
+        saveMissing: true,
+        backend: {
+            loadPath: '/locales/{{lng}}/{{ns}}.json',
+            addPath: '/locales/{{lng}}/{{ns}}.missing.json'
+        }
     }
 }
