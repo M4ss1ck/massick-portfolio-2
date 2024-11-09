@@ -5,6 +5,8 @@ export async function generateStaticParams() {
     return languages.map((lng) => ({ lng }))
 }
 
+export const runtime = 'edge';
+
 export default function RootLayout({
     children,
     params: {

@@ -7,6 +7,8 @@ export const metadata: Metadata = {
     description: 'About me',
 }
 
+export const runtime = 'edge';
+
 export async function generateStaticParams() {
     return languages.map((lng) => ({ lng }))
 }
