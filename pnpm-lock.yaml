@@ -11,6 +11,12 @@ importers:
       '@cloudflare/next-on-pages':
         specifier: ^1.13.5
         version: 1.13.5(vercel@37.14.0)(wrangler@3.86.0)
+      '@fontsource-variable/kode-mono':
+        specifier: ^5.1.0
+        version: 5.1.0
+      '@fontsource/federant':
+        specifier: ^5.1.0
+        version: 5.1.0
       accept-language:
         specifier: ^3.0.20
         version: 3.0.20
@@ -906,6 +912,12 @@ packages:
   '@fastify/busboy@2.1.1':
     resolution: {integrity: sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA==}
     engines: {node: '>=14'}
+
+  '@fontsource-variable/kode-mono@5.1.0':
+    resolution: {integrity: sha512-hV4u3QMyBEfLzvdwTNGLi9Nyd/0LsQmQWdR/oWzYRsAVMAc3+kcLFRJ6QOs6+qc7ey9G01kKqQ4TVSNqcZpu0w==}
+
+  '@fontsource/federant@5.1.0':
+    resolution: {integrity: sha512-UuiMgYOzx2F6HSA+NyU2oMSyAEZHeorCaFYJoRaQRL0S1ppzNnNa+gp+GkqcltHZy7rwqEwuxcQhM8un7Q5jYQ==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -4864,6 +4876,10 @@ snapshots:
       levn: 0.4.1
 
   '@fastify/busboy@2.1.1': {}
+
+  '@fontsource-variable/kode-mono@5.1.0': {}
+
+  '@fontsource/federant@5.1.0': {}
 
   '@humanfs/core@0.19.1': {}
 

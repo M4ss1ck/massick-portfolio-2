@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import '@fontsource/federant';
+import '@fontsource-variable/kode-mono';
 
 export const metadata: Metadata = {
   title: 'My portfolio',

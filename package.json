@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "@cloudflare/next-on-pages": "^1.13.5",
+    "@fontsource-variable/kode-mono": "^5.1.0",
+    "@fontsource/federant": "^5.1.0",
     "accept-language": "^3.0.20",
     "i18next": "^23.16.5",
     "i18next-resources-to-backend": "^1.2.1",

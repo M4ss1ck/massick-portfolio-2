@@ -14,6 +14,10 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
     },
+    fontFamily: {
+      'display': ['"Kode Mono Variable"', 'monospace'],
+      'body': ['"Federant"', 'system-ui'],
+    }
   },
   plugins: [],
 }
