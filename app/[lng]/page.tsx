@@ -10,7 +10,7 @@ export default async function Page({ params: { lng } }: { params: { lng: string 
     const title = t("titulo_portada")
 
     return (
-        <main className="flex flex-col items-center justify-center w-full h-screen">
+        <main className="flex flex-col items-center justify-center w-full h-screen font-body">
             <Helper lng={lng} />
             <Canvas r={250} g={250} b={250} />
             <Menu t={t} />

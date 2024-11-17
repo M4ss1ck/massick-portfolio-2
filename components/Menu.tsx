@@ -7,17 +7,22 @@ import { getPath } from '@/utils/getPath'
 export default function Menu({ t }: { t: (value: string) => any }) {
     const path = getPath()
     return (
-        <aside className="flex flex-row py-1 px-4 md:flex-col justify-between items-center absolute w-full md:w-fit left-0 top-0 md:top-[60vh] z-20  md:border-4 border-b-4 border-primario dark:border-secundario md:-rotate-45 hover:rotate-0  rounded-lg md:-translate-x-2 md:hover:translate-x-12 lg:transition md:hover:scale-150 shadow-md dark:shadow-2xl hover:shadow-primario dark:hover:shadow-secundario bg-slate-200 dark:bg-black">
+        <aside className="flex flex-row py-1 px-4 md:flex-col justify-between items-start absolute w-full md:w-fit left-0 top-0 md:top-[60vh] z-20 rounded-lg lg:transition text-lg">
             <Link href="/" className="md:hidden" aria-label={t("home")}>
-                <Massick1x1 className="w-12 h-12 rounded-md text-primario dark:text-secundario" />
+                <Massick1x1 className="w-12 h-12 rounded-md" />
             </Link>
             {/* <DarkToggle /> */}
-            <LanguageSwitcher path={path} />
-            <h2 className="hidden px-4 py-8 text-sm text-center sm:block lg:text-lg font-montserrat">
-                <Link href="/about" className="text-primario dark:text-secundario">
+            <h2 className="hidden p-4 text-sm sm:block lg:text-2xl font-montserrat">
+                <Link href="/projects" className="">
+                    {t("projects")}
+                </Link>
+            </h2>
+            <h2 className="hidden p-4 text-sm text-center sm:block lg:text-2xl font-montserrat">
+                <Link href="/about" className="">
                     {t("about")}
                 </Link>
             </h2>
+            <LanguageSwitcher path={path} />
         </aside>
     )
 }

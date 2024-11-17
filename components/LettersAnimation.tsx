@@ -23,7 +23,7 @@ const LettersAnimation = ({ title }: { title: string }) => {
     return (
         <h1
             aria-label={title}
-            className="flex absolute z-10 flex-wrap justify-center items-center text-2xl text-center uppercase md:text-5xl lg:text-7xl font-rammetto"
+            className="flex absolute z-10 flex-wrap justify-center items-center text-2xl text-center uppercase md:text-5xl lg:text-7xl font-display"
         >
             {array.map((letter, index) => {
                 return (
