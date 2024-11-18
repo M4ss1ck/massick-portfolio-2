@@ -1,7 +1,7 @@
 "use client"
 // https://docs.pmnd.rs/zustand/guides/typescript
 import { create } from "zustand"
-import { fallbackLng } from "@/app/i18n/settings"
+import { fallbackLng } from "@/src/app/i18n/settings"
 
 type State = {
     lng?: string

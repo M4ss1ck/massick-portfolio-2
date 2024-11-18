@@ -1,7 +1,7 @@
 "use client"
 import NextLink, { LinkProps } from "next/link";
-import { fallbackLng } from "@/app/i18n/settings";
-import { useStore } from "@/state/store";
+import { fallbackLng } from "@/src/app/i18n/settings";
+import { useStore } from "@/src/state/store";
 
 type MyLinkI = {
     lng?: string

@@ -1,5 +1,5 @@
 import { useTranslation } from '../../i18n'
-import Helper from '@/components/Helper'
+import Helper from '@/src/components/Helper'
 import Image from 'next/image'
 import Link from 'next/link'
 import profile from '@/public/images/profile.jpg'
