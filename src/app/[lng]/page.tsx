@@ -4,7 +4,7 @@ import Menu from '@/components/Menu'
 import LettersAnimation from '@/components/LettersAnimation'
 import { useTranslations } from 'next-intl'
 
-export default async function Page({ params: { lng } }: { params: { lng: string } }) {
+export default function Page({ params: { lng } }: { params: { lng: string } }) {
     const t = useTranslations()
     const title = t("titulo_portada")
 
