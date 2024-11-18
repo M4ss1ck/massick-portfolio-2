@@ -3,6 +3,8 @@ import { Link } from '@/i18n/routing'
 import Canvas from '@/components/Canvas'
 import { useTranslations } from 'next-intl'
 
+export const runtime = 'edge';
+
 export default function Loading() {
     const t = useTranslations()
     return (

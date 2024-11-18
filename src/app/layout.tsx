@@ -10,6 +10,8 @@ export const metadata: Metadata = {
   description: 'Next(js) version, on steroids!',
 }
 
+export const runtime = 'edge';
+
 export default async function RootLayout({
   children,
 }: {
