@@ -11,12 +11,12 @@ export default function Menu({ t }: { t: (value: string) => string }) {
             </Link>
             {/* <DarkToggle /> */}
             <h2 className="hidden p-4 text-sm sm:block lg:text-2xl font-montserrat">
-                <Link href="/projects" className="">
+                <Link href="/projects" className="underline-animation">
                     {t("projects")}
                 </Link>
             </h2>
             <h2 className="hidden p-4 text-sm text-center sm:block lg:text-2xl font-montserrat">
-                <Link href="/about" className="">
+                <Link href="/about" className="underline-animation">
                     {t("about")}
                 </Link>
             </h2>

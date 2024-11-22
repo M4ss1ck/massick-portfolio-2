@@ -11,7 +11,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
+    --background-start-rgb: 40, 40, 43;
     --background-end-rgb: 0, 0, 0;
   }
 }
@@ -24,4 +24,13 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+@layer components {
+  .underline-animation {
+    @apply relative;
+  }
+  .underline-animation::after {
+    @apply absolute scale-x-0 hover:scale-x-100 bottom-0 block w-full h-0.5 bg-[rgb(var(--foreground-rgb))] content-[''] transition-transform duration-500 origin-bottom-right hover:origin-bottom-left;
+  }
 }
