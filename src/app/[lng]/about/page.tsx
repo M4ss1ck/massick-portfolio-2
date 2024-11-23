@@ -1,9 +1,16 @@
+import { use } from "react";
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
 import profile from '~/images/profile.jpg'
 
-export default function Page({ params: { lng } }: { params: { lng: string } }) {
+export default function Page(props: { params: Promise<{ lng: string }> }) {
+    const params = use(props.params);
+
+    const {
+        lng
+    } = params;
+
     const t = useTranslations()
 
     return (

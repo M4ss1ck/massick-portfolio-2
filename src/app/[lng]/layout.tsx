@@ -3,23 +3,30 @@ import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 import { getMessages } from 'next-intl/server';
 
-export const runtime = 'edge';
+// export const runtime = 'edge';
 
 export function generateStaticParams() {
     return routing.locales.map((locale) => ({ locale }));
 }
 
-export default async function RootLayout({
-    children,
-    params: {
+export default async function RootLayout(
+    props: {
+        children: React.ReactNode,
+        params: Promise<{
+            lng: string
+        }>
+    }
+) {
+    const params = await props.params;
+
+    const {
         lng
-    }
-}: {
-    children: React.ReactNode,
-    params: {
-        lng: string
-    }
-}) {
+    } = params;
+
+    const {
+        children
+    } = props;
+
     // Ensure that the incoming `locale` is valid
     if (!routing.locales.includes(lng as any)) {
         notFound();
