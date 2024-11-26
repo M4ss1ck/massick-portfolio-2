@@ -1,3 +1,4 @@
+import { withPayload } from "@payloadcms/next/withPayload";
 import { setupDevPlatform } from "@cloudflare/next-on-pages/next-dev";
 import createNextIntlPlugin from "next-intl/plugin";
 
@@ -22,4 +23,4 @@ if (process.env.NODE_ENV === "development") {
   await setupDevPlatform();
 }
 
-export default withNextIntl(nextConfig);
+export default withPayload(withNextIntl(nextConfig));
