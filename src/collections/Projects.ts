@@ -49,6 +49,12 @@ export const Projects: CollectionConfig = {
             },
         },
         {
+            name: 'isFavorite',
+            label: 'Favorite',
+            type: 'checkbox',
+            defaultValue: false,
+        },
+        {
             name: 'relatedProjects',
             type: 'relationship',
             relationTo: 'projects',
