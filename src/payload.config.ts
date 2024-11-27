@@ -7,6 +7,8 @@ import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 
+import { seed } from '@/utils/seed'
+
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { Tags } from './collections/Tags'
@@ -39,4 +41,9 @@ export default buildConfig({
     // storage-adapter-placeholder
   ],
   telemetry: false,
+  onInit: async (payload) => {
+    if (process.env.PAYLOAD_SEED) {
+      await seed(payload)
+    }
+  },
 })
