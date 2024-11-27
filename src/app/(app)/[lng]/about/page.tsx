@@ -28,7 +28,7 @@ export default function Page(props: { params: Promise<{ lng: string }> }) {
             <p className="px-4 pt-8 text-xl font-semibold font-montserrat md:w-2/3 md:pt-4 md:text-2xl max-w-prose">
                 {t("about_bio")}
             </p>
-            <Link href="/" className='font-thin font-mono underline'>
+            <Link href="/" className='font-thin font-mono underline-animation'>
                 {t("back")}
             </Link>
         </main>
