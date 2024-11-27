@@ -120,6 +120,7 @@ export interface Project {
   demo?: string | null;
   tags?: (number | Tag)[] | null;
   publishedDate?: string | null;
+  isFavorite?: boolean | null;
   relatedProjects?: (number | Project)[] | null;
   updatedAt: string;
   createdAt: string;
@@ -243,6 +244,7 @@ export interface ProjectsSelect<T extends boolean = true> {
   demo?: T;
   tags?: T;
   publishedDate?: T;
+  isFavorite?: T;
   relatedProjects?: T;
   updatedAt?: T;
   createdAt?: T;
