@@ -28,7 +28,7 @@ export default async function RootLayout(
     } = props;
 
     // Ensure that the incoming `locale` is valid
-    if (!routing.locales.includes(lng as any)) {
+    if (!routing.locales.includes(lng as 'en' | 'es')) {
         notFound();
     }
 

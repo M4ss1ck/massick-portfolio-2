@@ -1,17 +1,10 @@
-import { use } from "react";
-import Hacker from '@/assets/svg/hacker.svg'
 import Canvas from '@/components/Canvas'
 import Menu from '@/components/Menu'
 import LettersAnimation from '@/components/LettersAnimation'
 import { useTranslations } from 'next-intl'
+import Hacker from '@/components/icons/Hacker'
 
-export default function Page(props: { params: Promise<{ lng: string }> }) {
-    const params = use(props.params);
-
-    const {
-        lng
-    } = params;
-
+export default function Page() {
     const t = useTranslations()
     const title = t("titulo_portada")
 

@@ -18,7 +18,7 @@ class Point {
 
 function Canvas({ r = 4, g = 158, b = 42 }) {
   const [{ cHeight, cWidth }, setSize] = useState({ cHeight: 0, cWidth: 0 })
-  const canvasRef = useRef(null) as React.RefObject<HTMLCanvasElement | null>
+  const canvasRef = useRef(null) as React.RefObject<HTMLCanvasElement>
 
   const startAnimation = useCallback(() => {
     const canvas = canvasRef.current

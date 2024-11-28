@@ -1,7 +1,7 @@
-import Hacker from '@/assets/svg/hacker.svg'
 import { Link } from '@/i18n/routing'
 import Canvas from '@/components/Canvas'
 import { useTranslations } from 'next-intl'
+import Hacker from '@/components/icons/Hacker';
 
 export const runtime = 'edge';
 

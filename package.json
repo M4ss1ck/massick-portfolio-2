@@ -1,54 +1,41 @@
 {
-  "name": "massick-portfolio-2",
+  "name": "nextjs-15",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
+    "dev:alt": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
     "types": "payload generate:types",
-    "pages:build": "npx @cloudflare/next-on-pages",
-    "preview": "npm run pages:build && wrangler pages dev",
-    "deploy": "npm run pages:build && wrangler pages deploy"
+    "lint": "next lint"
   },
   "dependencies": {
-    "@cloudflare/next-on-pages": "^1.13.5",
     "@fontsource-variable/kode-mono": "^5.1.0",
     "@fontsource/federant": "^5.1.0",
-    "@payloadcms/db-postgres": "^3.1.0",
-    "@payloadcms/next": "^3.1.0",
-    "@payloadcms/payload-cloud": "^3.1.0",
-    "@payloadcms/richtext-lexical": "^3.1.0",
+    "@payloadcms/db-postgres": "^3.2.1",
+    "@payloadcms/next": "^3.2.1",
+    "@payloadcms/payload-cloud": "^3.2.1",
+    "@payloadcms/richtext-lexical": "^3.2.1",
     "accept-language": "^3.0.20",
     "dayjs": "^1.11.13",
-    "graphql": "^16.8.1",
+    "graphql": "^16.9.0",
     "next": "15.0.3",
-    "next-intl": "^3.25.1",
-    "payload": "^3.1.0",
+    "next-intl": "^3.25.3",
+    "payload": "^3.2.1",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106",
     "sharp": "^0.33.5",
-    "zustand": "^4.5.5"
+    "zustand": "^5.0.1"
   },
   "devDependencies": {
-    "@svgr/webpack": "^8.1.0",
-    "@types/node": "^22.9.0",
-    "@types/react": "npm:types-react@19.0.0-rc.1",
-    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
-    "autoprefixer": "^10.4.20",
-    "eslint": "^9.14.0",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
     "eslint-config-next": "15.0.3",
-    "eslint-plugin-next-on-pages": "^1.13.5",
-    "postcss": "^8.4.47",
-    "tailwindcss": "^3.4.14",
-    "typescript": "^5.6.3",
-    "wrangler": "^3.86.0"
-  },
-  "pnpm": {
-    "overrides": {
-      "@types/react": "npm:types-react@19.0.0-rc.1",
-      "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
-    }
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
   }
 }
