@@ -5,90 +5,79 @@ import React, { useState, useRef, useEffect, useCallback } from "react"
 
 /* Mouse trail adapted from a jQuery Codepen by Bryan C https://codepen.io/bryjch/pen/QEoXwA */
 
-class Point {
+class Letter {
   x: number
   y: number
+  char: string
   lifetime: number
-  constructor(x: number, y: number) {
+  constructor(x: number, y: number, char: string) {
     this.x = x
     this.y = y
+    this.char = char
     this.lifetime = 0
   }
 }
 
 function Canvas({ r = 4, g = 158, b = 42 }) {
   const [{ cHeight, cWidth }, setSize] = useState({ cHeight: 0, cWidth: 0 })
-  const canvasRef = useRef(null) as React.RefObject<HTMLCanvasElement>
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const chars = "m4ss1ck "
+  const charIndex = useRef(0)
+  let lastX = 0
 
   const startAnimation = useCallback(() => {
     const canvas = canvasRef.current
     if (canvas) {
       const ctx = canvas.getContext("2d") as CanvasRenderingContext2D
 
-      const points: Point[] = []
+      const letters: Letter[] = []
 
-      const addPoint = (x: number, y: number) => {
-        const point = new Point(x, y)
-        points.push(point)
+      const addLetter = (x: number, y: number) => {
+        const direction = x > lastX ? 1 : -1
+        charIndex.current = (charIndex.current + direction + chars.length) % chars.length
+        const char = chars[charIndex.current]
+        const letter = new Letter(x, y, char)
+        letters.push(letter)
+        lastX = x
       }
 
-      document.addEventListener(
-        "mousemove",
-        ({ clientX, clientY }) => {
-          addPoint(clientX - canvas.offsetLeft, clientY - canvas.offsetTop)
-        },
-        false
-      )
+      const handleMouseMove = ({ clientX, clientY }: MouseEvent) => {
+        addLetter(clientX - canvas.offsetLeft, clientY - canvas.offsetTop)
+      }
 
-      const animatePoints = () => {
+      document.addEventListener("mousemove", handleMouseMove, false)
+
+      const animateLetters = () => {
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
         const duration = (6 * (1 * 1000)) / 60 // Last longer now
 
-        for (let i = 0; i < points.length; ++i) {
-          const point = points[i]
-          let lastPoint
+        for (let i = 0; i < letters.length; ++i) {
+          const letter = letters[i]
+          letter.lifetime += 1
 
-          if (points[i - 1] !== undefined) {
-            lastPoint = points[i - 1]
-          } else lastPoint = point
-
-          point.lifetime += 1
-
-          if (point.lifetime > duration) {
-            // If the point dies, remove it.
-            points.shift()
+          if (letter.lifetime > duration) {
+            // If the letter dies, remove it.
+            letters.shift()
           } else {
             // Otherwise animate it:
+            const lifePercent = letter.lifetime / duration
+            const fallRate = 2 * lifePercent
 
-            // As the lifetime goes on, lifePercent goes from 0 to 1.
-            const lifePercent = point.lifetime / duration
-            const spreadRate = 4 * (1 - lifePercent) // originally 7 * (1 - lifePercent)
-
-            ctx.lineJoin = "round" // "round" or "bevel"
-            ctx.lineWidth = spreadRate
-
-            const red = Math.floor(r - r * lifePercent) // originally Math.floor(190 - 190 * lifePercent)
-            const green = Math.floor(g - g * lifePercent)
-            const blue = Math.floor(b + b * lifePercent) // originally Math.floor(210 + 210 * lifePercent)
-            ctx.strokeStyle = `rgb(${red},${green},${blue}`
-
-            ctx.beginPath()
-
-            ctx.moveTo(lastPoint.x, lastPoint.y)
-            ctx.lineTo(point.x, point.y)
-
-            // Unfortunately there's no way to make smoother angles https://stackoverflow.com/a/40653054/2070793
-
-            ctx.stroke()
-            ctx.closePath()
+            ctx.font = "20px monospace"
+            ctx.fillStyle = `rgb(${r},${g},${b})`
+            ctx.fillText(letter.char, letter.x, letter.y + fallRate * letter.lifetime)
           }
         }
-        requestAnimationFrame(animatePoints)
+        requestAnimationFrame(animateLetters)
       }
 
-      animatePoints()
+      animateLetters()
+
+      return () => {
+        document.removeEventListener("mousemove", handleMouseMove, false)
+      }
     }
-  }, [r, g, b])
+  }, [r, g, b, chars])
 
   useEffect(() => {
     // Set height and width on load because if set in state body isn't defined yet.
@@ -97,20 +86,22 @@ function Canvas({ r = 4, g = 158, b = 42 }) {
       cWidth: document.body.clientWidth,
     })
 
-    window.addEventListener(
-      "resize",
-      () => {
-        setSize({
-          cHeight: document.body.clientHeight,
-          cWidth: document.body.clientWidth,
-        })
-      },
-      false
-    )
+    const handleResize = () => {
+      setSize({
+        cHeight: document.body.clientHeight,
+        cWidth: document.body.clientWidth,
+      })
+    }
+
+    window.addEventListener("resize", handleResize, false)
 
     // If the device supports cursors, start animation.
     if (matchMedia("(pointer:fine)").matches) {
       startAnimation()
+    }
+
+    return () => {
+      window.removeEventListener("resize", handleResize, false)
     }
   }, [startAnimation])
 
