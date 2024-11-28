@@ -15,7 +15,7 @@ const LanguageSwitcher = () => {
     }
     return (
         <ul className='flex flex-row items-start justify-center z-10 p-4 text-sm lg:text-2xl'>
-            <span>{t("language")}:</span>
+            <span className='hidden sm:block'>{t("language")}:</span>
             {routing.locales.map(lng => (
                 <li key={lng} className='px-2'>
                     <button
