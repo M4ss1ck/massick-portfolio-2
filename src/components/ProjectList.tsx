@@ -34,7 +34,7 @@ export const ProjectList = () => {
                     setPage((prevPage) => prevPage + 1)
                 }
             },
-            { threshold: 1.0 }
+            { threshold: 0.3 }
         )
         const currentRef = observerRef.current;
         if (currentRef) {
@@ -52,9 +52,9 @@ export const ProjectList = () => {
             {projects.map((project) => (
                 <Card key={project.id} project={project} />
             ))}
-            {loading && <div className='w-full flex items-center justify-center'>
+            <div className={`w-full flex items-center justify-center ${loading ? 'visible' : 'invisible'}`}>
                 <Loading />
-            </div>}
+            </div>
             <GoUp />
             <div aria-hidden ref={observerRef}></div>
         </div>
