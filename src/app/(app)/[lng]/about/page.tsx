@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
-import Link from 'next/link'
+import { Link } from '@/components/AnimatedLink'
 import profile from '~/images/profile.jpg'
 
 export default function Page() {

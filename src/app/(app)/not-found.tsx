@@ -1,4 +1,4 @@
-import { Link } from '@/i18n/routing'
+import { Link } from '@/components/AnimatedLink';
 import Canvas from '@/components/Canvas'
 import { useTranslations } from 'next-intl'
 import Hacker from '@/components/icons/Hacker';

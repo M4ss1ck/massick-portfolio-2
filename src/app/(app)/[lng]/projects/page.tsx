@@ -1,8 +1,6 @@
 "use server";
 import { useTranslations } from 'next-intl'
-// import Image from 'next/image'
-import Link from 'next/link'
-// import profile from '~/images/profile.jpg'
+import { Link } from '@/components/AnimatedLink';
 import { ProjectList } from '@/components/ProjectList'
 
 const Page = async () => {

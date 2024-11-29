@@ -24,6 +24,10 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+
+  transition-property: opacity, transform, filter, background;
+  transition-timing-function: ease-in-out;
+  transition-duration: 300ms;
 }
 
 @layer components {
@@ -32,5 +36,12 @@ body {
   }
   .underline-animation::after {
     @apply absolute scale-x-0 hover:scale-x-100 bottom-0 block w-full h-0.5 bg-[rgb(var(--foreground-rgb))] content-[''] transition-transform duration-500 origin-bottom-right hover:origin-bottom-left;
+  }
+
+  .page-transition {
+    opacity: 0;
+    /* transform: translateY(10%); */
+    filter: blur(20px);
+    overflow: hidden;
   }
 }
