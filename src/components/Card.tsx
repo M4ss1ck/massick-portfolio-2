@@ -33,7 +33,7 @@ export const Card = ({ project }: CardProps) => {
                     />
                     {
                         project.publishedDate
-                            ? <p className="text-xs text-gray-500 dark:text-gray-400 absolute bottom-1">
+                            ? <p className="text-xs border border-current px-2 py-1 rounded-lg group-hover:text-white text-gray-400 absolute bottom-1">
                                 {dayjs(project.publishedDate).locale(locale).format('MMMM YYYY')}
                             </p>
                             : null
