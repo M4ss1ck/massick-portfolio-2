@@ -14,32 +14,43 @@ interface CardProps {
 export const Card = ({ project }: CardProps) => {
     const t = useTranslations();
     const locale = useLocale();
+    const imageSrc = project.coverImage && typeof project.coverImage !== 'number' && project.coverImage.url
+        ? project.coverImage.url
+        : "/images/hacker.png"
     return (
         <Tilt
             glareEnable={true}
         >
-            <div className="group grid grid-cols-3 max-w-sm sm:max-w-lg hover:z-20 hover:shadow-lg hover:shadow-current rounded-lg transition-all duration-300 ease-in-out">
-                <div className="col-span-1">
+            <div className="group grid grid-cols-1 sm:grid-cols-3 max-w-sm sm:max-w-lg hover:z-20 hover:shadow-lg hover:shadow-current rounded-lg transition-all duration-300 ease-in-out gap-x-2">
+                <div
+                    aria-hidden
+                    className="absolute h-full w-full -z-10"
+                    style={{
+                        backgroundImage: `url(${imageSrc})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat',
+                        filter: 'blur(8px)',
+                    }}></div>
+                <div
+                    className="col-span-1 relative"
+                >
                     <Image
-                        className="rounded-lg"
-                        src={
-                            project.coverImage && typeof project.coverImage !== 'number' && project.coverImage.url
-                                ? project.coverImage.url
-                                : "/images/hacker.png"
-                        }
+                        className="rounded-lg blur-none p-2 mx-auto"
+                        src={imageSrc}
                         width={160}
                         height={160}
                         alt={t(project.title)}
                     />
                     {
                         project.publishedDate
-                            ? <p className="text-xs border border-current px-2 py-1 rounded-lg group-hover:text-white text-gray-400 absolute bottom-1">
+                            ? <p className="text-xs border border-current m-2 px-2 py-1 rounded-lg group-hover:text-white text-gray-400 absolute bottom-1">
                                 {dayjs(project.publishedDate).locale(locale).format('MMMM YYYY')}
                             </p>
                             : null
                     }
                 </div>
-                <div className="col-span-2">
+                <div className="col-span-1 sm:col-span-2 p-2 mx-2">
                     <h3 className="text-xl py-2">
                         {project.url
                             ? <Link href={project.url} target="_blank" className="underline-animation">{t(project.title)}</Link>
