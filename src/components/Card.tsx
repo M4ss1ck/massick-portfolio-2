@@ -42,8 +42,8 @@ export const Card = ({ project }: CardProps) => {
                 <div className="col-span-2">
                     <h3 className="text-xl py-2">
                         {project.url
-                            ? <Link href={project.url} target="_blank" className="underline-animation">{project.title}</Link>
-                            : project.title}
+                            ? <Link href={project.url} target="_blank" className="underline-animation">{t(project.title)}</Link>
+                            : t(project.title)}
                     </h3>
                     <div className="py-1 gap-2 flex items-center justify-start flex-row flex-wrap">
                         {project.tags?.map((tag) => (
