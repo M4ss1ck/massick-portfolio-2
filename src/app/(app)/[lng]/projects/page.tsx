@@ -33,7 +33,7 @@ const PageTitle = () => {
     const t = useTranslations()
 
     return (
-        <h1 className="mt-4 text-lg uppercase lg:text-2xl font-rammetto text-primario dark:text-secundario">
+        <h1 className="mt-4 text-lg uppercase lg:text-2xl font-display text-primario dark:text-secundario">
             <span>{t("projects")}</span>
         </h1>
     )

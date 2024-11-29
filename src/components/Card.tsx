@@ -51,17 +51,17 @@ export const Card = ({ project }: CardProps) => {
                     }
                 </div>
                 <div className="col-span-1 sm:col-span-2 p-2 mx-2">
-                    <h3 className="text-xl py-2">
+                    <h3 className="text-xl py-2 font-body">
                         {project.url
                             ? <Link href={project.url} target="_blank" className="underline-animation">{t(project.title)}</Link>
                             : t(project.title)}
                     </h3>
-                    <div className="py-1 gap-2 flex items-center justify-start flex-row flex-wrap">
+                    <div className="py-1 gap-2 flex items-center justify-start flex-row flex-wrap font-display">
                         {project.tags?.map((tag) => (
                             typeof tag !== 'number' ? <Pill key={tag.id} tag={tag.name} /> : null
                         ))}
                     </div>
-                    <p>{t(project.description)}</p>
+                    <p className="font-display">{t(project.description)}</p>
                     {
                         project.demo
                             ? <Link href={project.demo} target="_blank" className="underline-animation">
