@@ -1,10 +1,25 @@
 "use server";
 import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server';
 import { Link } from '@/components/AnimatedLink';
 import { ProjectList } from '@/components/ProjectList'
 
-const Page = async () => {
+export async function generateMetadata(props: {
+    params: Promise<{
+        lng: string
+    }>
+}) {
+    const params = await props.params;
+    const {
+        lng
+    } = params;
+    const t = await getTranslations({ locale: lng });
+    return {
+        title: t('projects'),
+    };
+}
 
+const Page = async () => {
     return (
         <main className="flex flex-col items-center justify-start w-full min-h-screen gap-2">
             <PageTitle />

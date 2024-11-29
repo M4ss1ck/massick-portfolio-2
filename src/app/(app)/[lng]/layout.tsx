@@ -1,9 +1,24 @@
 import { NextIntlClientProvider } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 import { getMessages } from 'next-intl/server';
 
-// export const runtime = 'edge';
+export async function generateMetadata(props: {
+    params: Promise<{
+        lng: string
+    }>
+}) {
+    const params = await props.params;
+    const {
+        lng
+    } = params;
+    const t = await getTranslations({ locale: lng });
+    return {
+        title: t('portfolio'),
+        description: t('portfolio_description'),
+    };
+}
 
 export function generateStaticParams() {
     return routing.locales.map((locale) => ({ locale }));

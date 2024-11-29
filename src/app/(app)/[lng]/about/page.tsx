@@ -1,7 +1,23 @@
 import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 import Image from 'next/image'
 import { Link } from '@/components/AnimatedLink'
 import profile from '~/images/profile.jpg'
+
+export async function generateMetadata(props: {
+    params: Promise<{
+        lng: string
+    }>
+}) {
+    const params = await props.params;
+    const {
+        lng
+    } = params;
+    const t = await getTranslations({ locale: lng });
+    return {
+        title: t('about'),
+    };
+}
 
 export default function Page() {
 
