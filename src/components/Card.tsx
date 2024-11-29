@@ -21,7 +21,7 @@ export const Card = ({ project }: CardProps) => {
         <Tilt
             glareEnable={true}
         >
-            <div className="group grid grid-cols-1 sm:grid-cols-3 max-w-sm sm:max-w-lg hover:z-20 hover:shadow-lg hover:shadow-current rounded-lg transition-all duration-300 ease-in-out gap-x-2">
+            <div className="group grid grid-cols-1 sm:grid-cols-3 max-w-sm sm:max-w-lg hover:z-20 hover:shadow-lg hover:shadow-current rounded-lg transition-all duration-300 ease-in-out gap-x-2 h-full">
                 <div
                     aria-hidden
                     className="absolute h-full w-full -z-10"
@@ -78,7 +78,7 @@ export const Card = ({ project }: CardProps) => {
 }
 
 const Pill = ({ tag }: { tag: string }) => (
-    <span className="text-xs border border-current px-2 py-1 rounded-lg group-hover:bg-white group-hover:text-black">{tag}</span>
+    <span className="text-xs border border-current px-2 py-0 rounded-lg bg-opacity-65 group-hover:bg-opacity-1 text-slate-800 bg-white group-hover:text-black">{tag}</span>
 )
 
 export function LineMdLink(props: SVGProps<SVGSVGElement>) {

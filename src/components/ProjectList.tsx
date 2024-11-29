@@ -48,7 +48,7 @@ export const ProjectList = () => {
     }, [loading, hasNextPage])
 
     return (
-        <div className='grid grid-cols-1 gap-2 space-y-2 py-4 mx-2'>
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-2 space-y-2 py-4 mx-2 space-x-2 grid-flow-row-dense'>
             {projects.map((project) => (
                 <Card key={project.id} project={project} />
             ))}
