@@ -13,7 +13,7 @@ export const ProjectList = () => {
 
     const fetchProjects = async (page: number) => {
         setLoading(true)
-        const response = await fetch(`/api/projects?page=${page}&limit=5`)
+        const response = await fetch(`/api/projects?page=${page}&limit=5&sort=-publishedDate`)
         const body = await response.json()
         const newProjects = body.docs
         setHasNextPage(body.hasNextPage)
