@@ -4,7 +4,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { useRouter, routing, usePathname } from '@/i18n/routing';
 
 
-const LanguageSwitcher = () => {
+const LanguageSwitcher = ({ showlabel = true }) => {
     const t = useTranslations();
     const path = usePathname();
     const router = useRouter();
@@ -15,7 +15,7 @@ const LanguageSwitcher = () => {
     }
     return (
         <ul className='flex flex-row items-start justify-center z-10 p-4 text-sm lg:text-2xl'>
-            <span className='hidden sm:block'>{t("language")}:</span>
+            {showlabel && <span className='hidden sm:block'>{t("language")}:</span>}
             {routing.locales.map(lng => (
                 <li key={lng} className='px-2'>
                     <button

@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server'
 import Image from 'next/image'
 import { Link } from '@/components/AnimatedLink'
 import profile from '~/images/profile.jpg'
+import Navbar from '@/components/Navbar'
 
 export async function generateMetadata(props: {
     params: Promise<{
@@ -24,7 +25,8 @@ export default function Page() {
     const t = useTranslations()
 
     return (
-        <main className="flex flex-col items-center justify-center w-full h-screen gap-2">
+        <main className="flex flex-col items-center justify-start w-full h-screen gap-2">
+            <Navbar />
             <h1 className="mt-4 text-lg uppercase lg:text-2xl font-display text-primario dark:text-secundario">
                 <span>{t("who_am_I")}</span>
             </h1>
