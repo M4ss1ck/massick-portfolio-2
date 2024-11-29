@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { Link } from '@/components/AnimatedLink'
 import profile from '~/images/profile.jpg'
 import Navbar from '@/components/Navbar'
+import { Footer } from '@/components/Footer'
 
 export async function generateMetadata(props: {
     params: Promise<{
@@ -43,6 +44,7 @@ export default function Page() {
             <Link href="/" className='font-thin font-body underline-animation'>
                 {t("back")}
             </Link>
+            <Footer />
         </main>
     )
 }
