@@ -25,7 +25,7 @@ export default function Page() {
 
     return (
         <main className="flex flex-col items-center justify-center w-full h-screen gap-2">
-            <h1 className="mt-4 text-lg uppercase lg:text-2xl font-rammetto text-primario dark:text-secundario">
+            <h1 className="mt-4 text-lg uppercase lg:text-2xl font-display text-primario dark:text-secundario">
                 <span>{t("who_am_I")}</span>
             </h1>
             <Image
@@ -35,10 +35,10 @@ export default function Page() {
                 height={160}
                 alt={t("profile")}
             />
-            <p className="px-4 pt-8 text-xl font-semibold font-montserrat md:w-2/3 md:pt-4 md:text-2xl max-w-prose">
+            <p className="px-4 pt-8 text-xl font-semibold font-display md:w-2/3 md:pt-4 md:text-2xl max-w-prose">
                 {t("about_bio")}
             </p>
-            <Link href="/" className='font-thin font-mono underline-animation'>
+            <Link href="/" className='font-thin font-body underline-animation'>
                 {t("back")}
             </Link>
         </main>
