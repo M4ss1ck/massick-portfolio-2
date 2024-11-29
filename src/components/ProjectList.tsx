@@ -1,5 +1,6 @@
 import { getPayload } from 'payload'
 import config from '@payload-config'
+import { Card } from './Card'
 
 export const ProjectList = async () => {
     const payload = await getPayload({ config })
@@ -12,12 +13,9 @@ export const ProjectList = async () => {
     })
     const projects = rawProjects.docs
     return (
-        <div>
-            <h1>ProjectList</h1>
+        <div className='grid grid-cols-1 gap-2 space-y-2 py-4'>
             {projects.map((project) => (
-                <div key={project.id}>
-                    <h2>{project.title}</h2>
-                </div>
+                <Card key={project.id} project={project} />
             ))}
         </div>
     )
