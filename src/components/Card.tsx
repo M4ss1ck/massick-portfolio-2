@@ -44,14 +44,14 @@ export const Card = ({ project }: CardProps) => {
                     />
                     {
                         project.publishedDate
-                            ? <p className="text-xs border border-current m-2 px-2 py-1 rounded-lg group-hover:text-white text-gray-400 absolute bottom-1">
+                            ? <p className="text-xs border border-current m-2 px-2 py-1 rounded-lg group-hover:text-white text-gray-400 absolute bottom-1 group-hover:bg-black bg-opacity-50">
                                 {dayjs(project.publishedDate).locale(locale).format('MMMM YYYY')}
                             </p>
                             : null
                     }
                 </div>
                 <div className="col-span-1 sm:col-span-2 p-2 mx-2">
-                    <h3 className="text-xl py-2 font-body">
+                    <h3 className="text-xl p-2 font-body backdrop-filter backdrop-blur-lg bg-black bg-opacity-70">
                         {project.url
                             ? <Link href={project.url} target="_blank" className="underline-animation">{t(project.title)}</Link>
                             : t(project.title)}
@@ -61,7 +61,7 @@ export const Card = ({ project }: CardProps) => {
                             typeof tag !== 'number' ? <Pill key={tag.id} tag={tag.name} /> : null
                         ))}
                     </div>
-                    <p className="font-display">{t(project.description)}</p>
+                    <p className="font-display backdrop-filter backdrop-blur-lg bg-black bg-opacity-65 p-2 group-hover:text-white text-gray-400">{t(project.description)}</p>
                     {
                         project.demo
                             ? <Link href={project.demo} target="_blank" className="underline-animation">
