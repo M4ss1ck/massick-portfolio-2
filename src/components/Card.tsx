@@ -14,8 +14,11 @@ interface CardProps {
 export const Card = ({ project }: CardProps) => {
     const t = useTranslations();
     const locale = useLocale();
-    const imageSrc = project.coverImage && typeof project.coverImage !== 'number' && project.coverImage.url
-        ? project.coverImage.url
+    // const imageSrc = project.coverImage && typeof project.coverImage !== 'number' && project.coverImage.url
+    //     ? project.coverImage.url
+    //     : "/images/hacker.png"
+    const imageSrc = project.coverImage && typeof project.coverImage !== 'number' && project.coverImage.filename
+        ? `/media/${project.coverImage.filename}`
         : "/images/hacker.png"
     return (
         <Tilt
