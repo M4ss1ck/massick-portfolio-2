@@ -43,6 +43,9 @@ export const Projects: CollectionConfig = {
             type: 'relationship',
             relationTo: 'tags',
             hasMany: true,
+            admin: {
+                position: 'sidebar',
+            },
         },
         {
             name: 'publishedDate',
@@ -62,6 +65,9 @@ export const Projects: CollectionConfig = {
             type: 'relationship',
             relationTo: 'projects',
             hasMany: true,
+            admin: {
+                position: 'sidebar',
+            },
             filterOptions: ({ id }) => {
                 return {
                     id: {
