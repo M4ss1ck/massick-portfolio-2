@@ -13,7 +13,7 @@ export default function Loading() {
                 <h1 className='text-4xl font-display'>{t("not_found")}</h1>
                 <Link href='/' className='text-lg hover:underline'>{t("back")}</Link>
             </section>
-            <Canvas r={250} g={250} b={250} />
+            <Canvas r={250} g={250} b={250} text={t("not_found")} />
             <Hacker className="absolute bottom-0 w-full opacity-90 dark:opacity-20 -z-10" />
         </main>
     )

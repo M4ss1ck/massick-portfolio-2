@@ -18,10 +18,10 @@ class Letter {
   }
 }
 
-function Canvas({ r = 4, g = 158, b = 42 }) {
+function Canvas({ r = 4, g = 158, b = 42, text = "m4ss1ck " }) {
   const [{ cHeight, cWidth }, setSize] = useState({ cHeight: 0, cWidth: 0 })
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const chars = "m4ss1ck "
+  const chars = text
   const charIndex = useRef(0)
   let lastX = 0
 

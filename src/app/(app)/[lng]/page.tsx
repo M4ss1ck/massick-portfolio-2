@@ -10,7 +10,7 @@ export default function Page() {
 
     return (
         <main className="flex flex-col items-center justify-center w-full h-screen font-body">
-            <Canvas r={250} g={250} b={250} />
+            <Canvas r={250} g={250} b={250} text={title} />
             <Menu t={t} />
             <LettersAnimation title={title} />
             <Hacker className="absolute bottom-0 w-full opacity-90 dark:opacity-20 -z-10" />
