@@ -10,10 +10,14 @@ export const ProjectList = () => {
     const [loading, setLoading] = useState(false)
     const [hasNextPage, setHasNextPage] = useState(true)
     const observerRef = useRef<HTMLDivElement | null>(null)
+    const fetchedPages = useRef<Set<number>>(new Set())
 
     const fetchProjects = async (page: number) => {
+        if (fetchedPages.current.has(page)) return
+        fetchedPages.current.add(page)
+
         setLoading(true)
-        const response = await fetch(`/api/projects?page=${page}&limit=5&sort=-publishedDate`)
+        const response = await fetch(`/api/projects?page=${page}&limit=10&sort=-id`)
         const body = await response.json()
         const newProjects = body.docs
         setHasNextPage(body.hasNextPage)
