@@ -23,6 +23,18 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    meta: {
+      title: 'Portfolio',
+      description: 'Best Admin Panel in the world',
+      titleSuffix: '- Massick',
+      icons: [
+        {
+          rel: 'icon',
+          type: 'image/svg+xml',
+          url: '/icon.svg',
+        }
+      ]
+    }
   },
   collections: [Users, Media, Tags, Projects],
   editor: lexicalEditor(),
