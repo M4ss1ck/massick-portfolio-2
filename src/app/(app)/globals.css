@@ -9,6 +9,19 @@
   --color-foreground: var(--foreground);
 }
 
+@property --glow {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@-webkit-keyframes glow {
+  to { --glow: 1turn }
+}
+
+@keyframes glow {
+  to { --glow: 1turn }
+}
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still
@@ -64,5 +77,29 @@
     transition-property: opacity, transform, filter, background, -webkit-filter;
     transition-timing-function: ease-in-out;
     transition-duration: 300ms;
+  }
+
+  .fancy-border {
+    position: relative;
+    overflow: hidden;
+    padding: .5rem;
+    border-radius: 9999px;
+
+    &::before {
+      position: absolute;
+      z-index: -1;
+      inset: 1rem;
+      border: solid 1rem;
+        -o-border-image: conic-gradient(from var(--glow), #000000, #333333, #666666, 
+      #999999, #cccccc, #ffffff, #cccccc, #999999, #666666, #333333, #000000) 1;
+           border-image: conic-gradient(from var(--glow), #000000, #333333, #666666, 
+      #999999, #cccccc, #ffffff, #cccccc, #999999, #666666, #333333, #000000) 1;
+      border-radius: 9999px;
+      -webkit-filter: blur(.8rem);
+              filter: blur(.8rem);
+      -webkit-animation: glow 4s infinite linear;
+              animation: glow 4s infinite linear;
+      content: '';
+    }
   }
 }

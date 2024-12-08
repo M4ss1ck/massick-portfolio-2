@@ -31,13 +31,15 @@ export default function Page() {
             <h1 className="mt-4 text-lg uppercase lg:text-2xl font-display">
                 <span>{t("who_am_I")}</span>
             </h1>
-            <Image
-                className="rounded-full"
-                src={profile}
-                width={160}
-                height={160}
-                alt={t("profile")}
-            />
+            <div className='fancy-border'>
+                <Image
+                    className="rounded-full"
+                    src={profile}
+                    width={160}
+                    height={160}
+                    alt={t("profile")}
+                />
+            </div>
             <p className="px-4 pt-8 text-xl font-semibold font-display md:w-2/3 md:pt-4 md:text-2xl max-w-prose">
                 {t("about_bio")}
             </p>
