@@ -42,7 +42,13 @@ export default buildConfig({
       graphics: {
         Icon: '@/components/payload/Icon',
         Logo: '@/components/payload/Logo',
-      }
+      },
+      afterNavLinks: [
+        '@/components/payload/Home',
+      ],
+      actions: [
+        '@/components/payload/Home',
+      ],
     }
   },
   collections: [Users, Media, Tags, Projects],
