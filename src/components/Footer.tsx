@@ -38,7 +38,7 @@ const renderSocialIcon = (component: string) => {
 export const Footer = () => {
     return (
         <footer className="flex flex-col items-center justify-center mt-auto z-20 lg:transition text-sm sm:text-lg bg-white/5 backdrop-filter backdrop-blur-lg w-full py-4">
-            <nav className="flex items-center justify-center flex-row flex-wrap space-x-2">
+            <nav className="flex items-center justify-center flex-row flex-wrap space-x-2 text-secondary">
                 {socialLinks.map((socialLink) => (
                     <a
                         key={socialLink.href}
@@ -46,13 +46,13 @@ export const Footer = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         title={socialLink.title}
-                        className="block p-1 text-xl transition duration-150 hover:text-blue-500"
+                        className="block p-1 text-xl transition duration-150 hover:text-primary"
                     >
                         {renderSocialIcon(socialLink.component)}
                     </a>
                 ))}
             </nav>
-            <p className="text-white font-display text-sm my-4">
+            <p className="text-primary font-display text-sm my-4">
                 &copy; 2021 - {new Date().getFullYear()} M4ss1ck
             </p>
         </footer>

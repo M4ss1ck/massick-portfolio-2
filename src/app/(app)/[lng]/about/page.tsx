@@ -28,7 +28,7 @@ export default function Page() {
     return (
         <main className="flex flex-col items-center justify-start w-full h-screen gap-2">
             <Navbar />
-            <h1 className="mt-4 text-lg uppercase lg:text-2xl font-display">
+            <h1 className="mt-4 text-lg uppercase lg:text-2xl font-display text-primary">
                 <span>{t("who_am_I")}</span>
             </h1>
             <div className='fancy-border'>
@@ -40,10 +40,10 @@ export default function Page() {
                     alt={t("profile")}
                 />
             </div>
-            <p className="px-4 pt-8 text-xl font-semibold font-display md:w-2/3 md:pt-4 md:text-2xl max-w-prose">
+            <p className="px-4 pt-8 text-xl font-semibold font-display md:w-2/3 md:pt-4 md:text-2xl max-w-prose text-pretty text-secondary">
                 {t("about_bio")}
             </p>
-            <Link href="/" className='font-thin font-body underline-animation'>
+            <Link href="/" className='font-thin font-body underline-animation text-primary'>
                 {t("back")}
             </Link>
             <Footer />

@@ -47,14 +47,14 @@ export const Card = ({ project }: CardProps) => {
                     />
                     {
                         project.publishedDate
-                            ? <p className="text-xs border border-current m-2 px-2 py-1 rounded-lg group-hover:text-white text-gray-400 absolute bottom-1 group-hover:bg-black bg-opacity-50">
+                            ? <p className="text-xs border border-current m-2 px-2 py-1 rounded-lg group-hover:text-white text-gray-400 absolute bottom-1 group-hover:bg-secondary/50">
                                 {dayjs(project.publishedDate).locale(locale).format('MMMM YYYY')}
                             </p>
                             : null
                     }
                 </div>
                 <div className="col-span-1 sm:col-span-2 p-2 mx-2">
-                    <h3 className="text-xl p-2 font-body backdrop-filter backdrop-blur-lg bg-black bg-opacity-70">
+                    <h3 className="text-xl p-2 font-body backdrop-filter backdrop-blur-lg bg-background/70 text-primary">
                         {project.url
                             ? <Link href={project.url} target="_blank" className="underline-animation">{t(project.title)}</Link>
                             : t(project.title)}
@@ -64,10 +64,10 @@ export const Card = ({ project }: CardProps) => {
                             typeof tag !== 'number' ? <Pill key={tag.id} tag={tag.name} /> : null
                         ))}
                     </div>
-                    <p className="font-display backdrop-filter backdrop-blur-lg bg-black bg-opacity-65 p-2 group-hover:text-white text-gray-400">{t(project.description)}</p>
+                    <p className="font-display backdrop-filter backdrop-blur-lg bg-background/70 bg-opacity-65 p-2 group-hover:text-white text-gray-300">{t(project.description)}</p>
                     {
                         project.demo
-                            ? <Link href={project.demo} target="_blank" className="underline-animation">
+                            ? <Link href={project.demo} target="_blank" className="underline-animation text-primary">
                                 <span>
                                     <LineMdLink className="w-4 h-4 inline-flex" />&nbsp;{t("demo")}
                                 </span>
@@ -81,7 +81,7 @@ export const Card = ({ project }: CardProps) => {
 }
 
 const Pill = ({ tag }: { tag: string }) => (
-    <span className="text-xs border border-current px-2 py-0 rounded-lg bg-opacity-65 group-hover:bg-opacity-1 text-slate-800 bg-white group-hover:text-black">{tag}</span>
+    <span className="text-xs border border-current px-2 py-0 rounded-lg bg-opacity-65 group-hover:bg-opacity-1 text-slate-800 bg-other group-hover:text-black">{tag}</span>
 )
 
 export function LineMdLink(props: SVGProps<SVGSVGElement>) {

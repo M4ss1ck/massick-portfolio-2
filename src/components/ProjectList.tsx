@@ -56,7 +56,7 @@ export const ProjectList = () => {
             {projects.map((project) => (
                 <Card key={project.id} project={project} />
             ))}
-            <div className={`w-full flex items-center lg:col-span-2 justify-center ${loading ? 'visible' : 'invisible'}`}>
+            <div className={`w-full flex items-center lg:col-span-2 justify-center text-secondary ${loading ? 'visible' : 'invisible'}`}>
                 <Loading />
             </div>
             <GoUp />
@@ -82,7 +82,7 @@ export const GoUp = () => {
     }, []);
 
     return (
-        <div className='fixed right-4 bottom-4 z-30'>
+        <div className='fixed right-4 bottom-4 z-30 text-primary'>
             <button
                 onClick={() => {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
