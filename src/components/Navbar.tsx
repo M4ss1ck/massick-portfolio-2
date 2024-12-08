@@ -9,7 +9,7 @@ export default function Navbar() {
     const t = useTranslations();
     const path = usePathname();
     return (
-        <nav className="sticky top-0 flex flex-row py-1 px-4 justify-between items-center z-20 lg:transition text-sm sm:text-lg bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg w-full">
+        <nav className="sticky top-0 flex flex-row py-1 px-4 justify-between items-center z-20 lg:transition text-sm sm:text-lg bg-white/10 backdrop-filter backdrop-blur-lg w-full">
             <h2 className="p-1 sm:p-4 text-sm sm:block lg:text-2xl font-display mr-auto">
                 <Link href="/" className={`${path === '/' ? 'text-gray-500' : 'underline-animation'}`}>
                     {t("home")}
