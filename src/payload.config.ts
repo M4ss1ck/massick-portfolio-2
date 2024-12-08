@@ -34,6 +34,15 @@ export default buildConfig({
           url: '/icon.svg',
         }
       ]
+    },
+    avatar: {
+      Component: '@/components/payload/Avatar',
+    },
+    components: {
+      graphics: {
+        Icon: '@/components/payload/Icon',
+        Logo: '@/components/payload/Logo',
+      }
     }
   },
   collections: [Users, Media, Tags, Projects],
