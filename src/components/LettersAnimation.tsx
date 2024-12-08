@@ -32,7 +32,7 @@ const LettersAnimation = ({ title }: { title: string }) => {
                         className={
                             letter === " "
                                 ? "min-w-[1rem] mr-auto w-full"
-                                : "animateletter transition duration-300 hover:skew-y-12 hover:even:-skew-y-12 hover:-translate-y-16 hover:even:-translate-y-14 hover:scale-150 text-primario dark:text-secundario min-w-[1rem] cursor-default"
+                                : "animateletter transition duration-300 hover:skew-y-12 hover:even:-skew-y-12 hover:-translate-y-16 hover:even:-translate-y-14 hover:scale-150 min-w-[1rem] cursor-default"
                         }
                         style={{ visibility: 'hidden' }}
                     >
