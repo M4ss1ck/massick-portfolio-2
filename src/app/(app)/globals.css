@@ -1,63 +1,63 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @theme {
   --font-*: initial;
-  --font-display: 'Kode Mono Variable', monospace;
-  --font-body: 'Federant', system-ui;
+  --font-display: "Kode Mono Variable", monospace;
+  --font-body: "Federant", system-ui;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 }
 
 @property --glow {
-  syntax: '<angle>';
+  syntax: "<angle>";
   inherits: false;
   initial-value: 0deg;
 }
 
 @-webkit-keyframes glow {
-  to { --glow: 1turn }
+  to {
+    --glow: 1turn;
+  }
 }
 
 @keyframes glow {
-  to { --glow: 1turn }
+  to {
+    --glow: 1turn;
+  }
 }
 
 @-webkit-keyframes blurAnimation {
   0% {
     -webkit-filter: blur(0);
-            filter: blur(0);
+    filter: blur(0);
   }
   10% {
-    -webkit-filter: blur(2px);
-            filter: blur(2px);
+    -webkit-filter: blur(1px);
+    filter: blur(1px);
   }
   30% {
     -webkit-filter: blur(0);
-            filter: blur(0);
+    filter: blur(0);
   }
   100% {
     -webkit-filter: blur(0);
-            filter: blur(0);
+    filter: blur(0);
   }
 }
 
 @keyframes blurAnimation {
   0% {
-    -webkit-filter: blur(0);
-            filter: blur(0);
+    -webkit-filter: blur(1px);
+    filter: blur(1px);
   }
-  20% {
-    -webkit-filter: blur(2px);
-            filter: blur(2px);
-  }
-  40% {
+  10% {
     -webkit-filter: blur(0);
-            filter: blur(0);
+    filter: blur(0);
   }
   100% {
     -webkit-filter: blur(0);
-            filter: blur(0);
+    filter: blur(0);
   }
 }
 
@@ -93,15 +93,70 @@
   opacity: 0;
   /* transform: translateY(10%); */
   -webkit-filter: blur(20px);
-          filter: blur(20px);
+  filter: blur(20px);
   overflow: hidden;
+}
+
+@utility fancy-border {
+  position: relative;
+  overflow: hidden;
+  padding: 0.5rem;
+  border-radius: 9999px;
+
+  &::before {
+    position: absolute;
+    z-index: -1;
+    inset: 1rem;
+    border: solid 1rem;
+    -o-border-image: conic-gradient(
+        from var(--glow),
+        #000000,
+        #333333,
+        #666666,
+        #999999,
+        #cccccc,
+        #ffffff,
+        #cccccc,
+        #999999,
+        #666666,
+        #333333,
+        #000000
+      )
+      1;
+    border-image: conic-gradient(
+        from var(--glow),
+        #000000,
+        #333333,
+        #666666,
+        #999999,
+        #cccccc,
+        #ffffff,
+        #cccccc,
+        #999999,
+        #666666,
+        #333333,
+        #000000
+      )
+      1;
+    border-radius: 9999px;
+    -webkit-filter: blur(0.8rem);
+    filter: blur(0.8rem);
+    -webkit-animation: glow 4s infinite linear;
+    animation: glow 4s infinite linear;
+    content: "";
+  }
+
+  /* img {
+    -webkit-animation: blurAnimation 4s infinite;
+    animation: blurAnimation 4s infinite;
+  } */
 }
 
 @layer utilities {
   :root {
-      --foreground-rgb: 255, 255, 255;
-      --background-start-rgb: 40, 40, 43;
-      --background-end-rgb: 0, 0, 0;
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 40, 40, 43;
+    --background-end-rgb: 0, 0, 0;
   }
 
   body {
@@ -113,37 +168,13 @@
       )
       rgb(var(--background-start-rgb));
 
-    transition-property: opacity, transform, filter, background, -webkit-filter;
+    transition-property:
+      opacity,
+      transform,
+      filter,
+      background,
+      -webkit-filter;
     transition-timing-function: ease-in-out;
     transition-duration: 300ms;
-  }
-
-  .fancy-border {
-    position: relative;
-    overflow: hidden;
-    padding: .5rem;
-    border-radius: 9999px;
-
-    &::before {
-      position: absolute;
-      z-index: -1;
-      inset: 1rem;
-      border: solid 1rem;
-        -o-border-image: conic-gradient(from var(--glow), #000000, #333333, #666666, 
-      #999999, #cccccc, #ffffff, #cccccc, #999999, #666666, #333333, #000000) 1;
-           border-image: conic-gradient(from var(--glow), #000000, #333333, #666666, 
-      #999999, #cccccc, #ffffff, #cccccc, #999999, #666666, #333333, #000000) 1;
-      border-radius: 9999px;
-      -webkit-filter: blur(.8rem);
-              filter: blur(.8rem);
-      -webkit-animation: glow 4s infinite linear;
-              animation: glow 4s infinite linear;
-      content: '';
-    }
-
-    img {
-      -webkit-animation: blurAnimation 4s infinite;
-              animation: blurAnimation 4s infinite;
-    }
   }
 }
