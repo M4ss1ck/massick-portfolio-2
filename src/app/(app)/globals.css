@@ -22,6 +22,45 @@
 @keyframes glow {
   to { --glow: 1turn }
 }
+
+@-webkit-keyframes blurAnimation {
+  0% {
+    -webkit-filter: blur(0);
+            filter: blur(0);
+  }
+  10% {
+    -webkit-filter: blur(2px);
+            filter: blur(2px);
+  }
+  30% {
+    -webkit-filter: blur(0);
+            filter: blur(0);
+  }
+  100% {
+    -webkit-filter: blur(0);
+            filter: blur(0);
+  }
+}
+
+@keyframes blurAnimation {
+  0% {
+    -webkit-filter: blur(0);
+            filter: blur(0);
+  }
+  20% {
+    -webkit-filter: blur(2px);
+            filter: blur(2px);
+  }
+  40% {
+    -webkit-filter: blur(0);
+            filter: blur(0);
+  }
+  100% {
+    -webkit-filter: blur(0);
+            filter: blur(0);
+  }
+}
+
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still
@@ -100,6 +139,11 @@
       -webkit-animation: glow 4s infinite linear;
               animation: glow 4s infinite linear;
       content: '';
+    }
+
+    img {
+      -webkit-animation: blurAnimation 4s infinite;
+              animation: blurAnimation 4s infinite;
     }
   }
 }
