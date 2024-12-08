@@ -5,8 +5,13 @@
   --font-display: "Kode Mono Variable", monospace;
   --font-body: "Federant", system-ui;
 
+  --foreground: #c45c4b;
+  --background-start-rgb: #6424cb;
+  --background-end-rgb: #2c0c3c;
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-primary: var(--color-blue-500);
+  --color-secondary: #c45c4b;
+  --color-other: #f4ac1c;
 }
 
 @property --glow {
@@ -83,9 +88,22 @@
 }
 
 @utility underline-animation {
-  @apply relative;
+  position: relative;
   &::after {
-    @apply absolute scale-x-0 hover:scale-x-100 bottom-0 block w-full h-0.5 bg-[rgb(var(--foreground-rgb))] content-[''] transition-transform duration-500 origin-bottom-right hover:origin-bottom-left;
+    position: absolute;
+    transform: scaleX(0%);
+    bottom: 0;
+    display: block;
+    width: 100%;
+    height: 0.5rem;
+    background-color: var(--color-primary);
+    content: "";
+    transition: transform 500ms;
+    transform-origin: bottom right;
+  }
+  &:hover::after {
+    transform: scaleX(100%);
+    transform-origin: bottom left;
   }
 }
 
@@ -153,20 +171,14 @@
 }
 
 @layer utilities {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 40, 40, 43;
-    --background-end-rgb: 0, 0, 0;
-  }
-
   body {
-    color: rgb(var(--foreground-rgb));
+    color: rgb(var(--foreground));
     background: linear-gradient(
         to bottom,
         transparent,
-        rgb(var(--background-end-rgb))
+        var(--background-end-rgb)
       )
-      rgb(var(--background-start-rgb));
+      var(--background-start-rgb);
 
     transition-property:
       opacity,
