@@ -1,47 +1,68 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@theme {
+  --font-*: initial;
+  --font-display: 'Kode Mono Variable', monospace;
+  --font-body: 'Federant', system-ui;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 40, 40, 43;
-    --background-end-rgb: 0, 0, 0;
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  ::-webkit-backdrop {
+    border-color: var(--color-gray-200, currentColor);
+  }
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-
-  transition-property: opacity, transform, filter, background;
-  transition-timing-function: ease-in-out;
-  transition-duration: 300ms;
-}
-
-@layer components {
-  .underline-animation {
-    @apply relative;
-  }
-  .underline-animation::after {
+@utility underline-animation {
+  @apply relative;
+  &::after {
     @apply absolute scale-x-0 hover:scale-x-100 bottom-0 block w-full h-0.5 bg-[rgb(var(--foreground-rgb))] content-[''] transition-transform duration-500 origin-bottom-right hover:origin-bottom-left;
   }
+}
 
-  .page-transition {
-    opacity: 0;
-    /* transform: translateY(10%); */
-    filter: blur(20px);
-    overflow: hidden;
+@utility page-transition {
+  opacity: 0;
+  /* transform: translateY(10%); */
+  -webkit-filter: blur(20px);
+          filter: blur(20px);
+  overflow: hidden;
+}
+
+@layer utilities {
+  :root {
+      --foreground-rgb: 255, 255, 255;
+      --background-start-rgb: 40, 40, 43;
+      --background-end-rgb: 0, 0, 0;
+  }
+
+  body {
+    color: rgb(var(--foreground-rgb));
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgb(var(--background-end-rgb))
+      )
+      rgb(var(--background-start-rgb));
+
+    transition-property: opacity, transform, filter, background, -webkit-filter;
+    transition-timing-function: ease-in-out;
+    transition-duration: 300ms;
   }
 }

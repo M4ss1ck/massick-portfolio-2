@@ -13,7 +13,7 @@ export default function Page() {
             <Canvas r={250} g={250} b={250} text={title} />
             <Menu t={t} />
             <LettersAnimation title={title} />
-            <Hacker className="absolute bottom-0 w-full opacity-90 dark:opacity-20 -z-10" />
+            <Hacker className="absolute bottom-0 w-full opacity-20 -z-10" />
         </main>
     )
 }

@@ -28,7 +28,7 @@ export default function Page() {
     return (
         <main className="flex flex-col items-center justify-start w-full h-screen gap-2">
             <Navbar />
-            <h1 className="mt-4 text-lg uppercase lg:text-2xl font-display text-primario dark:text-secundario">
+            <h1 className="mt-4 text-lg uppercase lg:text-2xl font-display">
                 <span>{t("who_am_I")}</span>
             </h1>
             <Image
