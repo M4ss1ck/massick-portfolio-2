@@ -56,7 +56,7 @@ export const ProjectList = () => {
             {projects.map((project) => (
                 <Card key={project.id} project={project} />
             ))}
-            <div className={`w-full flex items-center justify-center ${loading ? 'visible' : 'invisible'}`}>
+            <div className={`w-full flex items-center lg:col-span-2 justify-center ${loading ? 'visible' : 'invisible'}`}>
                 <Loading />
             </div>
             <GoUp />
