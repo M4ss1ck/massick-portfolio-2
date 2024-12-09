@@ -18,6 +18,10 @@ export const routing = defineRouting({
             en: '/projects',
             es: '/proyectos'
         },
+        '/projects/:id': {
+            en: '/projects/:id',
+            es: '/proyectos/:id'
+        },
         '/blog': '/blog',
     }
 });

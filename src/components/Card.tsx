@@ -4,6 +4,7 @@ import Tilt from 'react-parallax-tilt';
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
+import { Link as AnimatedLink } from "./AnimatedLink";
 import { SVGProps } from "react";
 import dayjs from "dayjs";
 import "dayjs/locale/es";
@@ -15,9 +16,6 @@ interface CardProps {
 export const Card = ({ project }: CardProps) => {
     const t = useTranslations();
     const locale = useLocale();
-    // const imageSrc = project.coverImage && typeof project.coverImage !== 'number' && project.coverImage.url
-    //     ? project.coverImage.url
-    //     : "/images/hacker.png"
     const imageSrc = project.coverImage && typeof project.coverImage !== 'number' && project.coverImage.filename
         ? `/media/${project.coverImage.filename}`
         : "/images/hacker.png"
@@ -25,7 +23,7 @@ export const Card = ({ project }: CardProps) => {
         <Tilt
             glareEnable={true}
         >
-            <div className="group grid grid-cols-1 sm:grid-cols-3 max-w-sm sm:max-w-lg hover:z-20 hover:shadow-lg hover:shadow-current rounded-lg transition-all duration-300 ease-in-out gap-x-2 h-full">
+            <AnimatedLink href={`/projects/${project.id}` as '/projects/:id'} className="group grid grid-cols-1 sm:grid-cols-3 max-w-sm sm:max-w-lg hover:z-20 hover:shadow-lg hover:shadow-current rounded-lg transition-all duration-300 ease-in-out gap-x-2 h-full">
                 <div
                     aria-hidden
                     className="absolute h-full w-full -z-10"
@@ -53,7 +51,7 @@ export const Card = ({ project }: CardProps) => {
                 <div className="col-span-1 sm:col-span-2 p-2 mx-2">
                     <h3 className="text-xl p-2 font-body backdrop-filter backdrop-blur-lg bg-background/70 text-primary">
                         {project.url
-                            ? <Link href={project.url} target="_blank" className="underline-animation">{t(project.title)}</Link>
+                            ? <Link href={project.url} target="_blank" onClick={(e) => e.stopPropagation()} className="underline-animation">{t(project.title)}</Link>
                             : t(project.title)}
                     </h3>
                     <div className="py-1 gap-2 flex items-center justify-start flex-row flex-wrap font-display">
@@ -64,7 +62,7 @@ export const Card = ({ project }: CardProps) => {
                     <p className="font-display backdrop-filter backdrop-blur-lg bg-background/70 bg-opacity-65 p-2 group-hover:text-white text-gray-300">{t(project.description)}</p>
                     {
                         project.demo
-                            ? <Link href={project.demo} target="_blank" className="underline-animation text-primary">
+                            ? <Link href={project.demo} target="_blank" onClick={(e) => e.stopPropagation()} className="underline-animation text-primary">
                                 <span>
                                     <LineMdLink className="w-4 h-4 inline-flex" />&nbsp;{t("demo")}
                                 </span>
@@ -72,7 +70,7 @@ export const Card = ({ project }: CardProps) => {
                             : null
                     }
                 </div>
-            </div>
+            </AnimatedLink>
         </Tilt>
     )
 }
