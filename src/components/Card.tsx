@@ -6,6 +6,7 @@ import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
 import { SVGProps } from "react";
 import dayjs from "dayjs";
+import "dayjs/locale/es";
 
 interface CardProps {
     project: Project;
@@ -45,13 +46,9 @@ export const Card = ({ project }: CardProps) => {
                         height={160}
                         alt={t(project.title)}
                     />
-                    {
-                        project.publishedDate
-                            ? <p className="text-xs border border-current m-2 px-2 py-1 rounded-lg group-hover:text-white text-gray-400 absolute bottom-1 group-hover:bg-secondary/50">
-                                {dayjs(project.publishedDate).locale(locale).format('MMMM YYYY')}
-                            </p>
-                            : null
-                    }
+                    <p className="text-xs border border-current m-2 px-2 py-1 rounded-lg group-hover:text-white text-gray-400 absolute bottom-1 group-hover:bg-secondary/50">
+                        {dayjs(project.publishedDate ?? Date.now()).locale(locale).format('MMMM YYYY')}
+                    </p>
                 </div>
                 <div className="col-span-1 sm:col-span-2 p-2 mx-2">
                     <h3 className="text-xl p-2 font-body backdrop-filter backdrop-blur-lg bg-background/70 text-primary">
