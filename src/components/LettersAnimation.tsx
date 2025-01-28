@@ -10,7 +10,7 @@ const LettersAnimation = ({ title }: { title: string }) => {
         for (let i = 0; i < letters.length; i++) {
             const letter = letters[i]
             letter.style.visibility = 'visible'
-            duration += 200
+            duration += 150
             letter.animate(
                 [
                     { transform: `translateY(-100vh) scale(0,0)` },
