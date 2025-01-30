@@ -23,7 +23,7 @@ export const Card = ({ project }: CardProps) => {
         <Tilt
             glareEnable={true}
         >
-            <AnimatedLink href={`/projects/${project.id}` as '/projects/:id'} className="group grid grid-cols-1 sm:grid-cols-3 max-w-sm sm:max-w-lg hover:z-20 hover:shadow-lg hover:shadow-current rounded-lg transition-all duration-300 ease-in-out gap-x-2 h-full">
+            <AnimatedLink href={`/projects/${project.id}` as '/projects/:id'} className="group grid grid-cols-1 sm:grid-cols-3 max-w-sm sm:max-w-lg hover:z-20 hover:shadow-lg hover:shadow-other rounded-lg transition-all duration-300 ease-in-out gap-x-2 h-full">
                 <div
                     aria-hidden
                     className="absolute h-full w-full -z-10"
@@ -75,7 +75,7 @@ export const Card = ({ project }: CardProps) => {
     )
 }
 
-const Pill = ({ tag }: { tag: string }) => (
+export const Pill = ({ tag }: { tag: string }) => (
     <span className="text-xs border border-current px-2 py-0 rounded-lg bg-opacity-65 group-hover:bg-opacity-1 text-slate-800 bg-other group-hover:text-black">{tag}</span>
 )
 
