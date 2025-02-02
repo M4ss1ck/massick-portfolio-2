@@ -3,6 +3,7 @@ import { postgresAdapter } from '@payloadcms/db-postgres'
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { formBuilderPlugin } from '@payloadcms/plugin-form-builder'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
@@ -76,6 +77,7 @@ export default buildConfig({
     }),
   ],
   telemetry: false,
+  email: nodemailerAdapter(),
   onInit: async (payload) => {
     if (process.env.PAYLOAD_SEED) {
       await seed(payload)
