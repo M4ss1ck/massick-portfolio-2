@@ -1,6 +1,7 @@
 "use client"
 import React, { useState, useEffect } from 'react'
 import type { Form as FormType } from '@/payload-types'
+import { getCookie, setCookie } from 'cookies-next/client'
 import Field from './Field'
 
 const ContactForm = () => {
@@ -35,6 +36,7 @@ const ContactForm = () => {
             })
             const res = await req.json()
             if (res) {
+                setCookie('contacted', 'true')
                 setIsSubmitted(true)
             }
         } catch (error) {
@@ -42,6 +44,13 @@ const ContactForm = () => {
         }
         setLoading(false)
     }
+
+    useEffect(() => {
+        const hasContacted = getCookie('contacted')
+        if (hasContacted) {
+            setIsSubmitted(true)
+        }
+    }, [])
 
     useEffect(() => {
         fetchForm(formId)
