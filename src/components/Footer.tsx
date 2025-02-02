@@ -1,3 +1,4 @@
+import ContactForm from "./form/ContactForm"
 
 const socialLinks = [
     {
@@ -38,6 +39,7 @@ const renderSocialIcon = (component: string) => {
 export const Footer = () => {
     return (
         <footer className="flex flex-col items-center justify-center mt-auto z-20 lg:transition text-sm sm:text-lg bg-white/5 backdrop-filter backdrop-blur-lg w-full py-4">
+            <ContactForm />
             <nav className="flex items-center justify-center flex-row flex-wrap space-x-2 text-secondary">
                 {socialLinks.map((socialLink) => (
                     <a
