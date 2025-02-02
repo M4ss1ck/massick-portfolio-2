@@ -20,7 +20,6 @@ export const ProjectDetails = ({ id }: { id: string | number }) => {
         setLoading(true)
         const response = await fetch(`/api/projects/${id}?depth=2`)
         const body = await response.json()
-        console.log(body)
         setProject(body)
         setLoading(false)
     }
