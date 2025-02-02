@@ -3,8 +3,10 @@ import React, { useState, useEffect } from 'react'
 import type { Form as FormType } from '@/payload-types'
 import { getCookie, setCookie } from 'cookies-next/client'
 import Field from './Field'
+import { useTranslations } from "next-intl";
 
 const ContactForm = () => {
+    const t = useTranslations()
     const [loading, setLoading] = useState(false)
     const [form, setForm] = useState<FormType | null>(null)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -69,8 +71,8 @@ const ContactForm = () => {
             onSubmit={handleSubmit}
         >
             {!isSubmitted ? <>
-                <h1 className='text-2xl font-body uppercase'>{form?.title ?? 'Contact Form'}</h1>
-                <p className='font-display text-secondary'>Got any questions or suggestions? Fill out this form to reach out</p>
+                <h1 className='text-2xl font-body uppercase'>{t(form?.title ?? 'Contact Form')}</h1>
+                <p className='font-display text-secondary'>{t("Got any questions or suggestions? Fill out this form to reach out")}</p>
                 <div className='flex flex-row flex-wrap font-display'>
                     {form?.fields && form.fields.length > 0 ? form.fields.map((field) => (
                         <Field key={field.id} field={field} setData={setData} />
@@ -81,9 +83,9 @@ const ContactForm = () => {
                     type='submit'
                     disabled={isDisabled || loading}
                 >
-                    {form?.submitButtonLabel ?? 'Submit'}
+                    {t(form?.submitButtonLabel ?? 'Submit')}
                 </button>
-            </> : <p className='text-2xl font-display uppercase'>Thank you for your feedback!</p>}
+            </> : <p className='text-2xl font-display uppercase'>{t("Thank you for your feedback!")}</p>}
         </form>
     )
 }

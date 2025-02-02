@@ -1,5 +1,6 @@
 import React from 'react'
 import type { Form as FormType } from '@/payload-types'
+import { useTranslations } from 'next-intl'
 
 interface FieldProps {
     field: NonNullable<FormType['fields']>[number] // Use NonNullable to handle null case
@@ -7,6 +8,7 @@ interface FieldProps {
 }
 
 const Field: React.FC<FieldProps> = ({ field, setData }) => {
+    const t = useTranslations()
     if (!field) return null;
     if (field.blockType === 'text') {
         return (
@@ -14,7 +16,7 @@ const Field: React.FC<FieldProps> = ({ field, setData }) => {
                 className='flex flex-col gap-2 px-4 items-start'
                 style={{ width: field.width ? `${field.width}%` : 'auto' }}
             >
-                <label>{field.label}</label>
+                <label>{t(field.label)}</label>
                 <input
                     type='text'
                     className='block w-full rounded-md bg-transparent px-3 py-1.5 text-base text-secondary outline-1 -outline-offset-1 outline-secondary placeholder:text-other focus:outline-2 focus:-outline-offset-2 focus:outline-primary sm:text-sm/6'
@@ -35,7 +37,7 @@ const Field: React.FC<FieldProps> = ({ field, setData }) => {
                 className='flex flex-col gap-2 px-4 items-start'
                 style={{ width: field.width ? `${field.width}%` : 'auto' }}
             >
-                <label>{field.label}</label>
+                <label>{t(field.label)}</label>
                 <input
                     type='email'
                     className='block w-full rounded-md bg-transparent px-3 py-1.5 text-base text-secondary outline-1 -outline-offset-1 outline-secondary placeholder:text-other focus:outline-2 focus:-outline-offset-2 focus:outline-primary sm:text-sm/6'
