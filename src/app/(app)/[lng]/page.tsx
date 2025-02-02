@@ -9,7 +9,7 @@ export default function Page() {
     const title = t("titulo_portada")
 
     return (
-        <main className="flex flex-col items-center justify-center w-full h-screen font-body">
+        <main className="flex flex-col items-center justify-center w-full h-screen font-body overflow-x-hidden">
             <Canvas r={250} g={250} b={250} text={title} />
             <Menu t={t} />
             <LettersAnimation title={title} />
