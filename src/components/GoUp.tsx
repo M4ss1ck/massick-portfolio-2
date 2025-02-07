@@ -1,3 +1,4 @@
+"use client";
 import { useState, useEffect } from 'react';
 
 export const GoUp = () => {
@@ -17,7 +18,7 @@ export const GoUp = () => {
     }, []);
 
     return (
-        <div className='fixed right-4 bottom-4 z-30 text-primary'>
+        <div className='fixed right-4 bottom-4 z-30 text-primary hover:text-other'>
             <button
                 onClick={() => {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
