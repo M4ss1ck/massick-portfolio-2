@@ -82,13 +82,13 @@ function Canvas({ r = 4, g = 158, b = 42, text = "m4ss1ck" }) {
   useEffect(() => {
     // Set height and width on load because if set in state body isn't defined yet.
     setSize({
-      cHeight: document.body.clientHeight,
+      cHeight: window.innerHeight,
       cWidth: document.body.clientWidth,
     })
 
     const handleResize = () => {
       setSize({
-        cHeight: document.body.clientHeight,
+        cHeight: window.innerHeight,
         cWidth: document.body.clientWidth,
       })
     }
