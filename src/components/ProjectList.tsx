@@ -1,10 +1,13 @@
 "use client"
 import { useState, useEffect, useRef, useCallback } from 'react'
+import { useTranslations } from 'next-intl'
 import { Card } from './Card'
 import { Project } from '@/payload-types'
 import { Loading } from './icons/Loading'
+import { Link } from './AnimatedLink'
 
 export const ProjectList = ({ favoritesOnly = false, limit = 10 }) => {
+    const t = useTranslations()
     const [projects, setProjects] = useState<Project[]>([])
     const [page, setPage] = useState(1)
     const [loading, setLoading] = useState(false)
@@ -56,6 +59,10 @@ export const ProjectList = ({ favoritesOnly = false, limit = 10 }) => {
             {projects.map((project) => (
                 <Card key={project.id} project={project} />
             ))}
+            {favoritesOnly && !loading && projects.length > 0
+                ? <Link href="/projects" className='text-primary underline-animation ml-auto mb-auto font-display lg:col-span-2'>{t("See more")}</Link>
+                : null
+            }
             <div className={`w-full flex items-center lg:col-span-2 justify-center text-secondary ${loading ? 'visible' : 'invisible'}`}>
                 <Loading />
             </div>
