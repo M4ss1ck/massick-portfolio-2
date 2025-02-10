@@ -8,6 +8,7 @@ import { ProjectList } from '@/components/ProjectList'
 import { GoUp } from '@/components/GoUp'
 import { Footer } from '@/components/Footer'
 import { Link } from '@/components/AnimatedLink'
+import { GoToId } from '@/components/GoToId'
 
 export default function Page() {
     const t = useTranslations()
@@ -19,9 +20,10 @@ export default function Page() {
                 <Canvas r={250} g={250} b={250} text={title} />
                 <Menu t={t} />
                 <LettersAnimation title={title} />
+                <GoToId id="projects" />
                 <Hacker className="absolute bottom-0 w-full opacity-20 -z-10" />
             </Block>
-            <Block>
+            <Block id="projects">
                 <Link href="/projects">
                     <h1 className='text-4xl text-primary font-body mt-4 mb-8 underline-animation'>
                         {t("projects")}
