@@ -31,8 +31,9 @@ export const ProjectList = ({ favoritesOnly = false, limit = 10 }) => {
     }, [favoritesOnly, limit])
 
     useEffect(() => {
+        if (page > 1 && favoritesOnly) return;
         fetchProjects(page)
-    }, [page, fetchProjects])
+    }, [page, fetchProjects, favoritesOnly])
 
     useEffect(() => {
         if (!hasNextPage) return;
