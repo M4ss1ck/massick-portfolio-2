@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { useTranslations } from 'next-intl'
 import { Card } from './Card'
+import { SkeletonCard } from './SkeletonCard'
 import { Project } from '@/payload-types'
 import { Loading } from './icons/Loading'
 import { Link } from './AnimatedLink'
@@ -54,8 +55,16 @@ export const ProjectList = ({ favoritesOnly = false, limit = 10 }) => {
         }
     }, [loading, hasNextPage])
 
-    return (
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-2 space-y-2 py-4 mx-2 space-x-2 grid-flow-row-dense'>
+    return (loading && projects.length === 0
+        ? <div className={`grid grid-cols-1 lg:grid-cols-2 gap-2 space-y-2 py-4 mx-2 space-x-2 grid-flow-row-dense text-secondary`}>
+            <SkeletonCard />
+            <SkeletonCard />
+            <SkeletonCard />
+            <SkeletonCard />
+            <SkeletonCard />
+            <SkeletonCard />
+        </div>
+        : <div className='grid grid-cols-1 lg:grid-cols-2 gap-2 space-y-2 py-4 mx-2 space-x-2 grid-flow-row-dense'>
             {projects.map((project) => (
                 <Card key={project.id} project={project} />
             ))}
