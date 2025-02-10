@@ -66,6 +66,24 @@
   }
 }
 
+@-webkit-keyframes shimmer {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still
@@ -191,6 +209,11 @@
     -webkit-animation: blurAnimation 4s infinite;
     animation: blurAnimation 4s infinite;
   } */
+}
+
+@utility shimmer {
+  -webkit-animation: shimmer 2s infinite linear;
+  animation: shimmer 2s infinite linear;
 }
 
 @layer utilities {
