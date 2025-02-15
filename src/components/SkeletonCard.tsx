@@ -43,7 +43,9 @@ export const SkeletonCard = () => {
                         &nbsp;
                     </h3>
                     <div className="py-1 gap-2 flex items-center justify-start flex-row flex-wrap font-display">
-                        <Pill tag={"tag"} />
+                        <Pill tag={'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'} />
+                        <Pill tag={'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'} />
+                        <Pill tag={'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'} />
                     </div>
                     <p className="font-display backdrop-filter backdrop-blur-lg bg-opacity-65 p-2 group-hover:text-white text-gray-300 bg-gray-700/50 animate-pulse rounded">
                         &nbsp;
