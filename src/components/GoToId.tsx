@@ -26,7 +26,10 @@ export const GoToId = ({ id }: { id: string }) => {
     }
 
     return (
-        <button className={`absolute bottom-0 h-8 w-8 text-primary hover:text-other transition-all duration-300 ease-in-out ${visible ? 'visible' : 'invisible'}`} onClick={() => goToProjects(id)}>
+        <button
+            className={`absolute bottom-2 h-12 w-12 text-primary hover:text-other transition-opacity duration-1000 ease-in-out ${visible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+            onClick={() => goToProjects(id)}
+        >
             <Down />
         </button>
     )
