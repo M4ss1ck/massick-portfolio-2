@@ -4,7 +4,7 @@ import Tilt from 'react-parallax-tilt';
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
-import { Link as AnimatedLink } from "./AnimatedLink";
+import { AnimatedButton } from "./AnimatedButton";
 import { SVGProps } from "react";
 import dayjs from "dayjs";
 import "dayjs/locale/es";
@@ -24,7 +24,7 @@ export const Card = ({ project }: CardProps) => {
         <Tilt
             glareEnable={true}
         >
-            <AnimatedLink href={`/projects/${project.id}` as '/projects/:id'} className="group grid grid-cols-1 sm:grid-cols-3 max-w-sm sm:max-w-lg hover:z-20 hover:shadow-lg hover:shadow-other rounded-lg transition-all duration-300 ease-in-out gap-x-2 h-full">
+            <AnimatedButton href={`/projects/${project.id}` as '/projects/:id'} className="group grid grid-cols-1 sm:grid-cols-3 max-w-sm sm:max-w-lg hover:z-20 hover:shadow-lg hover:shadow-other rounded-lg transition-all duration-300 ease-in-out gap-x-2 h-full">
                 <div
                     aria-hidden
                     className="absolute h-full w-full -z-10"
@@ -71,7 +71,7 @@ export const Card = ({ project }: CardProps) => {
                             : null
                     }
                 </div>
-            </AnimatedLink>
+            </AnimatedButton>
         </Tilt>
     )
 }
