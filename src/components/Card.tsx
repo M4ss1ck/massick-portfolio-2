@@ -49,7 +49,7 @@ export const Card = ({ project }: CardProps) => {
                         {dayjs(project.publishedDate ?? Date.now()).locale(locale).format('MMMM YYYY')}
                     </p>
                 </div>
-                <div className="col-span-1 sm:col-span-2 p-2 mx-2">
+                <div className="col-span-1 sm:col-span-2 p-2 mx-2 text-left">
                     <h3 className="text-xl p-2 font-body backdrop-filter backdrop-blur-lg bg-background/70 text-primary">
                         {project.url
                             ? <Link href={project.url} target="_blank" onClick={(e) => e.stopPropagation()} className="underline-animation">{t(project.title)}</Link>
