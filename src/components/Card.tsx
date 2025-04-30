@@ -50,7 +50,7 @@ export const Card = ({ project }: CardProps) => {
                     </p>
                 </div>
                 <div className="col-span-1 sm:col-span-2 p-2 mx-2 text-left">
-                    <h3 className="text-xl p-2 font-body backdrop-filter backdrop-blur-lg bg-background/70 text-primary">
+                    <h3 className="text-xl p-2 font-body backdrop-filter backdrop-blur-lg bg-background/70 text-primary group-hover:text-other transition-all duration-200 ease-in-out">
                         {project.url
                             ? <Link href={project.url} target="_blank" onClick={(e) => e.stopPropagation()} className="underline-animation">{t(project.title)}</Link>
                             : t(project.title)}
