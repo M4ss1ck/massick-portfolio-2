@@ -21,7 +21,7 @@ export const ProjectList = ({ favoritesOnly = false, limit = 10 }) => {
         fetchedPages.current.add(page)
 
         setLoading(true)
-        const response = await fetch(`/api/projects?page=${page}${favoritesOnly ? '&where[isFavorite][equals]=true' : ''}&limit=${limit}&sort=-id`)
+        const response = await fetch(`/api/projects?page=${page}${favoritesOnly ? '&where[isFavorite][equals]=true' : ''}&limit=${limit}&sort=-publishedDate`)
         const body = await response.json()
         const newProjects = body.docs
         setHasNextPage(body.hasNextPage && !favoritesOnly)
