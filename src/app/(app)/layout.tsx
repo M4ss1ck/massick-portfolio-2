@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
+import { getMessages, getLocale } from 'next-intl/server';
 import './globals.css'
 import '@fontsource/federant';
 import '@fontsource-variable/kode-mono';
+
+import IntlErrorHandlingProvider from '@/components/providers/IntlErrorHandlingProvider';
 
 export const metadata: Metadata = {
   title: 'My portfolio',
@@ -16,13 +17,13 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   const messages = await getMessages();
-
+  const locale = await getLocale();
   return (
     <html>
       <body>
-        <NextIntlClientProvider messages={messages}>
+        <IntlErrorHandlingProvider locale={locale} messages={messages}>
           {children}
-        </NextIntlClientProvider>
+        </IntlErrorHandlingProvider>
       </body>
     </html>
   );

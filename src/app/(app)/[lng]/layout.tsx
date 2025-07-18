@@ -1,8 +1,7 @@
-import { NextIntlClientProvider } from 'next-intl';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, getMessages } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
-import { getMessages } from 'next-intl/server';
+import IntlErrorHandlingProvider from '@/components/providers/IntlErrorHandlingProvider';
 
 export async function generateMetadata(props: {
     params: Promise<{
@@ -10,9 +9,7 @@ export async function generateMetadata(props: {
     }>
 }) {
     const params = await props.params;
-    const {
-        lng
-    } = params;
+    const { lng } = params;
     const t = await getTranslations({ locale: lng });
     return {
         title: t('portfolio'),
@@ -29,14 +26,8 @@ export default async function RootLayout(
     }
 ) {
     const params = await props.params;
-
-    const {
-        lng
-    } = params;
-
-    const {
-        children
-    } = props;
+    const { lng } = params;
+    const { children } = props;
 
     // Ensure that the incoming `locale` is valid
     if (!routing.locales.includes(lng as 'en' | 'es')) {
@@ -48,9 +39,9 @@ export default async function RootLayout(
     return (
         <html lang={lng}>
             <body>
-                <NextIntlClientProvider messages={messages}>
+                <IntlErrorHandlingProvider locale={lng} messages={messages}>
                     {children}
-                </NextIntlClientProvider>
+                </IntlErrorHandlingProvider>
             </body>
         </html>
     )
