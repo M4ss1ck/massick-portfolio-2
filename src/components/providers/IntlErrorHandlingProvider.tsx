@@ -16,7 +16,7 @@ export default function IntlErrorHandlingProvider({
       locale={locale}
       messages={messages}
       onError={console.log}
-      getMessageFallback={({ namespace, key }) => `${namespace}.${key}`}
+      getMessageFallback={({ key }) => `${key}`}
     >
       {children}
     </NextIntlClientProvider>
