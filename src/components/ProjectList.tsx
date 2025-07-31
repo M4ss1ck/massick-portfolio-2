@@ -1,6 +1,6 @@
 "use client"
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import { Card } from './Card'
 import { SkeletonCard } from './SkeletonCard'
 import { Project } from '@/payload-types'
@@ -9,6 +9,7 @@ import { Link } from './AnimatedLink'
 
 export const ProjectList = ({ favoritesOnly = false, limit = 10 }) => {
     const t = useTranslations()
+    const locale = useLocale()
     const [projects, setProjects] = useState<Project[]>([])
     const [page, setPage] = useState(1)
     const [loading, setLoading] = useState(false)
@@ -21,14 +22,14 @@ export const ProjectList = ({ favoritesOnly = false, limit = 10 }) => {
         fetchedPages.current.add(page)
 
         setLoading(true)
-        const response = await fetch(`/api/projects?page=${page}${favoritesOnly ? '&where[isFavorite][equals]=true' : ''}&limit=${limit}&sort=-publishedDate`)
+        const response = await fetch(`/api/projects?page=${page}${favoritesOnly ? '&where[isFavorite][equals]=true' : ''}&limit=${limit}&sort=-publishedDate&locale=${locale}`)
         const body = await response.json()
         const newProjects = body.docs
         setHasNextPage(body.hasNextPage && !favoritesOnly)
         if (newProjects.length > 0)
             setProjects((prevProjects) => [...prevProjects, ...newProjects])
         setLoading(false)
-    }, [favoritesOnly, limit])
+    }, [favoritesOnly, limit, locale])
 
     useEffect(() => {
         if (page > 1 && favoritesOnly) return;

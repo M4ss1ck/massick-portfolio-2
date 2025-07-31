@@ -54,6 +54,11 @@ export default buildConfig({
     }
   },
   collections: [Users, Media, Tags, Projects],
+  localization: {
+    locales: ['en', 'es'],
+    defaultLocale: 'en',
+    fallback: true,
+  },
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

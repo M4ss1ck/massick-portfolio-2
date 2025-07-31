@@ -1,5 +1,5 @@
 "use client"
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import Image from "next/image";
 import { Card } from './Card'
 import { Project } from '@/payload-types'
@@ -16,17 +16,17 @@ export const ProjectDetails = ({ id }: { id: string | number }) => {
     const [project, setProject] = useState<Project | null>(null)
     const [loading, setLoading] = useState(false)
 
-    const fetchProjects = async (id: number | string) => {
+    const fetchProjects = useCallback(async (id: number | string) => {
         setLoading(true)
-        const response = await fetch(`/api/projects/${id}?depth=2`)
+        const response = await fetch(`/api/projects/${id}?depth=2&locale=${locale}`)
         const body = await response.json()
         setProject(body)
         setLoading(false)
-    }
+    }, [locale])
 
     useEffect(() => {
         fetchProjects(id)
-    }, [id])
+    }, [id, fetchProjects])
 
     if (!project || loading) return <div className='grid grid-cols-1 min-h-[50dvh] text-secondary text-lg place-content-center'>
         <Loading />
@@ -46,8 +46,8 @@ export const ProjectDetails = ({ id }: { id: string | number }) => {
                 height={250}
                 alt={project.title}
             />
-            <h1 className='text-4xl text-primary font-display'>{t(project.title)}</h1>
-            <p className='text-secondary font-body text-xl'><em>{t(project.description)}</em></p>
+            <h1 className='text-4xl text-primary font-display'>{project.title}</h1>
+            <p className='text-secondary font-body text-xl'><em>{project.description}</em></p>
             <p className='text-secondary'>{dayjs(project.publishedDate ?? Date.now()).locale(locale).format('MMMM YYYY')}</p>
             <p className='text-other'>{project.url ? <Link className='underline-animation' href={project.url}>URL</Link> : 'No url available'}</p>
             <p className='text-other'>{project.demo ? <Link className='underline-animation' href={project.demo}>DEMO</Link> : 'No demo available'}</p>

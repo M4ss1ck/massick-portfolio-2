@@ -14,11 +14,13 @@ export const Projects: CollectionConfig = {
             label: 'Title',
             type: 'text',
             required: true,
+            localized: true,
         },
         {
             name: 'description',
             label: 'Description',
             type: 'textarea',
+            localized: true,
         },
         {
             name: 'url',

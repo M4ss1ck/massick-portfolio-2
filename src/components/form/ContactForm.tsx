@@ -1,25 +1,26 @@
 "use client"
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import type { Form as FormType } from '@/payload-types'
 import { getCookie, setCookie } from 'cookies-next/client'
 import Field from './Field'
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 const ContactForm = () => {
     const t = useTranslations()
+    const locale = useLocale()
     const [loading, setLoading] = useState(false)
     const [form, setForm] = useState<FormType | null>(null)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [data, setData] = useState<Record<string, any>>({})
     const [isDisabled, setIsDisabled] = useState(false)
     const [isSubmitted, setIsSubmitted] = useState(false)
-    const fetchForm = async (id: number | string) => {
+    const fetchForm = useCallback(async (id: number | string) => {
         setLoading(true)
-        const response = await fetch(`/api/forms/${id}`)
+        const response = await fetch(`/api/forms/${id}?locale=${locale}`)
         const body = await response.json()
         setForm(body)
         setLoading(false)
-    }
+    }, [locale])
     // Form ID (manually set for now)
     const formId = 1
 
@@ -56,7 +57,7 @@ const ContactForm = () => {
 
     useEffect(() => {
         fetchForm(formId)
-    }, [formId])
+    }, [formId, fetchForm])
 
     useEffect(() => {
         if (form && form.fields) {
@@ -71,7 +72,7 @@ const ContactForm = () => {
             onSubmit={handleSubmit}
         >
             {!isSubmitted ? <>
-                <h1 className='text-2xl font-body uppercase'>{t(form?.title ?? 'Contact Form')}</h1>
+                <h1 className='text-2xl font-body uppercase'>{form?.title ?? t('Contact Form')}</h1>
                 <p className='font-display text-secondary'>{t("Got any questions or suggestions? Fill out this form to reach out")}</p>
                 <div className='flex flex-row flex-wrap font-display'>
                     {form?.fields && form.fields.length > 0 ? form.fields.map((field) => (
@@ -83,7 +84,7 @@ const ContactForm = () => {
                     type='submit'
                     disabled={isDisabled || loading}
                 >
-                    {t(form?.submitButtonLabel ?? 'Submit')}
+                    {form?.submitButtonLabel ?? t('Submit')}
                 </button>
             </> : <p className='text-2xl font-display uppercase'>{t("Thank you for your feedback!")}</p>}
         </form>
