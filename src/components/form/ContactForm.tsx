@@ -72,7 +72,7 @@ const ContactForm = () => {
             onSubmit={handleSubmit}
         >
             {!isSubmitted ? <>
-                <h1 className='text-2xl font-body uppercase'>{form?.title ?? t('Contact Form')}</h1>
+                <h1 className='text-2xl font-body uppercase'>{t('Contact Form')}</h1>
                 <p className='font-display text-secondary'>{t("Got any questions or suggestions? Fill out this form to reach out")}</p>
                 <div className='flex flex-row flex-wrap font-display'>
                     {form?.fields && form.fields.length > 0 ? form.fields.map((field) => (
