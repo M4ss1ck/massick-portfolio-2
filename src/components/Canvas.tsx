@@ -23,7 +23,7 @@ function Canvas({ r = 4, g = 158, b = 42, text = "m4ss1ck" }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const chars = text + " "
   const charIndex = useRef(0)
-  let lastX = 0
+  const lastX = useRef(0)
 
   const startAnimation = useCallback(() => {
     const canvas = canvasRef.current
@@ -33,16 +33,17 @@ function Canvas({ r = 4, g = 158, b = 42, text = "m4ss1ck" }) {
       const letters: Letter[] = []
 
       const addLetter = (x: number, y: number) => {
-        const direction = x > lastX ? 1 : -1
+        const direction = x > lastX.current ? 1 : -1
         charIndex.current = (charIndex.current + direction + chars.length) % chars.length
         const char = chars[charIndex.current]
         const letter = new Letter(x, y, char)
         letters.push(letter)
-        lastX = x
+        lastX.current = x
       }
 
       const handleMouseMove = ({ clientX, clientY }: MouseEvent) => {
-        addLetter(clientX - canvas.offsetLeft, clientY - canvas.offsetTop)
+        const rect = canvas.getBoundingClientRect()
+        addLetter(clientX - rect.left, clientY - rect.top)
       }
 
       document.addEventListener("mousemove", handleMouseMove, false)
