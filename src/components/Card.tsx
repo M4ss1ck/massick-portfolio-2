@@ -60,7 +60,11 @@ export const Card = ({ project }: CardProps) => {
                             typeof tag !== 'number' ? <Pill key={tag.id} tag={tag.name} /> : null
                         ))}
                     </div>
-                    <p className="font-display backdrop-filter backdrop-blur-lg bg-background/70 bg-opacity-65 p-2 group-hover:text-white text-gray-300">{t(project.description)}</p>
+                    {
+                        project.description
+                            ? <p className="font-display backdrop-filter backdrop-blur-lg bg-background/70 bg-opacity-65 p-2 group-hover:text-white text-gray-300">{t(project.description)}</p>
+                            : null
+                    }
                     {
                         project.demo
                             ? <Link href={project.demo} target="_blank" onClick={(e) => e.stopPropagation()} className="underline-animation text-primary">
