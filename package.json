@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "dev:alt": "next dev --turbopack",
+    "dev:alt": "next dev --webpack",
     "build": "next build --webpack",
     "start": "next start",
     "types": "payload generate:types",

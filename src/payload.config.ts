@@ -10,6 +10,7 @@ import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 
 import { seed } from '@/utils/seed'
+import { sendToTelegram, sendEmail } from '@/utils/notifications'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
@@ -78,6 +79,29 @@ export default buildConfig({
       },
       formOverrides: {
         fields: undefined,
+      },
+      formSubmissionOverrides: {
+        hooks: {
+          afterChange: [
+            async ({ doc, req, operation }) => {
+              if (operation === 'create') {
+                const form = typeof doc.form === 'object' ? doc.form : null;
+                // Telegram notification
+                await sendToTelegram(doc, form?.title);
+
+                // Email notification
+                if (req.payload) {
+                  await sendEmail(
+                    req.payload,
+                    doc,
+                    process.env.NOTIFICATION_EMAIL
+                  );
+                }
+              }
+              return doc;
+            },
+          ],
+        },
       },
     }),
   ],
