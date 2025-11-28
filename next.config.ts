@@ -23,9 +23,10 @@ const nextConfig = {
     ],
   },
   reactStrictMode: true,
-  experimental: {
-    reactCompiler: true,
-  }
+  // turbopack: {}
+  // experimental: {
+  //   turbo: {}
+  // },
 };
 
 export default withPayload(withNextIntl(nextConfig));
