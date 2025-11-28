@@ -33,22 +33,22 @@ export const SkeletonCard = () => {
                         height={160}
                         alt=""
                     />
-                    <p className="text-xs border border-current m-2 px-2 py-1 rounded-lg group-hover:text-white text-gray-400 absolute bottom-1 group-hover:bg-secondary/50 bg-gray-700/50 animate-pulse">
+                    <p className="text-xs border border-current m-2 px-2 py-1 rounded-lg group-hover:text-white text-gray-400 absolute bottom-1 group-hover:bg-secondary/50 bg-gray-700/50 animate-pulse min-w-24">
                         &nbsp;
                     </p>
                 </div>
 
                 <div className="col-span-1 sm:col-span-2 p-2 mx-2">
                     <h3 className="text-xl p-2 font-body backdrop-filter backdrop-blur-lg  text-primary bg-gray-700/50 animate-pulse rounded">
-                        &nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </h3>
                     <div className="py-1 gap-2 flex items-center justify-start flex-row flex-wrap font-display">
-                        <Pill tag={'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'} />
-                        <Pill tag={'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'} />
-                        <Pill tag={'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'} />
+                        <Pill tag={<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>} />
+                        <Pill tag={<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>} />
+                        <Pill tag={<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>} />
                     </div>
                     <p className="font-display backdrop-filter backdrop-blur-lg bg-opacity-65 p-2 group-hover:text-white text-gray-300 bg-gray-700/50 animate-pulse rounded">
-                        &nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </p>
                 </div>
             </div>

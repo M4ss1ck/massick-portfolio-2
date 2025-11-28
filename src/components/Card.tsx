@@ -17,6 +17,7 @@ interface CardProps {
 export const Card = ({ project }: CardProps) => {
     const t = useTranslations();
     const locale = useLocale();
+    const fallbackDate = dayjs()
     const imageSrc = project.coverImage && typeof project.coverImage !== 'number' && project.coverImage.filename
         ? `/media/${project.coverImage.filename}`
         : "/images/hacker.png"
@@ -46,7 +47,7 @@ export const Card = ({ project }: CardProps) => {
                         alt={t(project.title)}
                     />
                     <p className="text-xs border border-current m-2 px-2 py-1 rounded-lg group-hover:text-white text-gray-400 absolute bottom-1 group-hover:bg-secondary/50">
-                        {dayjs(project.publishedDate ?? Date.now()).locale(locale).format('MMMM YYYY')}
+                        {dayjs(project.publishedDate ?? fallbackDate).locale(locale).format('MMMM YYYY')}
                     </p>
                 </div>
                 <div className="col-span-1 sm:col-span-2 p-2 mx-2 text-left">
