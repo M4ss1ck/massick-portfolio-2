@@ -17,6 +17,7 @@ export default function IntlErrorHandlingProvider({
       messages={messages}
       onError={console.log}
       getMessageFallback={({ key }) => `${key}`}
+      timeZone='America/Santiago'
     >
       {children}
     </NextIntlClientProvider>

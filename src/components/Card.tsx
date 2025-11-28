@@ -24,11 +24,14 @@ export const Card = ({ project }: CardProps) => {
     return (
         <Tilt
             glareEnable={true}
+            glareMaxOpacity={0.2}
+            scale={1.02}
+            className="max-w-sm sm:max-w-lg"
         >
             <AnimatedButton href={`/projects/${project.id}` as '/projects/:id'} className="group grid grid-cols-1 sm:grid-cols-3 max-w-sm sm:max-w-lg hover:z-20 hover:shadow-lg hover:shadow-other rounded-lg transition-all duration-300 ease-in-out gap-x-2 h-full">
                 <div
                     aria-hidden
-                    className="absolute h-full w-full -z-10 grayscale blur-sm group-hover:grayscale-0 transition-all duration-300 ease-in-out"
+                    className="absolute h-full w-full max-w-sm sm:max-w-lg -z-10 grayscale blur-sm group-hover:grayscale-0 transition-all duration-300 ease-in-out"
                     style={{
                         backgroundImage: `url(${imageSrc})`,
                         backgroundSize: 'cover',
