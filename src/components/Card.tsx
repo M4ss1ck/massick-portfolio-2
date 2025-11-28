@@ -28,19 +28,18 @@ export const Card = ({ project }: CardProps) => {
             <AnimatedButton href={`/projects/${project.id}` as '/projects/:id'} className="group grid grid-cols-1 sm:grid-cols-3 max-w-sm sm:max-w-lg hover:z-20 hover:shadow-lg hover:shadow-other rounded-lg transition-all duration-300 ease-in-out gap-x-2 h-full">
                 <div
                     aria-hidden
-                    className="absolute h-full w-full -z-10"
+                    className="absolute h-full w-full -z-10 grayscale blur-sm group-hover:grayscale-0 transition-all duration-300 ease-in-out"
                     style={{
                         backgroundImage: `url(${imageSrc})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         backgroundRepeat: 'no-repeat',
-                        filter: 'blur(8px)',
                     }}></div>
                 <div
                     className="col-span-1 relative"
                 >
                     <Image
-                        className="rounded-lg blur-none p-2 mx-auto"
+                        className="rounded-lg blur-none p-2 mx-auto grayscale-50 group-hover:grayscale-0"
                         src={imageSrc}
                         width={160}
                         height={160}

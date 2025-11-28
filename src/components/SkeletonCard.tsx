@@ -15,19 +15,18 @@ export const SkeletonCard = () => {
                 <div className="absolute inset-0 -translate-x-full shimmer bg-gradient-to-r from-transparent via-white/30 to-transparent z-10" />
                 <div
                     aria-hidden
-                    className="absolute h-full w-full -z-10"
+                    className="absolute h-full w-full -z-10 grayscale blur-sm group-hover:grayscale-0"
                     style={{
                         backgroundImage: `url(${imageSrc})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
-                        filter: 'blur(8px)',
                     }}
                 />
 
                 {/* Content */}
                 <div className="col-span-1 relative">
                     <Image
-                        className="rounded-lg blur-none p-2 mx-auto bg-gray-700/50 animate-pulse"
+                        className="rounded-lg blur-none p-2 mx-auto bg-gray-700/50 animate-pulse grayscale-50 group-hover:grayscale-0"
                         src={imageSrc}
                         width={160}
                         height={160}
