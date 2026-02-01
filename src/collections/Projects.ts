@@ -47,6 +47,7 @@ export const Projects: CollectionConfig = {
             hasMany: true,
             admin: {
                 position: 'sidebar',
+                allowCreate: true,
             },
         },
         {
