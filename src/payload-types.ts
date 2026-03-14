@@ -188,6 +188,21 @@ export interface Project {
   url?: string | null;
   coverImage?: (number | null) | Media;
   demo?: string | null;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   tags?: (number | Tag)[] | null;
   publishedDate?: string | null;
   isFavorite?: boolean | null;
@@ -535,6 +550,7 @@ export interface ProjectsSelect<T extends boolean = true> {
   url?: T;
   coverImage?: T;
   demo?: T;
+  content?: T;
   tags?: T;
   publishedDate?: T;
   isFavorite?: T;

@@ -40,6 +40,11 @@ export const Projects: CollectionConfig = {
             type: 'text',
         },
         {
+            name: 'content',
+            type: 'richText',
+            localized: true,
+        },
+        {
             name: 'tags',
             label: 'Tags',
             type: 'relationship',
