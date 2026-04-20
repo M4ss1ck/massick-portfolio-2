@@ -4,6 +4,7 @@ import Tilt from "react-parallax-tilt";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
+import { ViewTransition } from "react";
 import { AnimatedButton } from "./AnimatedButton";
 import { SVGProps } from "react";
 import dayjs from "dayjs";
@@ -20,8 +21,8 @@ export const Card = ({ project }: CardProps) => {
     const fallbackDate = dayjs();
     const imageSrc =
         project.coverImage &&
-        typeof project.coverImage !== "number" &&
-        project.coverImage.filename
+            typeof project.coverImage !== "number" &&
+            project.coverImage.filename
             ? `/media/${project.coverImage.filename}`
             : "/images/hacker.png";
     return (
@@ -46,13 +47,19 @@ export const Card = ({ project }: CardProps) => {
                     }}
                 ></div>
                 <div className="col-span-1 relative">
-                    <Image
-                        className="rounded-lg blur-none p-2 mx-auto grayscale-50 group-hover:grayscale-0"
-                        src={imageSrc}
-                        width={160}
-                        height={160}
-                        alt={t(project.title)}
-                    />
+                    <ViewTransition
+                        name={`project-image-${project.id}`}
+                        share="morph"
+                        default="none"
+                    >
+                        <Image
+                            className="rounded-lg blur-none p-2 mx-auto grayscale-50 group-hover:grayscale-0"
+                            src={imageSrc}
+                            width={160}
+                            height={160}
+                            alt={t(project.title)}
+                        />
+                    </ViewTransition>
                     <p className="text-xs border border-current m-2 px-2 py-1 rounded-lg group-hover:text-white text-gray-400 absolute bottom-1 group-hover:bg-secondary/50">
                         {dayjs(project.publishedDate ?? fallbackDate)
                             .locale(locale)

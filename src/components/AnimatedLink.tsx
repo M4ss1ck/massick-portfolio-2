@@ -1,7 +1,7 @@
 "use client";
-import { useTransition, useEffect } from "react";
-import { Link as I18nLink, useRouter, routing } from "@/i18n/routing";
+import { Link as I18nLink, routing } from "@/i18n/routing";
 import type { LinkProps } from "next/link";
+import { useNavigateWithTransition } from "@/hooks/useNavigateWithTransition";
 
 interface AnimatedLinkProps extends LinkProps {
     href: keyof typeof routing.pathnames;
@@ -10,26 +10,13 @@ interface AnimatedLinkProps extends LinkProps {
     className?: string;
 }
 export const Link = ({ href, children, ...props }: AnimatedLinkProps) => {
-    const router = useRouter();
-    const [isPending, startTransition] = useTransition();
+    const navigate = useNavigateWithTransition();
 
-    useEffect(() => {
-        const body = document.querySelector("body");
-        if (isPending) {
-            body?.classList.add("page-transition");
-        } else {
-            const timer = setTimeout(() => {
-                body?.classList.remove("page-transition");
-            }, 300);
-            return () => clearTimeout(timer);
-        }
-    }, [isPending]);
-
-    const handleTransition = async (
+    const handleTransition = (
         e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
     ) => {
         e.preventDefault();
-        startTransition(() => router.push(href));
+        navigate(href);
     };
     return (
         <I18nLink onClick={handleTransition} href={href} {...props}>

@@ -49,6 +49,9 @@ const nextConfig: NextConfig = {
         ];
     },
     reactStrictMode: true,
+    experimental: {
+        viewTransition: true,
+    },
 };
 
 export default withPayload(withNextIntl(nextConfig));

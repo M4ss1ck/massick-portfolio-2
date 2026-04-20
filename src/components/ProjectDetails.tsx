@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, ViewTransition } from "react";
 import Image from "next/image";
 import { Card } from "./Card";
 import { Project } from "@/payload-types";
@@ -53,13 +53,18 @@ export const ProjectDetails = ({ id }: { id: string | number }) => {
     return (
         <div className="grid grid-cols-1 gap-2 space-y-2 py-4 mx-2 space-x-2 grid-flow-row-dense max-w-prose">
             <title>{t(project.title)}</title>
-            <Image
-                className="rounded-lg blur-none p-2 mx-auto"
-                src={imageSrc}
-                width={500}
-                height={500}
-                alt={project.title}
-            />
+            <ViewTransition
+                name={`project-image-${project.id}`}
+                share="morph"
+            >
+                <Image
+                    className="rounded-lg blur-none p-2 mx-auto"
+                    src={imageSrc}
+                    width={500}
+                    height={500}
+                    alt={project.title}
+                />
+            </ViewTransition>
             <h1 className="text-4xl text-primary font-display w-full text-center">
                 {project.title}
             </h1>

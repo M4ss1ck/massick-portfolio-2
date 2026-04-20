@@ -1,6 +1,6 @@
 "use client";
-import { useTransition, useEffect } from "react";
-import { useRouter, routing } from "@/i18n/routing";
+import { routing } from "@/i18n/routing";
+import { useNavigateWithTransition } from "@/hooks/useNavigateWithTransition";
 
 interface AnimatedButtonProps {
     href: keyof typeof routing.pathnames;
@@ -13,26 +13,13 @@ export const AnimatedButton = ({
     children,
     ...props
 }: AnimatedButtonProps) => {
-    const router = useRouter();
-    const [isPending, startTransition] = useTransition();
+    const navigate = useNavigateWithTransition();
 
-    useEffect(() => {
-        const body = document.querySelector("body");
-        if (isPending) {
-            body?.classList.add("page-transition");
-        } else {
-            const timer = setTimeout(() => {
-                body?.classList.remove("page-transition");
-            }, 300);
-            return () => clearTimeout(timer);
-        }
-    }, [isPending]);
-
-    const handleTransition = async (
+    const handleTransition = (
         e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     ) => {
         e.preventDefault();
-        startTransition(() => router.push(href));
+        navigate(href);
     };
     return (
         <button onClick={handleTransition} {...props}>
