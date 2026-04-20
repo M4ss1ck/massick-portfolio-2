@@ -21,8 +21,8 @@ export const Card = ({ project }: CardProps) => {
     const fallbackDate = dayjs();
     const imageSrc =
         project.coverImage &&
-            typeof project.coverImage !== "number" &&
-            project.coverImage.filename
+        typeof project.coverImage !== "number" &&
+        project.coverImage.filename
             ? `/media/${project.coverImage.filename}`
             : "/images/hacker.png";
     return (

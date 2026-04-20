@@ -53,10 +53,7 @@ export const ProjectDetails = ({ id }: { id: string | number }) => {
     return (
         <div className="grid grid-cols-1 gap-2 space-y-2 py-4 mx-2 space-x-2 grid-flow-row-dense max-w-prose">
             <title>{t(project.title)}</title>
-            <ViewTransition
-                name={`project-image-${project.id}`}
-                share="morph"
-            >
+            <ViewTransition name={`project-image-${project.id}`} share="morph">
                 <Image
                     className="rounded-lg blur-none p-2 mx-auto"
                     src={imageSrc}

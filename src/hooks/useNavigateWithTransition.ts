@@ -18,9 +18,7 @@ export function useNavigateWithTransition() {
         const type = inferNavType(pathname, href);
         startTransition(() => {
             if (type) addTransitionType(type);
-            router.push(
-                href as Parameters<typeof router.push>[0],
-            );
+            router.push(href as Parameters<typeof router.push>[0]);
         });
     };
 }
