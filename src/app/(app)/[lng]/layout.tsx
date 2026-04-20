@@ -1,7 +1,6 @@
-import { getTranslations, getMessages } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
-import IntlErrorHandlingProvider from '@/components/providers/IntlErrorHandlingProvider';
 
 export async function generateMetadata(props: {
     params: Promise<{
@@ -34,15 +33,5 @@ export default async function RootLayout(
         notFound();
     }
 
-    const messages = await getMessages();
-
-    return (
-        <html lang={lng}>
-            <body>
-                <IntlErrorHandlingProvider locale={lng} messages={messages}>
-                    {children}
-                </IntlErrorHandlingProvider>
-            </body>
-        </html>
-    )
+    return children
 }

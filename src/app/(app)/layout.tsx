@@ -7,24 +7,24 @@ import '@fontsource-variable/kode-mono';
 import IntlErrorHandlingProvider from '@/components/providers/IntlErrorHandlingProvider';
 
 export const metadata: Metadata = {
-  title: 'My portfolio',
-  description: 'Next(js) version, on steroids!',
+    title: 'My portfolio',
+    description: 'Next(js) version, on steroids!',
 }
 
 export default async function RootLayout({
-  children,
+    children,
 }: {
-  children: React.ReactNode
+    children: React.ReactNode
 }) {
-  const messages = await getMessages();
-  const locale = await getLocale();
-  return (
-    <html>
-      <body>
-        <IntlErrorHandlingProvider locale={locale} messages={messages}>
-          {children}
-        </IntlErrorHandlingProvider>
-      </body>
-    </html>
-  );
+    const messages = await getMessages();
+    const locale = await getLocale();
+    return (
+        <html lang={locale}>
+            <body>
+                <IntlErrorHandlingProvider locale={locale} messages={messages}>
+                    {children}
+                </IntlErrorHandlingProvider>
+            </body>
+        </html>
+    );
 }
