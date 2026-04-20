@@ -1,16 +1,12 @@
-"use client"
-import Tilt from 'react-parallax-tilt';
+"use client";
+import Tilt from "react-parallax-tilt";
 import Image from "next/image";
 import { Pill } from "./Pill";
 
 export const SkeletonCard = () => {
-    const imageSrc = "/images/hacker.png"
+    const imageSrc = "/images/hacker.png";
     return (
-        <Tilt
-            glareEnable={true}
-            glareColor="#ffffff"
-            glareBorderRadius="8px"
-        >
+        <Tilt glareEnable={true} glareColor="#ffffff" glareBorderRadius="8px">
             <div className="group grid grid-cols-1 sm:grid-cols-3 max-w-sm sm:max-w-lg hover:z-20 hover:shadow-lg hover:shadow-other rounded-lg transition-all duration-300 ease-in-out gap-x-2 h-full opacity-60 relative overflow-hidden">
                 <div className="absolute inset-0 -translate-x-full shimmer bg-gradient-to-r from-transparent via-white/30 to-transparent z-10" />
                 <div
@@ -18,8 +14,8 @@ export const SkeletonCard = () => {
                     className="absolute h-full w-full -z-10 grayscale blur-sm group-hover:grayscale-0"
                     style={{
                         backgroundImage: `url(${imageSrc})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
                     }}
                 />
 
@@ -42,9 +38,15 @@ export const SkeletonCard = () => {
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </h3>
                     <div className="py-1 gap-2 flex items-center justify-start flex-row flex-wrap font-display">
-                        <Pill tag={<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>} />
-                        <Pill tag={<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>} />
-                        <Pill tag={<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>} />
+                        <Pill
+                            tag={<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>}
+                        />
+                        <Pill
+                            tag={<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>}
+                        />
+                        <Pill
+                            tag={<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>}
+                        />
                     </div>
                     <p className="font-display backdrop-filter backdrop-blur-lg bg-opacity-65 p-2 group-hover:text-white text-gray-300 bg-gray-700/50 animate-pulse rounded">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -52,5 +54,5 @@ export const SkeletonCard = () => {
                 </div>
             </div>
         </Tilt>
-    )
-}
+    );
+};

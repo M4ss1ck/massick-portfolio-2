@@ -1,21 +1,19 @@
 "use server";
-import { getTranslations } from 'next-intl/server';
-import { ProjectList } from '@/components/ProjectList'
-import Navbar from '@/components/Navbar';
-import { Footer } from '@/components/Footer';
+import { getTranslations } from "next-intl/server";
+import { ProjectList } from "@/components/ProjectList";
+import Navbar from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 
 export async function generateMetadata(props: {
     params: Promise<{
-        lng: string
-    }>
+        lng: string;
+    }>;
 }) {
     const params = await props.params;
-    const {
-        lng
-    } = params;
+    const { lng } = params;
     const t = await getTranslations({ locale: lng });
     return {
-        title: t('projects'),
+        title: t("projects"),
     };
 }
 
@@ -26,7 +24,7 @@ const Page = async () => {
             <ProjectList />
             <Footer />
         </main>
-    )
-}
+    );
+};
 
-export default Page
+export default Page;

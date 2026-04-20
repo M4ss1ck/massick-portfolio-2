@@ -3,6 +3,6 @@ import { headers } from "next/headers";
 
 export const getPath = async () => {
     const headersList = await headers();
-    const path = headersList.get("x-pathname")
-    return path
-}
+    const path = headersList.get("x-pathname");
+    return path;
+};

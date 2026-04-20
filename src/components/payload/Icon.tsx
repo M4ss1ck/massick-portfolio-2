@@ -2,13 +2,13 @@
 export default function Icon() {
     return (
         <img
-            src={'/icon.svg'}
+            src={"/icon.svg"}
             width={40}
             height={40}
             alt="icon"
             style={{
-                color: 'white',
+                color: "white",
             }}
         />
-    )
+    );
 }

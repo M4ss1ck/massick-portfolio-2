@@ -1,6 +1,6 @@
 "use client";
-import { useState, useEffect } from 'react';
-import { useTranslations } from 'next-intl';
+import { useState, useEffect } from "react";
+import { useTranslations } from "next-intl";
 
 export const GoUp = () => {
     const t = useTranslations();
@@ -11,26 +11,60 @@ export const GoUp = () => {
             setVisible(window.scrollY > window.innerHeight);
         };
 
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener("scroll", handleScroll);
         handleScroll(); // Check visibility on mount
 
         return () => {
-            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener("scroll", handleScroll);
         };
     }, []);
 
     return (
-        <div className='fixed right-4 bottom-4 z-30 text-primary hover:text-other'>
+        <div className="fixed right-4 bottom-4 z-30 text-primary hover:text-other">
             <button
-                type='button'
-                aria-label={t('go_up')}
-                title={t('go_up')}
+                type="button"
+                aria-label={t("go_up")}
+                title={t("go_up")}
                 onClick={() => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
-                className={`p-2 rounded-full shadow-lg transition-opacity duration-1000 ease-in-out ${visible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                className={`p-2 rounded-full shadow-lg transition-opacity duration-1000 ease-in-out ${visible ? "opacity-100" : "opacity-0 pointer-events-none"}`}
             >
-                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24"><g fill="none" stroke="currentColor" strokeDasharray={12} strokeDashoffset={12} strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}><path d="M12 5l-7 7M12 5l7 7"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="12;0"></animate></path><path d="M12 11l-7 7M12 11l7 7"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.3s" dur="0.3s" values="12;0"></animate></path></g></svg>
+                <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={24}
+                    height={24}
+                    viewBox="0 0 24 24"
+                >
+                    <g
+                        fill="none"
+                        stroke="currentColor"
+                        strokeDasharray={12}
+                        strokeDashoffset={12}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                    >
+                        <path d="M12 5l-7 7M12 5l7 7">
+                            <animate
+                                fill="freeze"
+                                attributeName="stroke-dashoffset"
+                                dur="0.3s"
+                                values="12;0"
+                            ></animate>
+                        </path>
+                        <path d="M12 11l-7 7M12 11l7 7">
+                            <animate
+                                fill="freeze"
+                                attributeName="stroke-dashoffset"
+                                begin="0.3s"
+                                dur="0.3s"
+                                values="12;0"
+                            ></animate>
+                        </path>
+                    </g>
+                </svg>
             </button>
         </div>
     );

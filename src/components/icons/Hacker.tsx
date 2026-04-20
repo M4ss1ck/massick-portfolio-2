@@ -31,7 +31,11 @@ const Hacker: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
                     d="M0 1661.8h3000V2250H0z"
                     clipPath="url(#b)"
                 ></path>
-                <path fill="none" d="M0 0h3000v1661.8H0z" clipPath="url(#b)"></path>
+                <path
+                    fill="none"
+                    d="M0 0h3000v1661.8H0z"
+                    clipPath="url(#b)"
+                ></path>
                 <path
                     fill="#173955"
                     d="M625 1677c-122.2 240.7 31.6 656.7 244 724 117.4 37.2 163.6-60.3 376-100 420.1-78.6 679.3 220.6 844 88 76.4-61.5 24.1-128.5 124-376 102.1-253 198.5-286.6 184-360-54.1-272.7-1518.7-474.9-1772 24"

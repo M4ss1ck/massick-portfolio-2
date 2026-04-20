@@ -1,6 +1,6 @@
-import React from 'react'
-import LanguageSwitcher from './LanguageSwitcher'
-import { Link } from './AnimatedLink'
+import React from "react";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { Link } from "./AnimatedLink";
 
 export default function Menu({ t }: { t: (value: string) => string }) {
     return (
@@ -17,5 +17,5 @@ export default function Menu({ t }: { t: (value: string) => string }) {
             </h2>
             <LanguageSwitcher />
         </aside>
-    )
+    );
 }

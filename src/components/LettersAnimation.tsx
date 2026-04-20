@@ -1,25 +1,26 @@
-"use client"
-import React, { useEffect } from 'react'
+"use client";
+import React, { useEffect } from "react";
 
 const LettersAnimation = ({ title }: { title: string }) => {
-    const array = [...title]
+    const array = [...title];
 
     useEffect(() => {
-        const letters: NodeListOf<HTMLElement> = document.querySelectorAll(".animateletter")
-        let duration = 400
+        const letters: NodeListOf<HTMLElement> =
+            document.querySelectorAll(".animateletter");
+        let duration = 400;
         for (let i = 0; i < letters.length; i++) {
-            const letter = letters[i]
-            letter.style.visibility = 'visible'
-            duration += 150
+            const letter = letters[i];
+            letter.style.visibility = "visible";
+            duration += 150;
             letter.animate(
                 [
                     { transform: `translateY(-100vh) scale(0,0)` },
                     { transform: `translateY(0) scale(1,1)` },
                 ],
-                { duration, iterations: 1, easing: "ease-in-out" }
-            )
+                { duration, iterations: 1, easing: "ease-in-out" },
+            );
         }
-    }, [])
+    }, []);
     return (
         <h1
             aria-label={title}
@@ -34,14 +35,14 @@ const LettersAnimation = ({ title }: { title: string }) => {
                                 ? "min-w-[1rem] mr-auto w-full"
                                 : "animateletter transition duration-300 hover:skew-y-12 hover:even:-skew-y-12 hover:-translate-y-16 hover:even:-translate-y-14 hover:scale-150 min-w-[1rem] cursor-default"
                         }
-                        style={{ visibility: 'hidden' }}
+                        style={{ visibility: "hidden" }}
                     >
                         {letter}
                     </span>
-                )
+                );
             })}
         </h1>
-    )
-}
+    );
+};
 
-export default LettersAnimation
+export default LettersAnimation;

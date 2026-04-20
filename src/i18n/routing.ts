@@ -1,29 +1,29 @@
-import { defineRouting } from 'next-intl/routing';
-import { createNavigation } from 'next-intl/navigation';
+import { defineRouting } from "next-intl/routing";
+import { createNavigation } from "next-intl/navigation";
 
 export const routing = defineRouting({
     // A list of all locales that are supported
-    locales: ['en', 'es'],
+    locales: ["en", "es"],
 
     // Used when no locale matches
-    defaultLocale: 'en',
+    defaultLocale: "en",
 
     pathnames: {
-        '/': '/',
-        '/about': {
-            en: '/about',
-            es: '/acerca-de'
+        "/": "/",
+        "/about": {
+            en: "/about",
+            es: "/acerca-de",
         },
-        '/projects': {
-            en: '/projects',
-            es: '/proyectos'
+        "/projects": {
+            en: "/projects",
+            es: "/proyectos",
         },
-        '/projects/:id': {
-            en: '/projects/:id',
-            es: '/proyectos/:id'
+        "/projects/:id": {
+            en: "/projects/:id",
+            es: "/proyectos/:id",
         },
-        '/blog': '/blog',
-    }
+        "/blog": "/blog",
+    },
 });
 
 // Lightweight wrappers around Next.js' navigation APIs

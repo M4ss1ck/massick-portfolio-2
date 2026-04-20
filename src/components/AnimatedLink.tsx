@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useTransition, useEffect } from "react";
 import { Link as I18nLink, useRouter, routing } from "@/i18n/routing";
 import type { LinkProps } from "next/link";
@@ -7,7 +7,7 @@ interface AnimatedLinkProps extends LinkProps {
     href: keyof typeof routing.pathnames;
     children: React.ReactNode;
     locale?: string;
-    className?: string
+    className?: string;
 }
 export const Link = ({ href, children, ...props }: AnimatedLinkProps) => {
     const router = useRouter();
@@ -25,13 +25,15 @@ export const Link = ({ href, children, ...props }: AnimatedLinkProps) => {
         }
     }, [isPending]);
 
-    const handleTransition = async (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    const handleTransition = async (
+        e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+    ) => {
         e.preventDefault();
         startTransition(() => router.push(href));
-    }
+    };
     return (
         <I18nLink onClick={handleTransition} href={href} {...props}>
             {children}
         </I18nLink>
-    )
-}
+    );
+};

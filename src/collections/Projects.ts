@@ -1,88 +1,88 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from "payload";
 
 export const Projects: CollectionConfig = {
-    slug: 'projects',
+    slug: "projects",
     admin: {
-        useAsTitle: 'title',
+        useAsTitle: "title",
     },
     access: {
         read: () => true,
     },
     fields: [
         {
-            name: 'title',
-            label: 'Title',
-            type: 'text',
+            name: "title",
+            label: "Title",
+            type: "text",
             required: true,
             localized: true,
         },
         {
-            name: 'description',
-            label: 'Description',
-            type: 'textarea',
+            name: "description",
+            label: "Description",
+            type: "textarea",
             localized: true,
         },
         {
-            name: 'url',
-            label: 'URL',
-            type: 'text',
+            name: "url",
+            label: "URL",
+            type: "text",
         },
         {
-            name: 'coverImage',
-            label: 'Cover Image',
-            type: 'upload',
-            relationTo: 'media',
+            name: "coverImage",
+            label: "Cover Image",
+            type: "upload",
+            relationTo: "media",
             required: false,
         },
         {
-            name: 'demo',
-            label: 'Demo',
-            type: 'text',
+            name: "demo",
+            label: "Demo",
+            type: "text",
         },
         {
-            name: 'content',
-            type: 'richText',
+            name: "content",
+            type: "richText",
             localized: true,
         },
         {
-            name: 'tags',
-            label: 'Tags',
-            type: 'relationship',
-            relationTo: 'tags',
+            name: "tags",
+            label: "Tags",
+            type: "relationship",
+            relationTo: "tags",
             hasMany: true,
             admin: {
-                position: 'sidebar',
+                position: "sidebar",
                 allowCreate: true,
             },
         },
         {
-            name: 'publishedDate',
-            type: 'date',
+            name: "publishedDate",
+            type: "date",
             admin: {
-                position: 'sidebar',
+                position: "sidebar",
             },
         },
         {
-            name: 'isFavorite',
-            label: 'Favorite',
-            type: 'checkbox',
+            name: "isFavorite",
+            label: "Favorite",
+            type: "checkbox",
             defaultValue: false,
         },
         {
-            name: 'relatedProjects',
-            type: 'relationship',
-            relationTo: 'projects',
+            name: "relatedProjects",
+            type: "relationship",
+            relationTo: "projects",
             hasMany: true,
             admin: {
-                position: 'sidebar',
+                position: "sidebar",
             },
             filterOptions: ({ id }) => {
                 return {
                     id: {
                         not_in: [id],
                     },
-                }
+                };
             },
         },
     ],
-}
+};

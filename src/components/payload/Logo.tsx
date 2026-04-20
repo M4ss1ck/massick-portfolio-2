@@ -2,13 +2,13 @@
 export default function Logo() {
     return (
         <img
-            src={'/icon.svg'}
+            src={"/icon.svg"}
             width={80}
             height={80}
             alt="Profile"
             style={{
-                color: 'white',
+                color: "white",
             }}
         />
-    )
+    );
 }

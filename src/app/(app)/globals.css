@@ -1,87 +1,87 @@
 @import "tailwindcss";
 
 @theme {
-  --font-*: initial;
-  --font-display: "Kode Mono Variable", monospace;
-  --font-body: "Federant", system-ui;
+    --font-*: initial;
+    --font-display: "Kode Mono Variable", monospace;
+    --font-body: "Federant", system-ui;
 
-  --foreground: #c45c4b;
-  --background-start-rgb: #6424cb;
-  --background-end-rgb: #2c0c3c;
-  --color-background: #6424cb;
-  --color-primary: var(--color-blue-500);
-  --color-secondary: #c45c4b;
-  --color-other: #f4ac1c;
+    --foreground: #c45c4b;
+    --background-start-rgb: #6424cb;
+    --background-end-rgb: #2c0c3c;
+    --color-background: #6424cb;
+    --color-primary: var(--color-blue-500);
+    --color-secondary: #c45c4b;
+    --color-other: #f4ac1c;
 }
 
 @property --glow {
-  syntax: "<angle>";
-  inherits: false;
-  initial-value: 0deg;
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
 }
 
 @-webkit-keyframes glow {
-  to {
-    --glow: 1turn;
-  }
+    to {
+        --glow: 1turn;
+    }
 }
 
 @keyframes glow {
-  to {
-    --glow: 1turn;
-  }
+    to {
+        --glow: 1turn;
+    }
 }
 
 @-webkit-keyframes blurAnimation {
-  0% {
-    -webkit-filter: blur(0);
-    filter: blur(0);
-  }
-  10% {
-    -webkit-filter: blur(1px);
-    filter: blur(1px);
-  }
-  30% {
-    -webkit-filter: blur(0);
-    filter: blur(0);
-  }
-  100% {
-    -webkit-filter: blur(0);
-    filter: blur(0);
-  }
+    0% {
+        -webkit-filter: blur(0);
+        filter: blur(0);
+    }
+    10% {
+        -webkit-filter: blur(1px);
+        filter: blur(1px);
+    }
+    30% {
+        -webkit-filter: blur(0);
+        filter: blur(0);
+    }
+    100% {
+        -webkit-filter: blur(0);
+        filter: blur(0);
+    }
 }
 
 @keyframes blurAnimation {
-  0% {
-    -webkit-filter: blur(1px);
-    filter: blur(1px);
-  }
-  10% {
-    -webkit-filter: blur(0);
-    filter: blur(0);
-  }
-  100% {
-    -webkit-filter: blur(0);
-    filter: blur(0);
-  }
+    0% {
+        -webkit-filter: blur(1px);
+        filter: blur(1px);
+    }
+    10% {
+        -webkit-filter: blur(0);
+        filter: blur(0);
+    }
+    100% {
+        -webkit-filter: blur(0);
+        filter: blur(0);
+    }
 }
 
 @-webkit-keyframes shimmer {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(100%);
-  }
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(100%);
+    }
 }
 
 @keyframes shimmer {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(100%);
-  }
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(100%);
+    }
 }
 
 /*
@@ -93,207 +93,207 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
-  ::-webkit-backdrop {
-    border-color: var(--color-gray-200, currentColor);
-  }
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
-  }
+    ::-webkit-backdrop {
+        border-color: var(--color-gray-200, currentColor);
+    }
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+    }
 
-  /* Scrollbar */
+    /* Scrollbar */
 
-  /* width */
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
+    /* width */
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
 
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: var(--color-background);
-  }
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: var(--color-background);
+    }
 
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: var(--color-other);
-    border-radius: 5px;
-  }
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: var(--color-other);
+        border-radius: 5px;
+    }
 
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-primary);
-  }
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--color-primary);
+    }
 }
 
 @utility underline-animation {
-  position: relative;
-  &::after {
-    position: absolute;
-    transform: scaleX(0%);
-    bottom: -0.5rem;
-    display: block;
-    width: 100%;
-    height: 0.4rem;
-    background-color: var(--color-primary);
-    content: "";
-    transition: transform 500ms;
-    transform-origin: bottom right;
-  }
-  &:hover::after {
-    transform: scaleX(100%);
-    transform-origin: bottom left;
-  }
+    position: relative;
+    &::after {
+        position: absolute;
+        transform: scaleX(0%);
+        bottom: -0.5rem;
+        display: block;
+        width: 100%;
+        height: 0.4rem;
+        background-color: var(--color-primary);
+        content: "";
+        transition: transform 500ms;
+        transform-origin: bottom right;
+    }
+    &:hover::after {
+        transform: scaleX(100%);
+        transform-origin: bottom left;
+    }
 }
 
 @utility page-transition {
-  opacity: 0;
-  /* transform: translateY(10%); */
-  -webkit-filter: blur(20px);
-  filter: blur(20px);
-  overflow: hidden;
+    opacity: 0;
+    /* transform: translateY(10%); */
+    -webkit-filter: blur(20px);
+    filter: blur(20px);
+    overflow: hidden;
 }
 
 @utility fancy-border {
-  position: relative;
-  overflow: hidden;
-  padding: 0.5rem;
-  border-radius: 9999px;
-
-  &::before {
-    position: absolute;
-    z-index: -1;
-    inset: 1rem;
-    border: solid 1rem;
-    -o-border-image: conic-gradient(
-        from var(--glow),
-        #000000,
-        #333333,
-        #666666,
-        #999999,
-        #cccccc,
-        #ffffff,
-        #cccccc,
-        #999999,
-        #666666,
-        #333333,
-        #000000
-      )
-      1;
-    border-image: conic-gradient(
-        from var(--glow),
-        #000000,
-        #333333,
-        #666666,
-        #999999,
-        #cccccc,
-        #ffffff,
-        #cccccc,
-        #999999,
-        #666666,
-        #333333,
-        #000000
-      )
-      1;
+    position: relative;
+    overflow: hidden;
+    padding: 0.5rem;
     border-radius: 9999px;
-    -webkit-filter: blur(0.8rem);
-    filter: blur(0.8rem);
-    -webkit-animation: glow 4s infinite linear;
-    animation: glow 4s infinite linear;
-    content: "";
-  }
 
-  /* img {
+    &::before {
+        position: absolute;
+        z-index: -1;
+        inset: 1rem;
+        border: solid 1rem;
+        -o-border-image: conic-gradient(
+                from var(--glow),
+                #000000,
+                #333333,
+                #666666,
+                #999999,
+                #cccccc,
+                #ffffff,
+                #cccccc,
+                #999999,
+                #666666,
+                #333333,
+                #000000
+            )
+            1;
+        border-image: conic-gradient(
+                from var(--glow),
+                #000000,
+                #333333,
+                #666666,
+                #999999,
+                #cccccc,
+                #ffffff,
+                #cccccc,
+                #999999,
+                #666666,
+                #333333,
+                #000000
+            )
+            1;
+        border-radius: 9999px;
+        -webkit-filter: blur(0.8rem);
+        filter: blur(0.8rem);
+        -webkit-animation: glow 4s infinite linear;
+        animation: glow 4s infinite linear;
+        content: "";
+    }
+
+    /* img {
     -webkit-animation: blurAnimation 4s infinite;
     animation: blurAnimation 4s infinite;
   } */
 }
 
 @utility shimmer {
-  -webkit-animation: shimmer 2s infinite linear;
-  animation: shimmer 2s infinite linear;
+    -webkit-animation: shimmer 2s infinite linear;
+    animation: shimmer 2s infinite linear;
 }
 
 .rich-text-content h2 {
-  font-family: var(--font-display);
-  color: var(--color-other);
-  font-size: 1.5rem;
-  margin-top: 2rem;
-  margin-bottom: 0.5rem;
+    font-family: var(--font-display);
+    color: var(--color-other);
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
 }
 
 .rich-text-content h3 {
-  font-family: var(--font-display);
-  color: var(--color-other);
-  font-size: 1.25rem;
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
+    font-family: var(--font-display);
+    color: var(--color-other);
+    font-size: 1.25rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .rich-text-content p {
-  line-height: 1.75;
-  margin-bottom: 0.75rem;
+    line-height: 1.75;
+    margin-bottom: 0.75rem;
 }
 
 .rich-text-content ul,
 .rich-text-content ol {
-  padding-left: 1.5rem;
-  margin-bottom: 0.75rem;
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
 }
 
 .rich-text-content ul {
-  list-style-type: disc;
+    list-style-type: disc;
 }
 
 .rich-text-content ol {
-  list-style-type: decimal;
+    list-style-type: decimal;
 }
 
 .rich-text-content li {
-  margin-bottom: 0.25rem;
-  line-height: 1.75;
+    margin-bottom: 0.25rem;
+    line-height: 1.75;
 }
 
 .rich-text-content a {
-  color: var(--color-other);
-  text-decoration: underline;
+    color: var(--color-other);
+    text-decoration: underline;
 }
 
 .rich-text-content strong {
-  font-weight: 700;
+    font-weight: 700;
 }
 
 .rich-text-content em {
-  font-style: italic;
+    font-style: italic;
 }
 
 .rich-text-content code {
-  font-family: var(--font-display);
-  font-size: 0.875rem;
-  background: rgba(0, 0, 0, 0.2);
-  padding: 0.125rem 0.375rem;
-  border-radius: 0.25rem;
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
 }
 
 @layer utilities {
-  body {
-    color: rgb(var(--foreground));
-    background: linear-gradient(
-        to bottom,
-        transparent,
-        var(--background-end-rgb)
-      )
-      var(--background-start-rgb);
+    body {
+        color: rgb(var(--foreground));
+        background: linear-gradient(
+                to bottom,
+                transparent,
+                var(--background-end-rgb)
+            )
+            var(--background-start-rgb);
 
-    transition-property:
-      opacity,
-      transform,
-      filter,
-      background,
-      -webkit-filter;
-    transition-timing-function: ease-in-out;
-    transition-duration: 300ms;
-  }
+        transition-property:
+            opacity,
+            transform,
+            filter,
+            background,
+            -webkit-filter;
+        transition-timing-function: ease-in-out;
+        transition-duration: 300ms;
+    }
 }

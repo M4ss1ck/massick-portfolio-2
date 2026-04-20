@@ -1,38 +1,40 @@
-import type { Payload } from 'payload'
-import dayjs from 'dayjs'
+import type { Payload } from "payload";
+import dayjs from "dayjs";
 
 export const seed = async (payload: Payload) => {
     for (const tag of tags) {
         await payload.create({
-            collection: 'tags',
+            collection: "tags",
             data: { name: tag },
-        })
+        });
     }
 
     // fetch all tags
     const allTags = await payload.find({
-        collection: 'tags',
-    })
+        collection: "tags",
+    });
 
     const projectsWithTags = projects.map((project) => {
-        const projectTags = project.tags.map((tagName) => {
-            const tag = allTags.docs.find((tag) => tag.name === tagName)
-            return tag?.id
-        }).filter(tag => typeof tag !== 'undefined')
+        const projectTags = project.tags
+            .map((tagName) => {
+                const tag = allTags.docs.find((tag) => tag.name === tagName);
+                return tag?.id;
+            })
+            .filter((tag) => typeof tag !== "undefined");
 
         return {
             ...project,
             tags: projectTags,
-        }
-    })
+        };
+    });
 
     for (const project of projectsWithTags) {
         await payload.create({
-            collection: 'projects',
+            collection: "projects",
             data: project,
-        })
+        });
     }
-}
+};
 
 const tags = [
     "Gatsby",
@@ -54,8 +56,8 @@ const tags = [
     "Telegram Bot",
     "CSS",
     "Telebot",
-    "NextJS"
-]
+    "NextJS",
+];
 
 const projects = [
     {
@@ -66,24 +68,26 @@ const projects = [
         tags: ["Gatsby", "Tailwind CSS", "Markdown", "TypeScript"],
         demo: "https://massick.is-a.dev/",
         publishedDate: dayjs("2024-02").toISOString(),
-        isFavorite: true
+        isFavorite: true,
     },
     {
         url: "https://github.com/M4ss1ck/anime-bot",
         title: "Anime bot",
-        description: "Search for anime in AniList, make your own list, schedule reminders and many more through Telegram.",
+        description:
+            "Search for anime in AniList, make your own list, schedule reminders and many more through Telegram.",
         tags: ["TypeScript"],
         demo: "https://t.me/anim3robot",
         publishedDate: dayjs("2023-07").toISOString(),
-        isFavorite: true
+        isFavorite: true,
     },
     {
         url: "https://github.com/M4ss1ck/thunderbird-plugin",
         title: "Daily Report Thunderbird plugin",
-        description: "Store commonly used values for To, CC and Subject fields.",
+        description:
+            "Store commonly used values for To, CC and Subject fields.",
         tags: ["HTML", "JavaScript"],
         publishedDate: dayjs("2023-06").toISOString(),
-        isFavorite: true
+        isFavorite: true,
     },
     {
         url: "https://github.com/M4ss1ck/gatsby-cv-maker",
@@ -92,7 +96,7 @@ const projects = [
         tags: ["Gatsby", "Tailwind CSS", "TypeScript"],
         demo: "https://cool-cv-maker.netlify.app/",
         publishedDate: dayjs("2022-06").toISOString(),
-        isFavorite: true
+        isFavorite: true,
     },
     {
         url: "https://github.com/DeltaZen/webxdc-chain-reaction",
@@ -100,7 +104,7 @@ const projects = [
         description: "Version of popular Chain Reaction game for Delta Chat",
         tags: ["DeltaChat", "webxdc", "game", "typescript", "React", "Redux"],
         publishedDate: dayjs("2022-11").toISOString(),
-        isFavorite: true
+        isFavorite: true,
     },
     {
         url: "https://github.com/DeltaZen/webxdc-bejeweled",
@@ -108,7 +112,7 @@ const projects = [
         description: "Bejeweled board game clon for Delta Chat",
         tags: ["DeltaChat", "webxdc", "game", "typescript", "phaser3"],
         publishedDate: dayjs("2022-09").toISOString(),
-        isFavorite: true
+        isFavorite: true,
     },
     {
         url: "https://github.com/DeltaZen/webxdc-c4",
@@ -116,23 +120,25 @@ const projects = [
         description: "Connect 4 board game clon for Delta Chat",
         tags: ["DeltaChat", "webxdc", "game", "typescript"],
         publishedDate: dayjs("2022-08").toISOString(),
-        isFavorite: true
+        isFavorite: true,
     },
     {
         url: "https://github.com/DeltaZen/webxdc-sudoku",
         title: "Sudoku",
-        description: "Sudoku game with scoreboard to compete in Delta Chat groups with friends!",
+        description:
+            "Sudoku game with scoreboard to compete in Delta Chat groups with friends!",
         tags: ["DeltaChat", "webxdc", "game", "TypeScript"],
         publishedDate: dayjs("2022-07").toISOString(),
-        isFavorite: true
+        isFavorite: true,
     },
     {
         url: "https://github.com/DeltaZen/webxdc-color-lines",
         title: "Color Lines",
-        description: "Color Lines (a.k.a. WinLines or WinLinez) game to compete with friends in groups on Delta Chat.",
+        description:
+            "Color Lines (a.k.a. WinLines or WinLinez) game to compete with friends in groups on Delta Chat.",
         tags: ["DeltaChat", "webxdc", "game"],
         publishedDate: dayjs("2022-07").toISOString(),
-        isFavorite: true
+        isFavorite: true,
     },
     {
         url: "https://github.com/M4ss1ck/gatsby-gamebook",
@@ -141,7 +147,7 @@ const projects = [
         tags: ["Gatsby", "TypeScript"],
         demo: "https://gamebook.gatsbyjs.io/",
         publishedDate: dayjs("2022-06").toISOString(),
-        isFavorite: true
+        isFavorite: true,
     },
     {
         url: "https://github.com/DeltaZen/webxdc-exquisite-corpse",
@@ -154,7 +160,8 @@ const projects = [
     {
         url: "https://github.com/DeltaZen/webxdc-snake",
         title: "Snake game",
-        description: "Snake game for Delta Chat made using HTML + CSS + JS + Vite",
+        description:
+            "Snake game for Delta Chat made using HTML + CSS + JS + Vite",
         tags: ["HTML", "CSS", "JavaScript", "Vite", "webxdc", "game"],
         publishedDate: dayjs("2022-06").toISOString(),
     },
@@ -213,7 +220,7 @@ const projects = [
             "Página web del Centro de Investigaciones de Ecosistemas Costeros (CIEC).",
         tags: ["Gatsby", "Tailwind CSS"],
         publishedDate: dayjs("2022-01").toISOString(),
-        isFavorite: true
+        isFavorite: true,
     },
     {
         url: "https://github.com/M4ss1ck/wastingBot",
@@ -229,4 +236,4 @@ const projects = [
         tags: ["Next.js", "Tailwind CSS"],
         publishedDate: dayjs("2021-11").toISOString(),
     },
-]
+];

@@ -1,8 +1,7 @@
 "use client";
-import React from 'react'
-import { useTranslations, useLocale } from 'next-intl';
-import { useRouter, routing, usePathname } from '@/i18n/routing';
-
+import React from "react";
+import { useTranslations, useLocale } from "next-intl";
+import { useRouter, routing, usePathname } from "@/i18n/routing";
 
 const LanguageSwitcher = ({ showlabel = true }) => {
     const t = useTranslations();
@@ -12,19 +11,22 @@ const LanguageSwitcher = ({ showlabel = true }) => {
 
     const setLanguage = (lng: string) => {
         router.push(path, { locale: lng });
-    }
+    };
     return (
-        <ul className='flex flex-row items-start justify-center z-10 p-1 sm:p-4 text-sm lg:text-2xl' aria-label={t("language")}>
+        <ul
+            className="flex flex-row items-start justify-center z-10 p-1 sm:p-4 text-sm lg:text-2xl"
+            aria-label={t("language")}
+        >
             {showlabel && (
-                <li className='hidden sm:block list-none' aria-hidden='true'>
+                <li className="hidden sm:block list-none" aria-hidden="true">
                     {t("language")}:
                 </li>
             )}
             {routing.locales.map((lng) => (
-                <li key={lng} className='px-1'>
+                <li key={lng} className="px-1">
                     <button
-                        type='button'
-                        className={`hover:underline ${lng === locale ? 'underline' : 'disabled'}`}
+                        type="button"
+                        className={`hover:underline ${lng === locale ? "underline" : "disabled"}`}
                         onClick={() => setLanguage(lng)}
                         disabled={lng === locale}
                         aria-pressed={lng === locale}
@@ -34,7 +36,7 @@ const LanguageSwitcher = ({ showlabel = true }) => {
                 </li>
             ))}
         </ul>
-    )
-}
+    );
+};
 
-export default LanguageSwitcher
+export default LanguageSwitcher;
