@@ -1,7 +1,7 @@
 // adapted from https://github.com/Egrodo/noahyamamoto.com.old/blob/master/src/components/Canvas.js
 "use client"
 
-import React, { useState, useRef, useEffect, useCallback } from "react"
+import React, { useRef, useEffect, useCallback } from "react"
 
 /* Mouse trail adapted from a jQuery Codepen by Bryan C https://codepen.io/bryjch/pen/QEoXwA */
 
@@ -19,7 +19,6 @@ class Letter {
 }
 
 function Canvas({ r = 4, g = 158, b = 42, text = "m4ss1ck" }) {
-  const [{ cHeight, cWidth }, setSize] = useState({ cHeight: 0, cWidth: 0 })
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const chars = text + " "
   const charIndex = useRef(0)
@@ -81,39 +80,31 @@ function Canvas({ r = 4, g = 158, b = 42, text = "m4ss1ck" }) {
   }, [r, g, b, chars])
 
   useEffect(() => {
-    // Set height and width on load because if set in state body isn't defined yet.
-    setSize({
-      cHeight: window.innerHeight,
-      cWidth: document.body.clientWidth,
-    })
+    const canvas = canvasRef.current
+    if (!canvas) return
 
-    const handleResize = () => {
-      setSize({
-        cHeight: window.innerHeight,
-        cWidth: document.body.clientWidth,
-      })
+    const setCanvasSize = () => {
+      canvas.height = window.innerHeight
+      canvas.width = document.body.clientWidth
     }
 
-    window.addEventListener("resize", handleResize, false)
+    setCanvasSize()
+
+    window.addEventListener("resize", setCanvasSize, false)
 
     // If the device supports cursors, start animation.
+    let stopAnimation: (() => void) | undefined
     if (matchMedia("(pointer:fine)").matches) {
-      startAnimation()
+      stopAnimation = startAnimation()
     }
 
     return () => {
-      window.removeEventListener("resize", handleResize, false)
+      window.removeEventListener("resize", setCanvasSize, false)
+      stopAnimation?.()
     }
   }, [startAnimation])
 
-  return (
-    <canvas
-      ref={canvasRef}
-      width={cWidth}
-      height={cHeight}
-      style={{ zIndex: -1 }}
-    />
-  )
+  return <canvas ref={canvasRef} style={{ zIndex: -1 }} />
 }
 
 export default Canvas

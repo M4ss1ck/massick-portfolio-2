@@ -14,14 +14,20 @@ const LanguageSwitcher = ({ showlabel = true }) => {
         router.push(path, { locale: lng });
     }
     return (
-        <ul className='flex flex-row items-start justify-center z-10 p-1 sm:p-4 text-sm lg:text-2xl'>
-            {showlabel && <span className='hidden sm:block'>{t("language")}:</span>}
-            {routing.locales.map(lng => (
+        <ul className='flex flex-row items-start justify-center z-10 p-1 sm:p-4 text-sm lg:text-2xl' aria-label={t("language")}>
+            {showlabel && (
+                <li className='hidden sm:block list-none' aria-hidden='true'>
+                    {t("language")}:
+                </li>
+            )}
+            {routing.locales.map((lng) => (
                 <li key={lng} className='px-1'>
                     <button
+                        type='button'
                         className={`hover:underline ${lng === locale ? 'underline' : 'disabled'}`}
                         onClick={() => setLanguage(lng)}
                         disabled={lng === locale}
+                        aria-pressed={lng === locale}
                     >
                         {lng}
                     </button>

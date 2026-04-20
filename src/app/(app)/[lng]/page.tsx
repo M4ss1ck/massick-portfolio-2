@@ -2,6 +2,7 @@ import Canvas from '@/components/Canvas'
 import Menu from '@/components/Menu'
 import LettersAnimation from '@/components/LettersAnimation'
 import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 import Hacker from '@/components/icons/Hacker'
 import { Block } from '@/components/Block'
 import { ProjectList } from '@/components/ProjectList'
@@ -9,6 +10,20 @@ import { GoUp } from '@/components/GoUp'
 import { Footer } from '@/components/Footer'
 import { Link } from '@/components/AnimatedLink'
 import { GoToId } from '@/components/GoToId'
+
+export async function generateMetadata(props: {
+    params: Promise<{
+        lng: string
+    }>
+}) {
+    const params = await props.params
+    const t = await getTranslations({ locale: params.lng })
+
+    return {
+        title: t('portfolio'),
+        description: t('portfolio_description'),
+    }
+}
 
 export default function Page() {
     const t = useTranslations()
@@ -25,9 +40,9 @@ export default function Page() {
             </Block>
             <Block id="projects">
                 <Link href="/projects">
-                    <h1 className='text-4xl text-primary font-body mt-4 mb-8 underline-animation'>
+                    <h2 className='text-4xl text-primary font-body mt-4 mb-8 underline-animation'>
                         {t("projects")}
-                    </h1>
+                    </h2>
                 </Link>
                 <ProjectList favoritesOnly limit={6} />
             </Block>

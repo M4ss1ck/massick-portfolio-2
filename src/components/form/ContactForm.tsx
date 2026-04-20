@@ -1,7 +1,7 @@
 "use client"
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import type { Form as FormType } from '@/payload-types'
-import { getCookie, setCookie } from 'cookies-next/client'
+import { setCookie } from 'cookies-next/client'
 import Field from './Field'
 import { useTranslations, useLocale } from "next-intl";
 
@@ -12,17 +12,19 @@ const ContactForm = () => {
     const [form, setForm] = useState<FormType | null>(null)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [data, setData] = useState<Record<string, any>>({})
-    const [isDisabled, setIsDisabled] = useState(false)
     const [isSubmitted, setIsSubmitted] = useState(false)
-    const fetchForm = useCallback(async (id: number | string) => {
-        setLoading(true)
-        const response = await fetch(`/api/forms/${id}?locale=${locale}`)
-        const body = await response.json()
-        setForm(body)
-        setLoading(false)
-    }, [locale])
+
     // Form ID (manually set for now)
     const formId = 1
+
+    const isDisabled = useMemo(() => {
+        if (!form?.fields) return false
+
+        return form.fields.some((field) => {
+            if (!('required' in field) || !field.required || !('name' in field)) return false
+            return !data[field.name]
+        })
+    }, [data, form])
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -49,21 +51,22 @@ const ContactForm = () => {
     }
 
     useEffect(() => {
-        const hasContacted = getCookie('contacted')
-        if (hasContacted) {
-            setIsSubmitted(true)
-        }
-    }, [])
+        let cancelled = false
 
-    useEffect(() => {
-        fetchForm(formId)
-    }, [formId, fetchForm])
+        void fetch(`/api/forms/${formId}?locale=${locale}`)
+            .then((response) => response.json())
+            .then((body: FormType) => {
+                if (cancelled) return
+                setForm(body)
+            })
+            .catch((error) => {
+                console.error(error)
+            })
 
-    useEffect(() => {
-        if (form && form.fields) {
-            setIsDisabled(form.fields.some(field => 'required' in field && field.required && !data[field.name]))
+        return () => {
+            cancelled = true
         }
-    }, [data, form])
+    }, [formId, locale])
 
     return (
         <form

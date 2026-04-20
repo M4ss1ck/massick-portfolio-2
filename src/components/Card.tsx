@@ -70,9 +70,16 @@ export const Card = ({ project }: CardProps) => {
                     }
                     {
                         project.demo
-                            ? <Link href={project.demo} target="_blank" onClick={(e) => e.stopPropagation()} className="underline-animation text-primary">
+                            ? <Link
+                                href={project.demo}
+                                target="_blank"
+                                onClick={(e) => e.stopPropagation()}
+                                className="underline-animation text-primary"
+                                aria-label={`${t("demo")} - ${t(project.title)}`}
+                            >
                                 <span>
                                     <LineMdLink className="w-4 h-4 inline-flex" />&nbsp;{t("demo")}
+                                    <span className="sr-only"> {t(project.title)}</span>
                                 </span>
                             </Link>
                             : null
