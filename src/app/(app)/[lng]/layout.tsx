@@ -1,7 +1,8 @@
-import { getTranslations } from "next-intl/server";
+import { getMessages, getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { LocaleSync } from "@/components/LocaleSync";
+import IntlErrorHandlingProvider from "@/components/providers/IntlErrorHandlingProvider";
 
 export async function generateMetadata(props: {
     params: Promise<{
@@ -32,10 +33,12 @@ export default async function RootLayout(props: {
         notFound();
     }
 
+    const messages = await getMessages({ locale: lng });
+
     return (
-        <>
+        <IntlErrorHandlingProvider locale={lng} messages={messages}>
             <LocaleSync />
             {children}
-        </>
+        </IntlErrorHandlingProvider>
     );
 }
