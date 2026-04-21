@@ -1,7 +1,11 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
+
+const subscribe = () => () => { };
+const getSnapshot = () => true;
+const getServerSnapshot = () => false;
 import {
     NextIntlClientProvider,
     type AbstractIntlMessages,
@@ -55,6 +59,7 @@ export function SpotlightPreview({
     // close transition, then torn down on transitionend so idle overlays
     // don't cost render cycles.
     const [contentMounted, setContentMounted] = useState(false);
+    const mounted = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
     const hoveredRef = useRef(false);
 
     // Nested previews (the cloned LanguageSwitcher inside the overlay) must
@@ -102,7 +107,7 @@ export function SpotlightPreview({
             className="inline-flex"
         >
             {children}
-            {typeof document !== "undefined"
+            {mounted
                 ? createPortal(
                     <div
                         aria-hidden="true"
