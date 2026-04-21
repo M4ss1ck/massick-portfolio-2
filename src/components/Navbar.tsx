@@ -37,7 +37,7 @@ export default function Navbar() {
                     {t("about")}
                 </Link>
             </h2>
-            <LanguageSwitcher showlabel={false} />
+            <LanguageSwitcher />
         </nav>
     );
 }
