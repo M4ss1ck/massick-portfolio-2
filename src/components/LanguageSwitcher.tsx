@@ -79,8 +79,8 @@ const LanguageSwitcher = ({ showlabel = true }) => {
             rawPath === `/${locale}`
                 ? "/"
                 : rawPath.startsWith(`/${locale}/`)
-                    ? rawPath.slice(`/${locale}`.length)
-                    : rawPath;
+                  ? rawPath.slice(`/${locale}`.length)
+                  : rawPath;
 
         const canonical = toCanonicalPath(stripped, locale);
 

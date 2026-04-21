@@ -1,7 +1,7 @@
 import React from "react";
 import type { SVGProps } from "react";
 
-export function Globe(props: SVGProps<SVGSVGElement>) {
+export function Profile(props: SVGProps<SVGSVGElement>) {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -18,9 +18,8 @@ export function Globe(props: SVGProps<SVGSVGElement>) {
                 strokeLinejoin="round"
                 strokeWidth={2}
             >
-                <circle cx="12" cy="12" r="9" />
-                <path d="M3 12h18" />
-                <path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0 -18" />
+                <circle cx="12" cy="8" r="4" />
+                <path d="M4 21v-1a6 6 0 0 1 6 -6h4a6 6 0 0 1 6 6v1" />
             </g>
         </svg>
     );

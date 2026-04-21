@@ -47,8 +47,8 @@ export const ProjectDetails = ({ id }: { id: string | number }) => {
     const fallbackDate = dayjs();
     const imageSrc =
         project.coverImage &&
-            typeof project.coverImage !== "number" &&
-            project.coverImage.filename
+        typeof project.coverImage !== "number" &&
+        project.coverImage.filename
             ? `/media/${project.coverImage.filename}`
             : "/images/hacker.png";
 
@@ -129,16 +129,16 @@ export const ProjectDetails = ({ id }: { id: string | number }) => {
                 </h2>
                 <div className="grid grid-cols-1 gap-2 space-y-2 py-4 mx-2 space-x-2 grid-flow-row-dense text-other scroll-reveal">
                     {project.relatedProjects &&
-                        project.relatedProjects.filter((p) => typeof p !== "number")
-                            .length > 0
+                    project.relatedProjects.filter((p) => typeof p !== "number")
+                        .length > 0
                         ? project.relatedProjects
-                            .filter((p) => typeof p !== "number")
-                            .map((relatedProject) => (
-                                <Card
-                                    key={relatedProject.id}
-                                    project={relatedProject}
-                                />
-                            ))
+                              .filter((p) => typeof p !== "number")
+                              .map((relatedProject) => (
+                                  <Card
+                                      key={relatedProject.id}
+                                      project={relatedProject}
+                                  />
+                              ))
                         : t("No related projects")}
                 </div>
             </div>
