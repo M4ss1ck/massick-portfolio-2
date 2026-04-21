@@ -5,6 +5,7 @@ import { useParams, usePathname as useRawPathname } from "next/navigation";
 import { useRouter, routing } from "@/i18n/routing";
 import { useLocaleStore, type Locale } from "@/stores/locale";
 import { Globe } from "@/components/icons/Globe";
+import { SpotlightPreview } from "@/components/SpotlightPreview";
 
 // Display each locale by its **own** native name so users always recognize
 // the target language regardless of the current UI language.
@@ -97,16 +98,17 @@ const LanguageSwitcher = () => {
             aria-label={t("language")}
         >
             {targets.map((target) => (
-                <button
-                    key={target}
-                    type="button"
-                    onClick={() => setLanguage(target)}
-                    className="inline-flex items-center gap-1.5 underline-animation"
-                    aria-label={`${t("language")}: ${LOCALE_NATIVE_NAMES[target]}`}
-                >
-                    <Globe className="w-[1em] h-[1em]" />
-                    <span>{LOCALE_NATIVE_NAMES[target]}</span>
-                </button>
+                <SpotlightPreview key={target} target={target}>
+                    <button
+                        type="button"
+                        onClick={() => setLanguage(target)}
+                        className="inline-flex items-center gap-1.5 underline-animation cursor-pointer"
+                        aria-label={`${t("language")}: ${LOCALE_NATIVE_NAMES[target]}`}
+                    >
+                        <Globe className="w-[1em] h-[1em]" />
+                        <span>{LOCALE_NATIVE_NAMES[target]}</span>
+                    </button>
+                </SpotlightPreview>
             ))}
         </div>
     );

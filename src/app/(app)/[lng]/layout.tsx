@@ -3,6 +3,7 @@ import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { LocaleSync } from "@/components/LocaleSync";
 import IntlErrorHandlingProvider from "@/components/providers/IntlErrorHandlingProvider";
+import { SpotlightSnapshotProvider } from "@/components/SpotlightSnapshotProvider";
 
 export async function generateMetadata(props: {
     params: Promise<{
@@ -38,7 +39,7 @@ export default async function RootLayout(props: {
     return (
         <IntlErrorHandlingProvider locale={lng} messages={messages}>
             <LocaleSync />
-            {children}
+            <SpotlightSnapshotProvider>{children}</SpotlightSnapshotProvider>
         </IntlErrorHandlingProvider>
     );
 }

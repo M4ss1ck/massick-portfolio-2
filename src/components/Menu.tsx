@@ -1,10 +1,14 @@
+"use client";
 import React from "react";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { Link } from "./AnimatedLink";
 import { Rocket } from "./icons/Rocket";
 import { Profile } from "./icons/Profile";
+import { useTranslations } from "next-intl";
+import { SpotlightSource } from "./SpotlightSnapshotProvider";
 
-export default function Menu({ t }: { t: (value: string) => string }) {
+function MenuInner() {
+    const t = useTranslations();
     return (
         <aside className="flex flex-row py-1 px-4 md:flex-col justify-between items-center md:items-start absolute w-full md:w-fit left-0 top-0 md:top-[60vh] z-20 rounded-lg lg:transition text-lg text-primary">
             <h2 className="p-1 sm:p-4 text-sm sm:block lg:text-2xl">
@@ -27,5 +31,13 @@ export default function Menu({ t }: { t: (value: string) => string }) {
             </h2>
             <LanguageSwitcher />
         </aside>
+    );
+}
+
+export default function Menu() {
+    return (
+        <SpotlightSource className="font-body">
+            {() => <MenuInner />}
+        </SpotlightSource>
     );
 }

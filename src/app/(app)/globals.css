@@ -436,3 +436,40 @@
         animation: none;
     }
 }
+
+/*
+ * Spotlight reveal: radius via @property so only the circle size transitions;
+ * position (--spotlight-x/y) updates instantly for cursor-following.
+ * Clip-path animates as a whole, but because --x/--y are not registered
+ * animatable properties, their value changes during a --r transition are
+ * applied instantly while the radius interpolates.
+ */
+@property --spotlight-r {
+    syntax: "<length>";
+    inherits: false;
+    initial-value: 0px;
+}
+
+.spotlight-overlay {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    isolation: isolate;
+    z-index: 9999;
+    pointer-events: none;
+    background: var(--background-start-rgb);
+    clip-path: circle(
+        var(--spotlight-r) at var(--spotlight-x, 50%) var(--spotlight-y, 50%)
+    );
+    transition: --spotlight-r 400ms ease-out;
+}
+
+.spotlight-overlay button {
+    pointer-events: auto;
+}
+
+.spotlight-overlay,
+.spotlight-overlay * {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}

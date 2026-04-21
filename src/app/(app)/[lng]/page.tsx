@@ -35,7 +35,7 @@ export default function Page() {
             <main className="flex flex-col items-center justify-center w-full min-h-screen font-body overflow-x-hidden">
                 <Block>
                     <Canvas text={title} />
-                    <Menu t={t} />
+                    <Menu />
                     <LettersAnimation title={title} />
                     <GoToId id="projects" />
                     <Hacker className="absolute bottom-0 w-full opacity-20 -z-10" />

@@ -4,13 +4,18 @@ import LanguageSwitcher from "./LanguageSwitcher";
 import { Link } from "./AnimatedLink";
 import { useTranslations } from "next-intl";
 import { usePathname } from "@/i18n/routing";
+import {
+    SpotlightSource,
+    useInSpotlightOverlay,
+} from "./SpotlightSnapshotProvider";
 
-export default function Navbar() {
+function NavbarInner() {
     const t = useTranslations();
     const path = usePathname();
+    const inOverlay = useInSpotlightOverlay();
     return (
         <nav
-            style={{ viewTransitionName: "site-navbar" }}
+            style={inOverlay ? undefined : { viewTransitionName: "site-navbar" }}
             className="sticky top-0 flex flex-row py-1 px-4 justify-between items-center z-20 lg:transition text-sm sm:text-lg bg-black/5 backdrop-filter backdrop-blur-lg w-full text-primary"
         >
             <h2 className="p-1 sm:p-4 text-sm sm:block lg:text-2xl font-display mr-auto">
@@ -40,4 +45,8 @@ export default function Navbar() {
             <LanguageSwitcher />
         </nav>
     );
+}
+
+export default function Navbar() {
+    return <SpotlightSource>{() => <NavbarInner />}</SpotlightSource>;
 }
