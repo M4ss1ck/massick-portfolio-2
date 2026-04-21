@@ -23,6 +23,8 @@
         "@payloadcms/payload-cloud": "^3.65.0",
         "@payloadcms/plugin-form-builder": "^3.65.0",
         "@payloadcms/richtext-lexical": "^3.65.0",
+        "@tanstack/react-query": "^5.99.2",
+        "@tanstack/react-query-devtools": "^5.99.2",
         "accept-language": "^3.0.20",
         "babel-plugin-react-compiler": "^19.0.0-beta-27714ef-20250124",
         "cookies-next": "^6.1.1",

@@ -35,6 +35,12 @@ importers:
             "@payloadcms/richtext-lexical":
                 specifier: ^3.65.0
                 version: 3.65.0(@faceless-ui/modal@3.0.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(@faceless-ui/scroll-info@2.0.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(@payloadcms/next@3.65.0(@types/react@19.2.7)(graphql@16.10.0)(monaco-editor@0.52.2)(next@16.0.8(@babel/core@7.28.5)(babel-plugin-react-compiler@19.0.0-beta-27714ef-20250124)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.77.4))(payload@3.65.0(graphql@16.10.0)(typescript@5.7.3))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.7.3))(@types/react@19.2.7)(monaco-editor@0.52.2)(next@16.0.8(@babel/core@7.28.5)(babel-plugin-react-compiler@19.0.0-beta-27714ef-20250124)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.77.4))(payload@3.65.0(graphql@16.10.0)(typescript@5.7.3))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.7.3)(yjs@13.6.23)
+            "@tanstack/react-query":
+                specifier: ^5.99.2
+                version: 5.99.2(react@19.2.0)
+            "@tanstack/react-query-devtools":
+                specifier: ^5.99.2
+                version: 5.99.2(@tanstack/react-query@5.99.2(react@19.2.0))(react@19.2.0)
             accept-language:
                 specifier: ^3.0.20
                 version: 3.0.20
@@ -2907,6 +2913,35 @@ packages:
             {
                 integrity: sha512-+VB4Csd7BY06XY1sxcJ/xZ/kLlJ7spxG2uJwj0qIiS4RvliznfbI33lrSUb9WKpWFgnzJFx3kClmrmMj9FgVsw==,
             }
+
+    "@tanstack/query-core@5.99.2":
+        resolution:
+            {
+                integrity: sha512-1HunU0bXVsR1ZJMZbcOPE6VtaBJxsW809RE9xPe4Gz7MlB0GWwQvuTPhMoEmQ/hIzFKJ/DWAuttIe7BOaWx0tA==,
+            }
+
+    "@tanstack/query-devtools@5.99.2":
+        resolution:
+            {
+                integrity: sha512-TEF1d+RYO9l8oeCwgzmOHIgKwAzXQmw2s/ny2bW8qeg2OMkkLjALfVEivgCMR3OL/jVdMmeTPX56WrV+uvYJFg==,
+            }
+
+    "@tanstack/react-query-devtools@5.99.2":
+        resolution:
+            {
+                integrity: sha512-8txkK9A9XBNTB8RoxVgfp6W3qwBr25tNP10L4yu3KuyhAdEvccECfIRzesSwMVk/wpVVioAr+hbMtUkMMF+WVw==,
+            }
+        peerDependencies:
+            "@tanstack/react-query": ^5.99.2
+            react: ^18 || ^19
+
+    "@tanstack/react-query@5.99.2":
+        resolution:
+            {
+                integrity: sha512-vM91UEe45QUS9ED6OklsVL15i8qKcRqNwpWzPTVWvRPRSEgDudDgHpvyTjcdlwHcrKNa80T+xXYcchT2noPnZA==,
+            }
+        peerDependencies:
+            react: ^18 || ^19
 
     "@tokenizer/token@0.3.0":
         resolution:
@@ -9396,6 +9431,21 @@ snapshots:
             lightningcss: 1.29.1
             postcss: 8.5.1
             tailwindcss: 4.0.2
+
+    "@tanstack/query-core@5.99.2": {}
+
+    "@tanstack/query-devtools@5.99.2": {}
+
+    "@tanstack/react-query-devtools@5.99.2(@tanstack/react-query@5.99.2(react@19.2.0))(react@19.2.0)":
+        dependencies:
+            "@tanstack/query-devtools": 5.99.2
+            "@tanstack/react-query": 5.99.2(react@19.2.0)
+            react: 19.2.0
+
+    "@tanstack/react-query@5.99.2(react@19.2.0)":
+        dependencies:
+            "@tanstack/query-core": 5.99.2
+            react: 19.2.0
 
     "@tokenizer/token@0.3.0": {}
 

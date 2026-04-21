@@ -1,8 +1,7 @@
 "use client";
-import { useState, useEffect, ViewTransition } from "react";
+import { ViewTransition } from "react";
 import Image from "next/image";
 import { Card } from "./Card";
-import { Project } from "@/payload-types";
 import { Loading } from "./icons/Loading";
 import { useTranslations, useLocale } from "next-intl";
 import dayjs from "dayjs";
@@ -11,31 +10,12 @@ import Link from "next/link";
 import { RichText } from "@payloadcms/richtext-lexical/react";
 import { Pill } from "./Pill";
 import { ReadingProgress } from "./ReadingProgress";
+import { useProject } from "@/hooks/useProject";
 
 export const ProjectDetails = ({ id }: { id: string | number }) => {
     const t = useTranslations();
     const locale = useLocale();
-
-    const [project, setProject] = useState<Project | null>(null);
-    const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        const fetchProjects = async (id: number | string) => {
-            setLoading(true);
-            try {
-                const response = await fetch(
-                    `/api/projects/${id}?depth=2&locale=${locale}`,
-                );
-                const body = await response.json();
-                setProject(body);
-            } catch (error) {
-                console.error(error);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchProjects(id);
-    }, [id, locale]);
+    const { project, loading } = useProject(id);
 
     if (!project || loading)
         return (
@@ -47,8 +27,8 @@ export const ProjectDetails = ({ id }: { id: string | number }) => {
     const fallbackDate = dayjs();
     const imageSrc =
         project.coverImage &&
-        typeof project.coverImage !== "number" &&
-        project.coverImage.filename
+            typeof project.coverImage !== "number" &&
+            project.coverImage.filename
             ? `/media/${project.coverImage.filename}`
             : "/images/hacker.png";
 
@@ -129,16 +109,16 @@ export const ProjectDetails = ({ id }: { id: string | number }) => {
                 </h2>
                 <div className="grid grid-cols-1 gap-2 space-y-2 py-4 mx-2 space-x-2 grid-flow-row-dense text-other scroll-reveal">
                     {project.relatedProjects &&
-                    project.relatedProjects.filter((p) => typeof p !== "number")
-                        .length > 0
+                        project.relatedProjects.filter((p) => typeof p !== "number")
+                            .length > 0
                         ? project.relatedProjects
-                              .filter((p) => typeof p !== "number")
-                              .map((relatedProject) => (
-                                  <Card
-                                      key={relatedProject.id}
-                                      project={relatedProject}
-                                  />
-                              ))
+                            .filter((p) => typeof p !== "number")
+                            .map((relatedProject) => (
+                                <Card
+                                    key={relatedProject.id}
+                                    project={relatedProject}
+                                />
+                            ))
                         : t("No related projects")}
                 </div>
             </div>

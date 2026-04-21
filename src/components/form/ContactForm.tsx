@@ -1,21 +1,20 @@
 "use client";
-import React, { useEffect, useMemo, useState } from "react";
-import type { Form as FormType } from "@/payload-types";
+import React, { useMemo, useState } from "react";
 import { setCookie } from "cookies-next/client";
 import Field from "./Field";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
+import { useForm } from "@/hooks/useForm";
 
 const ContactForm = () => {
     const t = useTranslations();
-    const locale = useLocale();
     const [loading, setLoading] = useState(false);
-    const [form, setForm] = useState<FormType | null>(null);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [data, setData] = useState<Record<string, any>>({});
     const [isSubmitted, setIsSubmitted] = useState(false);
 
     // Form ID (manually set for now)
     const formId = 1;
+    const { form } = useForm(formId);
 
     const isDisabled = useMemo(() => {
         if (!form?.fields) return false;
@@ -57,24 +56,6 @@ const ContactForm = () => {
         setLoading(false);
     };
 
-    useEffect(() => {
-        let cancelled = false;
-
-        void fetch(`/api/forms/${formId}?locale=${locale}`)
-            .then((response) => response.json())
-            .then((body: FormType) => {
-                if (cancelled) return;
-                setForm(body);
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-
-        return () => {
-            cancelled = true;
-        };
-    }, [formId, locale]);
-
     return (
         <form
             className="grid grid-cols-1 gap-2 space-y-2 py-4 mx-2 space-x-2 grid-flow-row-dense text-other border-4 border-dashed border-primary p-4 rounded-lg bg-primary/10 text-center  mb-4 md:w-2/3 max-w-prose transition duration-150"
@@ -94,12 +75,12 @@ const ContactForm = () => {
                     <div className="flex flex-row flex-wrap font-display">
                         {form?.fields && form.fields.length > 0
                             ? form.fields.map((field) => (
-                                  <Field
-                                      key={field.id}
-                                      field={field}
-                                      setData={setData}
-                                  />
-                              ))
+                                <Field
+                                    key={field.id}
+                                    field={field}
+                                    setData={setData}
+                                />
+                            ))
                             : null}
                     </div>
                     <button

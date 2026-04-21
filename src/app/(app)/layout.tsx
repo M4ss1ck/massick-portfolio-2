@@ -5,6 +5,7 @@ import "@fontsource/federant";
 import "@fontsource-variable/kode-mono";
 
 import IntlErrorHandlingProvider from "@/components/providers/IntlErrorHandlingProvider";
+import QueryProvider from "@/components/providers/QueryProvider";
 
 export const metadata: Metadata = {
     title: "My portfolio",
@@ -21,9 +22,14 @@ export default async function RootLayout({
     return (
         <html lang={locale}>
             <body>
-                <IntlErrorHandlingProvider locale={locale} messages={messages}>
-                    {children}
-                </IntlErrorHandlingProvider>
+                <QueryProvider>
+                    <IntlErrorHandlingProvider
+                        locale={locale}
+                        messages={messages}
+                    >
+                        {children}
+                    </IntlErrorHandlingProvider>
+                </QueryProvider>
             </body>
         </html>
     );
