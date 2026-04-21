@@ -3,7 +3,10 @@ import React from "react";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { Link } from "./AnimatedLink";
 import { useTranslations } from "next-intl";
-import { usePathname } from "@/i18n/routing";
+import { useParams, usePathname as useRawPathname } from "next/navigation";
+import { routing } from "@/i18n/routing";
+import type { Locale } from "@/stores/locale";
+import { stripLocalePrefix, toCanonicalPath } from "@/utils/canonicalPath";
 import {
     SpotlightSource,
     useInSpotlightOverlay,
@@ -11,7 +14,14 @@ import {
 
 function NavbarInner() {
     const t = useTranslations();
-    const path = usePathname();
+    const rawPath = useRawPathname() ?? "/";
+    const params = useParams<{ lng?: string }>();
+    const urlLocale: Locale = (
+        routing.locales as readonly string[]
+    ).includes(params?.lng ?? "")
+        ? (params!.lng as Locale)
+        : (routing.defaultLocale as Locale);
+    const path = toCanonicalPath(stripLocalePrefix(rawPath, urlLocale), urlLocale);
     const inOverlay = useInSpotlightOverlay();
     return (
         <nav
