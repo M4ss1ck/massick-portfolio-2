@@ -34,7 +34,7 @@ export default function Page() {
         <DirectionalTransition>
             <main className="flex flex-col items-center justify-center w-full min-h-screen font-body overflow-x-hidden">
                 <Block>
-                    <Canvas r={250} g={250} b={250} text={title} />
+                    <Canvas text={title} />
                     <Menu t={t} />
                     <LettersAnimation title={title} />
                     <GoToId id="projects" />
