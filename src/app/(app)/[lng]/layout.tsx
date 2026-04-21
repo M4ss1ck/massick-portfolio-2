@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
+import { LocaleSync } from "@/components/LocaleSync";
 
 export async function generateMetadata(props: {
     params: Promise<{
@@ -31,5 +32,10 @@ export default async function RootLayout(props: {
         notFound();
     }
 
-    return children;
+    return (
+        <>
+            <LocaleSync />
+            {children}
+        </>
+    );
 }
