@@ -52,7 +52,7 @@ function toCanonicalPath(localizedPath: string, fromLocale: Locale): string {
     return localizedPath;
 }
 
-const LanguageSwitcher = ({ showlabel = true }) => {
+const LanguageSwitcher = () => {
     const t = useTranslations();
     const params = useParams<{ lng?: string }>();
     const router = useRouter();
@@ -79,8 +79,8 @@ const LanguageSwitcher = ({ showlabel = true }) => {
             rawPath === `/${locale}`
                 ? "/"
                 : rawPath.startsWith(`/${locale}/`)
-                  ? rawPath.slice(`/${locale}`.length)
-                  : rawPath;
+                    ? rawPath.slice(`/${locale}`.length)
+                    : rawPath;
 
         const canonical = toCanonicalPath(stripped, locale);
 
