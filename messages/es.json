@@ -1,9 +1,9 @@
 {
     "titulo_portada": "Hola, soy Massick",
-    "about_bio": "Mi nombre es Andy (@M4ss1ck en casi todas mis redes sociales). Soy Licenciado en Matemáticas, un programador apasionado y un entusiasta de la tecnología.",
+    "about_bio": "Soy Andy (@M4ss1ck), desarrollador full-stack en Concepción, Chile. Trabajo principalmente con React y TypeScript en la web, y con Tauri cuando un proyecto necesita correr en el escritorio. Me gusta el software que funciona sin conexión y que respeta tu privacidad.",
     "about": "Acerca de",
     "who_am_I": "¿Quién soy?",
-    "extended_bio": "A lo largo de mi carrera, he combinado mis conocimientos matemáticos con mis habilidades de programación para resolver problemas complejos y desarrollar soluciones innovadoras. Me dedico a aprender constantemente y a explorar nuevas tendencias en el ámbito tecnológico, siempre buscando maneras de aplicar mis habilidades en proyectos desafiantes y creativos.",
+    "extended_bio": "Estudié Matemáticas en la universidad, y eso todavía influye en mi forma de trabajar. Prefiero entender por qué un sistema se comporta de cierta manera antes de empezar a escribir código. Me siento cómodo gestionando un producto desde la especificación hasta el despliegue, y siempre estoy dispuesto a conversar sobre la creación de algo interesante.",
     "projects": "Proyectos",
     "home": "Inicio",
     "back": "Atrás",
