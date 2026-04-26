@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Pill } from "./Pill";
 
 export const SkeletonCard = () => {
-    const imageSrc = "/images/hacker.png";
+    const imageSrc = "/images/clean.png";
     return (
         <Tilt glareEnable={true} glareColor="#ffffff" glareBorderRadius="8px">
             <div className="group grid grid-cols-1 sm:grid-cols-3 max-w-sm sm:max-w-lg hover:z-20 hover:shadow-lg hover:shadow-other rounded-lg transition-all duration-300 ease-in-out gap-x-2 h-full opacity-60 relative overflow-hidden">

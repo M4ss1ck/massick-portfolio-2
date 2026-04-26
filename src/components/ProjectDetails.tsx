@@ -30,7 +30,7 @@ export const ProjectDetails = ({ id }: { id: string | number }) => {
             typeof project.coverImage !== "number" &&
             project.coverImage.filename
             ? `/media/${project.coverImage.filename}`
-            : "/images/hacker.png";
+            : "/images/clean.png";
 
     return (
         <>
