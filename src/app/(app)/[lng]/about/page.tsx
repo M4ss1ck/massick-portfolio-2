@@ -39,15 +39,17 @@ export default function Page() {
                         alt={t("profile")}
                     />
                 </div>
-                <p className="px-4 pt-8 text-xl font-semibold font-display md:w-2/3 md:pt-4 md:text-2xl max-w-prose text-pretty text-secondary">
-                    {t("about_bio")}
-                </p>
-                <p className="px-4 pt-8 text-xl font-semibold font-display md:w-2/3 md:pt-4 md:text-2xl max-w-prose text-pretty text-secondary">
-                    {t("extended_bio")}
-                </p>
+                <div className="grid grid-cols-1 gap-2 space-y-2 py-4 mx-2 space-x-2 grid-flow-row-dense max-w-prose">
+                    <p className="px-4 pt-8 text-xl font-semibold font-display md:pt-4 md:text-2xl text-pretty text-secondary indent-8 text-justify">
+                        {t("about_bio")}
+                    </p>
+                    <p className="px-4 pt-8 text-xl font-semibold font-display md:pt-4 md:text-2xl text-pretty text-secondary indent-8 text-justify">
+                        {t("extended_bio")}
+                    </p>
+                </div>
                 <Link
                     href="/"
-                    className="font-thin font-body underline-animation text-primary"
+                    className="font-thin font-body underline-animation text-primary mb-4"
                 >
                     {t("back")}
                 </Link>
