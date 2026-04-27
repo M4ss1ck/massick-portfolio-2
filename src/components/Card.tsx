@@ -1,6 +1,5 @@
 "use client";
 import type { Project } from "@/payload-types";
-import Tilt from "react-parallax-tilt";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
@@ -10,6 +9,7 @@ import { SVGProps } from "react";
 import dayjs from "dayjs";
 import "dayjs/locale/es";
 import { Pill } from "./Pill";
+import { MagneticHover } from "./MagneticHover";
 
 interface CardProps {
     project: Project;
@@ -25,16 +25,12 @@ export const Card = ({ project }: CardProps) => {
             project.coverImage.filename
             ? `/media/${project.coverImage.filename}`
             : "/images/clean.png";
+
     return (
-        <Tilt
-            glareEnable={true}
-            glareMaxOpacity={0.2}
-            scale={1.02}
-            className="max-w-sm sm:max-w-lg"
-        >
+        <MagneticHover className="max-w-sm sm:max-w-lg">
             <AnimatedButton
                 href={`/projects/${project.id}` as "/projects/:id"}
-                className="group grid grid-cols-1 sm:grid-cols-3 max-w-sm sm:max-w-lg hover:z-20 hover:shadow-lg hover:shadow-other rounded-lg transition-all duration-300 ease-in-out gap-x-2 h-full"
+                className="group grid grid-cols-1 sm:grid-cols-3 max-w-sm sm:max-w-lg hover:z-20 rounded-lg transition-all duration-300 ease-in-out gap-x-2 h-full"
             >
                 <div
                     aria-hidden
@@ -113,7 +109,7 @@ export const Card = ({ project }: CardProps) => {
                     ) : null}
                 </div>
             </AnimatedButton>
-        </Tilt>
+        </MagneticHover>
     );
 };
 

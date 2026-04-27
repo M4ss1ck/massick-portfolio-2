@@ -1,13 +1,13 @@
 "use client";
-import Tilt from "react-parallax-tilt";
 import Image from "next/image";
 import { Pill } from "./Pill";
+import { MagneticHover } from "./MagneticHover";
 
 export const SkeletonCard = () => {
     const imageSrc = "/images/clean.png";
     return (
-        <Tilt glareEnable={true} glareColor="#ffffff" glareBorderRadius="8px">
-            <div className="group grid grid-cols-1 sm:grid-cols-3 max-w-sm sm:max-w-lg hover:z-20 hover:shadow-lg hover:shadow-other rounded-lg transition-all duration-300 ease-in-out gap-x-2 h-full opacity-60 relative overflow-hidden">
+        <MagneticHover className="max-w-sm sm:max-w-lg">
+            <div className="group grid grid-cols-1 sm:grid-cols-3 max-w-sm sm:max-w-lg hover:z-20 rounded-lg transition-all duration-300 ease-in-out gap-x-2 h-full opacity-60 relative overflow-hidden">
                 <div className="absolute inset-0 -translate-x-full shimmer bg-gradient-to-r from-transparent via-white/30 to-transparent z-10" />
                 <div
                     aria-hidden
@@ -53,6 +53,6 @@ export const SkeletonCard = () => {
                     </p>
                 </div>
             </div>
-        </Tilt>
+        </MagneticHover>
     );
 };
