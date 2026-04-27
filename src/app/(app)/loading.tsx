@@ -6,7 +6,7 @@ export default function Loading() {
     return (
         <ViewTransition exit="fade-out">
             <main className="flex min-h-screen flex-col items-center justify-center">
-                <h1 className="text-4xl animate-ping">{t("loading")}</h1>
+                <h1 className="text-4xl animate-ping text-primary animate">{t("loading")}</h1>
             </main>
         </ViewTransition>
     );
