@@ -30,7 +30,7 @@ export const Card = ({ project }: CardProps) => {
         <MagneticHover className="max-w-sm sm:max-w-lg">
             <AnimatedButton
                 href={`/projects/${project.id}` as "/projects/:id"}
-                className="group grid grid-cols-1 sm:grid-cols-3 max-w-sm sm:max-w-lg hover:z-20 rounded-lg transition-all duration-300 ease-in-out gap-x-2 h-full"
+                className="group relative grid grid-cols-1 sm:grid-cols-3 max-w-sm sm:max-w-lg hover:z-20 rounded-lg transition-all duration-300 ease-in-out gap-x-2 h-full"
             >
                 <div
                     aria-hidden
