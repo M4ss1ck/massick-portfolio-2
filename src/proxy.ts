@@ -11,9 +11,23 @@ const LOCALE_ALTERNATION = routing.locales.join("|");
 const DOUBLE_LOCALE_RE = new RegExp(
     `^/(?:(?:${LOCALE_ALTERNATION})/)+(${LOCALE_ALTERNATION})(?=/|$)`,
 );
+const LOCALE_PREFIX_RE = new RegExp(`^/(${LOCALE_ALTERNATION})(?=/|$)`);
+
 
 export default function middleware(request: NextRequest) {
     const { pathname, search } = request.nextUrl;
+
+    // Keep Payload admin outside locale prefixes: `/en/admin` -> `/admin`.
+    const localePrefixMatch = pathname.match(LOCALE_PREFIX_RE);
+    if (localePrefixMatch) {
+        const afterLocale = pathname.slice(localePrefixMatch[0].length) || "/";
+        if (afterLocale === "/admin" || afterLocale.startsWith("/admin/")) {
+            const url = request.nextUrl.clone();
+            url.pathname = afterLocale;
+            url.search = search;
+            return NextResponse.redirect(url, 308);
+        }
+    }
 
     // Safety net: collapse any `/<locale>/<locale>/...` chain down to its last
     // locale before delegating to next-intl
