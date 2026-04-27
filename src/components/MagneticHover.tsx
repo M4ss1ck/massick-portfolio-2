@@ -17,6 +17,7 @@ export const MagneticHover = ({ children, className }: MagneticHoverProps) => {
         const rect = node.getBoundingClientRect();
         const nx = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
         const ny = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
+        node.style.setProperty("--magnetic-duration", "150ms");
         node.style.setProperty("--magnetic-x", `${nx * MAGNETIC_OFFSET}px`);
         node.style.setProperty("--magnetic-y", `${ny * MAGNETIC_OFFSET}px`);
         node.style.setProperty("--magnetic-opacity", "1");
@@ -25,6 +26,7 @@ export const MagneticHover = ({ children, className }: MagneticHoverProps) => {
     const handleMouseLeave = () => {
         const node = wrapperRef.current;
         if (!node) return;
+        node.style.setProperty("--magnetic-duration", "500ms");
         node.style.setProperty("--magnetic-x", "0px");
         node.style.setProperty("--magnetic-y", "0px");
         node.style.setProperty("--magnetic-opacity", "0");
@@ -35,10 +37,12 @@ export const MagneticHover = ({ children, className }: MagneticHoverProps) => {
             ref={wrapperRef}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            className={`rounded-lg transition-shadow duration-150 ease-out ${className ?? ""}`}
+            className={`rounded-lg ${className ?? ""}`}
             style={{
                 boxShadow:
                     "var(--magnetic-x, 0px) var(--magnetic-y, 0px) 28px 2px rgba(244, 172, 28, var(--magnetic-opacity, 0))",
+                transition:
+                    "box-shadow var(--magnetic-duration, 150ms) ease-out",
             }}
         >
             {children}
