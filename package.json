@@ -10,6 +10,7 @@
         "start": "next start",
         "types": "payload generate:types",
         "seed": "tsx --env-file=.env scripts/seed.ts",
+        "gen:ascii": "tsx scripts/generate-ascii.ts",
         "lint": "eslint .",
         "format": "pnpm dlx prettier --write .",
         "format:check": "pnpm dlx prettier --check ."
@@ -40,11 +41,13 @@
     },
     "devDependencies": {
         "@tailwindcss/postcss": "^4.0.0-beta.6",
+        "@types/figlet": "^1.7.0",
         "@types/node": "^22",
         "@types/react": "19.2.7",
         "@types/react-dom": "19.2.3",
         "eslint": "^9",
         "eslint-config-next": "16.0.5",
+        "figlet": "^1.11.0",
         "postcss": "^8",
         "tailwindcss": "^4",
         "tsx": "^4.19.2",
