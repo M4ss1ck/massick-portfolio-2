@@ -6,11 +6,12 @@ import { dirname } from "node:path";
 
 const text = process.argv[2] ?? "M4SS1CK";
 const out = process.argv[3] ?? "src/assets/ascii/m4ss1ck.ts";
+const fontArg = process.argv[4] === "--" ? process.argv[5] : process.argv[4];
 
 // "ANSI Shadow" gives bold block letters. If the rendered banner shows missing
 // glyphs (tofu) because the web font lacks box-drawing chars, regenerate with an
 // ASCII-only font, e.g.:  pnpm gen:ascii M4SS1CK src/assets/ascii/m4ss1ck.ts -- Big
-const font = (process.argv[4] as figlet.Fonts) ?? "ANSI Shadow";
+const font = (fontArg as figlet.Fonts) ?? "ANSI Shadow";
 
 const art = figlet.textSync(text, { font });
 
