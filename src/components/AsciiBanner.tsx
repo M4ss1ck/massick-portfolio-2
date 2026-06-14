@@ -21,11 +21,12 @@ const LINE_HEIGHT = 1.0;
 const RADIUS = 110;
 const MAX_PUSH = 7;
 const MUTATE_RATE = 0.35;
+const MUTATE_INTERVAL_MS = 70;
 const LETTER_ALPHA = 0.85;
 const FIELD_ALPHA = 0.1;
-const ROW_STEP_MS = 80;
-const JITTER_MS = 260;
-const SETTLE_MS = 200;
+const ROW_STEP_MS = 150;
+const JITTER_MS = 400;
+const SETTLE_MS = 450;
 const SHOW_FIELD = true;
 const ENABLE_DISTORTION = true;
 
@@ -55,6 +56,9 @@ function AsciiBanner({
         const fieldGlyph: string[][] = cells.map((row) =>
             row.map((ch) => (ch === " " ? randomGlyph() : ch)),
         );
+
+        const mutGlyph: string[][] = cells.map((row) => row.map(() => ""));
+        let lastMutate = 0;
 
         const lockAt: number[][] = cells.map((row) => row.map(() => 0));
         let totalDuration = 0;
@@ -123,6 +127,7 @@ function AsciiBanner({
                 entranceStart === null ? Infinity : now - entranceStart;
             const inEntrance = elapsed < totalDuration;
             const entranceComplete = entranceStart !== null && !inEntrance;
+            const doMutate = now - lastMutate >= MUTATE_INTERVAL_MS;
 
             for (let r = 0; r < rows; r++) {
                 for (let c = 0; c < cols; c++) {
@@ -157,9 +162,13 @@ function AsciiBanner({
                             intensity = cellIntensity(distance, RADIUS);
 
                             if (intensity > 0) {
-                                if (Math.random() < intensity * MUTATE_RATE) {
-                                    glyph = randomGlyph();
+                                if (doMutate) {
+                                    mutGlyph[r][c] =
+                                        Math.random() < intensity * MUTATE_RATE
+                                            ? randomGlyph()
+                                            : "";
                                 }
+                                if (mutGlyph[r][c]) glyph = mutGlyph[r][c];
 
                                 if (ENABLE_DISTORTION) {
                                     const dx = cx - mouse.x;
@@ -181,6 +190,8 @@ function AsciiBanner({
                     ctx.fillText(glyph, x + ox, y + oy);
                 }
             }
+
+            if (doMutate) lastMutate = now;
 
             if (inEntrance || hovering) {
                 rafId = requestAnimationFrame(draw);
