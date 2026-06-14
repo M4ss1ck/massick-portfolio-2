@@ -105,7 +105,12 @@ export default buildConfig({
         }),
     ],
     telemetry: false,
-    email: nodemailerAdapter(),
+    email: nodemailerAdapter({
+        defaultFromName: "Portfolio",
+        defaultFromAddress:
+            process.env.NOTIFICATION_EMAIL || "noreply@massick.dev",
+        transportOptions: { jsonTransport: true },
+    }),
     onInit: async (payload) => {
         if (process.env.PAYLOAD_SEED) {
             await seed(payload);
