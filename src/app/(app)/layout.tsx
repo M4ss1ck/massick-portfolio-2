@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getMessages, getLocale } from "next-intl/server";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import "@fontsource/federant";
 import "@fontsource-variable/kode-mono";
@@ -32,6 +33,7 @@ export default async function RootLayout({
                     </IntlErrorHandlingProvider>
                 </QueryProvider>
                 <Analytics />
+                <SpeedInsights />
             </body>
         </html>
     );
