@@ -1,7 +1,5 @@
 const LettersAnimation = ({ title }: { title: string }) => {
     const array = [...title];
-    // Mirrors the old effect, which walked the non-space letters and handed each
-    // one a slightly longer duration than the last so they land staggered.
     let letterIndex = 0;
 
     return (
@@ -21,13 +19,13 @@ const LettersAnimation = ({ title }: { title: string }) => {
                     );
                 }
 
-                const duration = 550 + 150 * letterIndex++;
+                const delay = 35 * letterIndex++;
                 return (
                     <span
                         key={index}
                         className="transition duration-300 hover:skew-y-12 hover:even:-skew-y-12 hover:-translate-y-16 hover:even:-translate-y-14 hover:scale-150 min-w-[1rem] cursor-default"
                         style={{
-                            animation: `letter-drop ${duration}ms ease-in-out`,
+                            animation: `letter-drop 500ms ease-in-out ${delay}ms backwards`,
                         }}
                     >
                         {letter}

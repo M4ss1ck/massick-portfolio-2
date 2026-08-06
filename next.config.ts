@@ -65,6 +65,20 @@ const nextConfig: NextConfig = {
     },
     reactStrictMode: true,
     htmlLimitedBots: /.*/,
+    webpack: (config) => {
+        // Lets layout.tsx import the woff2 URLs it preloads. `dependency: url`
+        // is excluded so the CSS pipeline keeps emitting the @font-face copies,
+        // and both paths land on the same content-hashed file.
+        config.module.rules.push({
+            test: /\.woff2$/,
+            type: "asset/resource",
+            dependency: { not: ["url"] },
+            generator: {
+                filename: "static/media/[name].[hash:8][ext]",
+            },
+        });
+        return config;
+    },
     experimental: {
         viewTransition: true,
     },
