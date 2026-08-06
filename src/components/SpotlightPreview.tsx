@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState, useSyncExternalStore } from "react";
+import React, { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 
 const subscribe = () => () => { };
@@ -26,6 +26,11 @@ const ALT_MESSAGES: Record<Locale, AbstractIntlMessages> = {
 
 const SPOTLIGHT_RADIUS = 150;
 
+const readScroll = () => ({
+    y: window.scrollY,
+    height: document.documentElement.scrollHeight,
+});
+
 type CSSVars = React.CSSProperties & Record<`--${string}`, string>;
 
 /**
@@ -43,6 +48,14 @@ type CSSVars = React.CSSProperties & Record<`--${string}`, string>;
  * drive the underline animation). Because the portal lives inside this
  * component's React tree, React's `onMouseEnter/Leave` on the span still
  * fires correctly — entering the clone counts as entering the span.
+ *
+ * Alignment: the overlay is viewport-fixed, so a clone positioned against
+ * it would resolve `top` against the viewport while its original resolves
+ * against the document (e.g. Menu's `absolute top-[60vh]` inside a page
+ * Block) — drifting by exactly scrollY. The inner wrapper restores the
+ * document coordinate system (`top: -scrollY`, document-height box) so
+ * clones land over their originals at any scroll offset; sticky clones
+ * still clamp to the overlay's scrollport, matching a sticky original.
  */
 export function SpotlightPreview({
     target,
@@ -59,8 +72,16 @@ export function SpotlightPreview({
     // close transition, then torn down on transitionend so idle overlays
     // don't cost render cycles.
     const [contentMounted, setContentMounted] = useState(false);
+    const [scroll, setScroll] = useState({ y: 0, height: 0 });
     const mounted = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
     const hoveredRef = useRef(false);
+
+    useEffect(() => {
+        if (!contentMounted) return;
+        const onScroll = () => setScroll(readScroll());
+        window.addEventListener("scroll", onScroll, { passive: true });
+        return () => window.removeEventListener("scroll", onScroll);
+    }, [contentMounted]);
 
     // Nested previews (the cloned LanguageSwitcher inside the overlay) must
     // not render their own overlays or wrap anything extra — just pass
@@ -70,6 +91,7 @@ export function SpotlightPreview({
     const handleEnter = (e: React.MouseEvent) => {
         hoveredRef.current = true;
         setPos({ x: e.clientX, y: e.clientY });
+        setScroll(readScroll());
         setHovered(true);
         setContentMounted(true);
     };
@@ -115,35 +137,45 @@ export function SpotlightPreview({
                         className="spotlight-overlay"
                         style={overlayStyle}
                     >
-                        {contentMounted && sources.length > 0 ? (
-                            <NextIntlClientProvider
-                                locale={target}
-                                messages={altMessages}
-                                onError={() => { }}
-                                getMessageFallback={({ key }) => `${key}`}
-                                timeZone="America/Santiago"
-                            >
-                                <SpotlightOverlayMarker>
-                                    {sources.map((source, i) =>
-                                        source.className ? (
-                                            <div
-                                                key={i}
-                                                style={{
-                                                    display: "contents",
-                                                }}
-                                                className={source.className}
-                                            >
-                                                {source.render()}
-                                            </div>
-                                        ) : (
-                                            <React.Fragment key={i}>
-                                                {source.render()}
-                                            </React.Fragment>
-                                        ),
-                                    )}
-                                </SpotlightOverlayMarker>
-                            </NextIntlClientProvider>
-                        ) : null}
+                        <div
+                            style={{
+                                position: "absolute",
+                                left: 0,
+                                width: "100%",
+                                top: -scroll.y,
+                                height: scroll.height,
+                            }}
+                        >
+                            {contentMounted && sources.length > 0 ? (
+                                <NextIntlClientProvider
+                                    locale={target}
+                                    messages={altMessages}
+                                    onError={() => { }}
+                                    getMessageFallback={({ key }) => `${key}`}
+                                    timeZone="America/Santiago"
+                                >
+                                    <SpotlightOverlayMarker>
+                                        {sources.map((source, i) =>
+                                            source.className ? (
+                                                <div
+                                                    key={i}
+                                                    style={{
+                                                        display: "contents",
+                                                    }}
+                                                    className={source.className}
+                                                >
+                                                    {source.render()}
+                                                </div>
+                                            ) : (
+                                                <React.Fragment key={i}>
+                                                    {source.render()}
+                                                </React.Fragment>
+                                            ),
+                                        )}
+                                    </SpotlightOverlayMarker>
+                                </NextIntlClientProvider>
+                            ) : null}
+                        </div>
                     </div>,
                     document.body,
                 )
