@@ -4,8 +4,6 @@ import { useQuery } from "@tanstack/react-query";
 import { useLocale } from "next-intl";
 import type { Form as FormType } from "@/payload-types";
 
-const ONE_HOUR = 1000 * 60 * 60;
-
 export const useForm = (formId: string | number, initialForm?: FormType) => {
     const locale = useLocale();
 
@@ -23,8 +21,6 @@ export const useForm = (formId: string | number, initialForm?: FormType) => {
             }
             return response.json();
         },
-        staleTime: ONE_HOUR,
-        gcTime: ONE_HOUR,
     });
 
     useEffect(() => {

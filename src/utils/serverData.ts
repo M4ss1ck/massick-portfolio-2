@@ -6,8 +6,6 @@ import { routing } from "@/i18n/routing";
 
 type Locale = (typeof routing.locales)[number];
 
-const ONE_HOUR = 3600;
-
 export const toLocale = (lng: string): Locale =>
     routing.locales.includes(lng as Locale)
         ? (lng as Locale)
@@ -23,7 +21,7 @@ const readForm = unstable_cache(
         })) as Form;
     },
     ["contact-form"],
-    { revalidate: ONE_HOUR, tags: ["forms"] },
+    { revalidate: false, tags: ["forms"] },
 );
 
 export const getForm = async (

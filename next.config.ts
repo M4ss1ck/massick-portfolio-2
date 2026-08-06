@@ -8,12 +8,16 @@ const NEXT_PUBLIC_SERVER_URL = process.env.VERCEL_URL
     ? `https://${process.env.VERCEL_URL}`
     : process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3000";
 
+const THIRTY_DAYS = 60 * 60 * 24 * 30;
+const ONE_YEAR = 60 * 60 * 24 * 365;
+
 const nextConfig: NextConfig = {
     images: {
         remotePatterns: [new URL(NEXT_PUBLIC_SERVER_URL)].map((url) => ({
             hostname: url.hostname,
             protocol: url.protocol.replace(":", "") as "http" | "https",
         })),
+        minimumCacheTTL: THIRTY_DAYS,
     },
     async headers() {
         return [
@@ -43,6 +47,17 @@ const nextConfig: NextConfig = {
                     {
                         key: "Permissions-Policy",
                         value: "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+                    },
+                ],
+            },
+            {
+                // Uploads ship with the repo, so they only change on a deploy.
+                // Stale-while-revalidate keeps a reused filename self-healing.
+                source: "/media/:path*",
+                headers: [
+                    {
+                        key: "Cache-Control",
+                        value: `public, max-age=${THIRTY_DAYS}, stale-while-revalidate=${ONE_YEAR}`,
                     },
                 ],
             },

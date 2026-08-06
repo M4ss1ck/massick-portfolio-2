@@ -75,6 +75,19 @@ export default buildConfig({
             },
             formOverrides: {
                 fields: undefined,
+                hooks: {
+                    afterChange: [
+                        async () => {
+                            try {
+                                const { revalidateTag } =
+                                    await import("next/cache");
+                                revalidateTag("forms", { expire: 0 });
+                            } catch {
+                                // No request context (seed script, CLI).
+                            }
+                        },
+                    ],
+                },
             },
             formSubmissionOverrides: {
                 hooks: {
