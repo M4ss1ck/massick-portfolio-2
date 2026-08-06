@@ -5,6 +5,7 @@ import { MagneticHover } from "./MagneticHover";
 
 export const SkeletonCard = () => {
     const imageSrc = "/images/clean.png";
+    const backdropSrc = `/_next/image?url=${encodeURIComponent(imageSrc)}&w=640&q=75`;
     return (
         <MagneticHover className="max-w-sm sm:max-w-lg">
             <div className="group grid grid-cols-1 sm:grid-cols-3 max-w-sm sm:max-w-lg hover:z-20 rounded-lg transition-all duration-300 ease-in-out gap-x-2 h-full opacity-60 relative overflow-hidden">
@@ -13,7 +14,7 @@ export const SkeletonCard = () => {
                     aria-hidden
                     className="absolute h-full w-full -z-10 grayscale blur-sm group-hover:grayscale-0"
                     style={{
-                        backgroundImage: `url(${imageSrc})`,
+                        backgroundImage: `url("${backdropSrc}")`,
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                     }}

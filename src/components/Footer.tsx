@@ -1,5 +1,10 @@
+import { getLocale } from "next-intl/server";
 import ContactForm from "./form/ContactForm";
 import AsciiBanner from "./AsciiBanner";
+import { getForm, toLocale } from "@/utils/serverData";
+
+// Form ID (manually set for now), matching ContactForm.
+const CONTACT_FORM_ID = 1;
 
 const socialLinks = [
     {
@@ -296,10 +301,15 @@ const renderSocialIcon = (component: string) => {
     }
 };
 
-export const Footer = () => {
+export const Footer = async () => {
+    const initialForm = await getForm(
+        CONTACT_FORM_ID,
+        toLocale(await getLocale()),
+    );
+
     return (
         <footer className="flex flex-col items-center justify-center mt-auto z-20 lg:transition text-sm sm:text-lg bg-white/5 backdrop-filter backdrop-blur-lg w-full py-4">
-            <ContactForm />
+            <ContactForm initialForm={initialForm} />
             <AsciiBanner />
             <nav className="flex items-center justify-center flex-row flex-wrap space-x-2 text-secondary">
                 {socialLinks.map((socialLink) => (

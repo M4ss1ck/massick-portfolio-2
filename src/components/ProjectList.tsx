@@ -54,7 +54,7 @@ export const ProjectList = ({ favoritesOnly = false, limit = 10 }) => {
                     href="/projects"
                     className="text-primary underline-animation ml-auto mb-auto font-display lg:col-span-2"
                 >
-                    {t("See more")}
+                    {t("Ver proyectos")}
                 </Link>
             ) : null}
             <div

@@ -49,9 +49,34 @@ const nextConfig: NextConfig = {
         ];
     },
     reactStrictMode: true,
+    htmlLimitedBots: /.*/,
     experimental: {
         viewTransition: true,
     },
 };
 
-export default withPayload(withNextIntl(nextConfig));
+const CLIENT_HINT_HEADERS = new Set(["accept-ch", "critical-ch", "vary"]);
+
+const config = withPayload(withNextIntl(nextConfig));
+const inheritedHeaders = config.headers;
+
+config.headers = async () => {
+    const groups = (await inheritedHeaders?.()) ?? [];
+
+    return groups.flatMap((group) => {
+        const hints = group.headers.filter((header) =>
+            CLIENT_HINT_HEADERS.has(header.key.toLowerCase()),
+        );
+        if (hints.length === 0) return [group];
+
+        const rest = group.headers.filter(
+            (header) => !CLIENT_HINT_HEADERS.has(header.key.toLowerCase()),
+        );
+        return [
+            ...(rest.length > 0 ? [{ ...group, headers: rest }] : []),
+            { ...group, source: "/admin/:path*", headers: hints },
+        ];
+    });
+};
+
+export default config;

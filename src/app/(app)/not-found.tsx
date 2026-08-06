@@ -8,7 +8,7 @@ export const runtime = "edge";
 export default function Loading() {
     const t = useTranslations();
     return (
-        <main className="flex min-h-screen flex-col items-center justify-center">
+        <main className="relative flex min-h-screen flex-col items-center justify-center">
             <section className="absolute top-1/2 text-center">
                 <h1 className="text-4xl font-display">{t("not_found")}</h1>
                 <Link href="/" className="text-lg hover:underline">

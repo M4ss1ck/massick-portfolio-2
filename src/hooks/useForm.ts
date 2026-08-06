@@ -6,10 +6,11 @@ import type { Form as FormType } from "@/payload-types";
 
 const ONE_HOUR = 1000 * 60 * 60;
 
-export const useForm = (formId: string | number) => {
+export const useForm = (formId: string | number, initialForm?: FormType) => {
     const locale = useLocale();
 
     const query = useQuery<FormType>({
+        initialData: initialForm,
         queryKey: ["form", { id: formId, locale }],
         queryFn: async () => {
             const response = await fetch(

@@ -4,8 +4,9 @@ import { setCookie } from "cookies-next/client";
 import Field from "./Field";
 import { useTranslations } from "next-intl";
 import { useForm } from "@/hooks/useForm";
+import type { Form as FormType } from "@/payload-types";
 
-const ContactForm = () => {
+const ContactForm = ({ initialForm }: { initialForm?: FormType }) => {
     const t = useTranslations();
     const [loading, setLoading] = useState(false);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -14,7 +15,7 @@ const ContactForm = () => {
 
     // Form ID (manually set for now)
     const formId = 1;
-    const { form } = useForm(formId);
+    const { form } = useForm(formId, initialForm);
 
     const isDisabled = useMemo(() => {
         if (!form?.fields) return false;

@@ -33,7 +33,7 @@ export default function Page() {
     return (
         <DirectionalTransition>
             <main className="flex flex-col items-center justify-center w-full min-h-screen font-body overflow-x-hidden">
-                <Block>
+                <Block className="relative">
                     <Canvas text={title} />
                     <Menu />
                     <LettersAnimation title={title} />

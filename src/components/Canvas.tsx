@@ -110,8 +110,8 @@ function Canvas({ r = 244, g = 172, b = 28, text = "m4ss1ck" }) {
         if (!canvas) return;
 
         const setCanvasSize = () => {
-            canvas.height = window.innerHeight;
-            canvas.width = document.body.clientWidth;
+            canvas.height = canvas.clientHeight;
+            canvas.width = canvas.clientWidth;
         };
 
         setCanvasSize();
@@ -130,7 +130,13 @@ function Canvas({ r = 244, g = 172, b = 28, text = "m4ss1ck" }) {
         };
     }, [startAnimation]);
 
-    return <canvas ref={canvasRef} style={{ zIndex: -1 }} />;
+    return (
+        <canvas
+            ref={canvasRef}
+            className="absolute inset-0 h-full w-full"
+            style={{ zIndex: -1 }}
+        />
+    );
 }
 
 export default Canvas;

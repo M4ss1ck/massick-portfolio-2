@@ -25,6 +25,7 @@ export const Card = ({ project }: CardProps) => {
             project.coverImage.filename
             ? `/media/${project.coverImage.filename}`
             : "/images/clean.png";
+    const backdropSrc = `/_next/image?url=${encodeURIComponent(imageSrc)}&w=640&q=75`;
 
     return (
         <MagneticHover className="max-w-sm sm:max-w-lg">
@@ -36,7 +37,7 @@ export const Card = ({ project }: CardProps) => {
                     aria-hidden
                     className="absolute h-full w-full max-w-sm sm:max-w-lg -z-10 grayscale blur-sm group-hover:grayscale-0 transition-all duration-300 ease-in-out"
                     style={{
-                        backgroundImage: `url(${imageSrc})`,
+                        backgroundImage: `url("${backdropSrc}")`,
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                         backgroundRepeat: "no-repeat",
@@ -94,7 +95,7 @@ export const Card = ({ project }: CardProps) => {
                             href={project.demo}
                             target="_blank"
                             onClick={(e) => e.stopPropagation()}
-                            className="underline-animation text-primary"
+                            className="underline-animation text-primary inline-flex items-center min-h-6"
                             aria-label={`${t("demo")} - ${t(project.title)}`}
                         >
                             <span>
