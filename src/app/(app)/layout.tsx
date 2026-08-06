@@ -2,14 +2,33 @@ import type { Metadata } from "next";
 import { getMessages, getLocale } from "next-intl/server";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import localFont from "next/font/local";
 import "./globals.css";
-import "@fontsource/federant";
-import "@fontsource-variable/kode-mono";
-import federantLatin from "@fontsource/federant/files/federant-latin-400-normal.woff2";
-import kodeMonoLatin from "@fontsource-variable/kode-mono/files/kode-mono-latin-wght-normal.woff2";
 
 import IntlErrorHandlingProvider from "@/components/providers/IntlErrorHandlingProvider";
 import QueryProvider from "@/components/providers/QueryProvider";
+
+const federant = localFont({
+    src: "./fonts/federant-latin-400-normal.woff2",
+    weight: "400",
+    style: "normal",
+    display: "optional",
+    preload: true,
+    adjustFontFallback: false,
+    fallback: ["system-ui"],
+    variable: "--font-federant",
+});
+
+const kodeMono = localFont({
+    src: "./fonts/kode-mono-latin-wght-normal.woff2",
+    weight: "400 700",
+    style: "normal",
+    display: "optional",
+    preload: true,
+    adjustFontFallback: false,
+    fallback: ["monospace"],
+    variable: "--font-kode-mono",
+});
 
 export const metadata: Metadata = {
     title: "My portfolio",
@@ -24,23 +43,10 @@ export default async function RootLayout({
     const messages = await getMessages();
     const locale = await getLocale();
     return (
-        <html lang={locale}>
-            <head>
-                <link
-                    rel="preload"
-                    as="font"
-                    type="font/woff2"
-                    href={federantLatin}
-                    crossOrigin="anonymous"
-                />
-                <link
-                    rel="preload"
-                    as="font"
-                    type="font/woff2"
-                    href={kodeMonoLatin}
-                    crossOrigin="anonymous"
-                />
-            </head>
+        <html
+            lang={locale}
+            className={`${federant.variable} ${kodeMono.variable}`}
+        >
             <body>
                 <QueryProvider>
                     <IntlErrorHandlingProvider

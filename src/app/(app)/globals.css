@@ -2,8 +2,8 @@
 
 @theme {
     --font-*: initial;
-    --font-display: "Kode Mono Variable", monospace;
-    --font-body: "Federant", system-ui;
+    --font-display: var(--font-kode-mono);
+    --font-body: var(--font-federant);
 
     --foreground: #c45c4b;
     --background-start-rgb: #6424cb;

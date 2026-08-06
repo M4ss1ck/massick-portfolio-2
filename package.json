@@ -16,8 +16,6 @@
         "format:check": "pnpm dlx prettier --check ."
     },
     "dependencies": {
-        "@fontsource-variable/kode-mono": "^5.1.0",
-        "@fontsource/federant": "^5.1.0",
         "@payloadcms/db-postgres": "^3.65.0",
         "@payloadcms/email-nodemailer": "^3.65.0",
         "@payloadcms/next": "^3.65.0",
