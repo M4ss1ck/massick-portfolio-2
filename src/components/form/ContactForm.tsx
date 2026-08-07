@@ -5,6 +5,7 @@ import Field from "./Field";
 import { useTranslations } from "next-intl";
 import { useForm } from "@/hooks/useForm";
 import type { Form as FormType } from "@/payload-types";
+import { CONTACT_FORM_CLASS_NAME } from "./contactFormStyles";
 
 const ContactForm = ({ initialForm }: { initialForm?: FormType }) => {
     const t = useTranslations();
@@ -59,7 +60,7 @@ const ContactForm = ({ initialForm }: { initialForm?: FormType }) => {
 
     return (
         <form
-            className="grid grid-cols-1 gap-2 space-y-2 py-4 mx-2 space-x-2 grid-flow-row-dense text-other border-4 border-dashed border-primary p-4 rounded-lg bg-primary/10 text-center  mb-4 md:w-2/3 max-w-prose transition duration-150"
+            className={CONTACT_FORM_CLASS_NAME}
             id={formId.toString()}
             onSubmit={handleSubmit}
         >

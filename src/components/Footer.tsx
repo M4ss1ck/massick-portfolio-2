@@ -1,5 +1,7 @@
+import { Suspense } from "react";
 import { getLocale } from "next-intl/server";
 import ContactForm from "./form/ContactForm";
+import ContactFormFallback from "./form/ContactFormFallback";
 import AsciiBanner from "./AsciiBanner";
 import { getForm, toLocale } from "@/utils/serverData";
 
@@ -301,15 +303,21 @@ const renderSocialIcon = (component: string) => {
     }
 };
 
-export const Footer = async () => {
+const ContactFormWithData = async () => {
     const initialForm = await getForm(
         CONTACT_FORM_ID,
         toLocale(await getLocale()),
     );
 
+    return <ContactForm initialForm={initialForm} />;
+};
+
+export const Footer = () => {
     return (
         <footer className="flex flex-col items-center justify-center mt-auto z-20 lg:transition text-sm sm:text-lg bg-white/5 backdrop-filter backdrop-blur-lg w-full py-4">
-            <ContactForm initialForm={initialForm} />
+            <Suspense fallback={<ContactFormFallback />}>
+                <ContactFormWithData />
+            </Suspense>
             <AsciiBanner />
             <nav className="flex items-center justify-center flex-row flex-wrap space-x-2 text-secondary">
                 {socialLinks.map((socialLink) => (

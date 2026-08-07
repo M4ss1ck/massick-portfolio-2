@@ -1,5 +1,6 @@
 import React from "react";
 import type { Form as FormType } from "@/payload-types";
+import { CONTACT_FORM_CONTROL_CLASS_NAME } from "./contactFormStyles";
 
 interface FieldProps {
     field: NonNullable<FormType["fields"]>[number]; // Use NonNullable to handle null case
@@ -22,7 +23,7 @@ const Field: React.FC<FieldProps> = ({ field, setData }) => {
                 <input
                     id={fieldId}
                     type="text"
-                    className="block w-full rounded-md bg-transparent px-3 py-1.5 text-base text-secondary outline-1 -outline-offset-1 outline-secondary placeholder:text-other focus:outline-2 focus:-outline-offset-2 focus:outline-primary sm:text-sm/6"
+                    className={CONTACT_FORM_CONTROL_CLASS_NAME}
                     name={field.name}
                     required={isRequired}
                     onChange={(e) => {
@@ -48,7 +49,7 @@ const Field: React.FC<FieldProps> = ({ field, setData }) => {
                 <input
                     id={fieldId}
                     type="email"
-                    className="block w-full rounded-md bg-transparent px-3 py-1.5 text-base text-secondary outline-1 -outline-offset-1 outline-secondary placeholder:text-other focus:outline-2 focus:-outline-offset-2 focus:outline-primary sm:text-sm/6"
+                    className={CONTACT_FORM_CONTROL_CLASS_NAME}
                     name={field.name}
                     required={isRequired}
                     onChange={(e) => {
@@ -73,7 +74,7 @@ const Field: React.FC<FieldProps> = ({ field, setData }) => {
                 <label htmlFor={fieldId}>{field.label}</label>
                 <textarea
                     id={fieldId}
-                    className="block w-full rounded-md bg-transparent px-3 py-1.5 text-base text-secondary outline-1 -outline-offset-1 outline-secondary placeholder:text-other focus:outline-2 focus:-outline-offset-2 focus:outline-primary sm:text-sm/6"
+                    className={CONTACT_FORM_CONTROL_CLASS_NAME}
                     name={field.name}
                     style={{ resize: "none" }}
                     required={isRequired}
