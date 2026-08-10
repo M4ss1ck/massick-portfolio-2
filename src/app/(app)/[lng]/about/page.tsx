@@ -1,5 +1,6 @@
+import { use } from "react";
 import { useTranslations } from "next-intl";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import Image from "next/image";
 import { Link } from "@/components/AnimatedLink";
 import profile from "~/images/profile.jpg";
@@ -20,7 +21,13 @@ export async function generateMetadata(props: {
     };
 }
 
-export default function Page() {
+export default function Page(props: {
+    params: Promise<{
+        lng: string;
+    }>;
+}) {
+    const { lng } = use(props.params);
+    setRequestLocale(lng);
     const t = useTranslations();
 
     return (
