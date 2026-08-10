@@ -26,7 +26,7 @@ function NavbarInner() {
     return (
         <nav
             style={inOverlay ? undefined : { viewTransitionName: "site-navbar" }}
-            className="sticky top-0 flex flex-row py-1 px-4 justify-between items-center z-20 lg:transition text-sm sm:text-lg bg-black/5 backdrop-filter backdrop-blur-lg w-full text-primary"
+            className={`${inOverlay ? "fixed" : "sticky"} top-0 flex flex-row py-1 px-4 justify-between items-center z-20 lg:transition text-sm sm:text-lg bg-black/5 backdrop-filter backdrop-blur-lg w-full text-primary`}
         >
             <h2 className="p-1 sm:p-4 text-sm sm:block lg:text-2xl font-display mr-auto">
                 <Link
