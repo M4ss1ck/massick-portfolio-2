@@ -65,9 +65,6 @@ const nextConfig: NextConfig = {
     },
     reactStrictMode: true,
     htmlLimitedBots: /.*/,
-    experimental: {
-        viewTransition: true,
-    },
 };
 
 const CLIENT_HINT_HEADERS = new Set(["accept-ch", "critical-ch", "vary"]);
