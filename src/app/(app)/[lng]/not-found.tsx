@@ -1,9 +1,8 @@
+"use client";
 import { Link } from "@/components/AnimatedLink";
 import Canvas from "@/components/Canvas";
 import { useTranslations } from "next-intl";
 import Hacker from "@/components/icons/Hacker";
-
-export const runtime = "edge";
 
 export default function Loading() {
     const t = useTranslations();

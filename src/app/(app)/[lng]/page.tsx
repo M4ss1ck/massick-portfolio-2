@@ -1,8 +1,9 @@
+import { use } from "react";
 import Canvas from "@/components/Canvas";
 import Menu from "@/components/Menu";
 import LettersAnimation from "@/components/LettersAnimation";
 import { useTranslations } from "next-intl";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import Hacker from "@/components/icons/Hacker";
 import { Block } from "@/components/Block";
 import { ProjectList } from "@/components/ProjectList";
@@ -26,7 +27,13 @@ export async function generateMetadata(props: {
     };
 }
 
-export default function Page() {
+export default function Page(props: {
+    params: Promise<{
+        lng: string;
+    }>;
+}) {
+    const { lng } = use(props.params);
+    setRequestLocale(lng);
     const t = useTranslations();
     const title = t("titulo_portada");
 
