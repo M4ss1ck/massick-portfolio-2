@@ -39,7 +39,7 @@ type CSSVars = React.CSSProperties & Record<`--${string}`, string>;
  *
  * Grow animation: `clip-path` is driven by three CSS custom properties —
  * `--spotlight-r` (registered via @property so it's animatable) plus
- * `--spotlight-x/y`. Only `--spotlight-r` is transitioned, so enter/leave
+ * `--spotlight-x/y`. Only `--spotlight-r` is transitioned, so hover and click
  * animate the radius smoothly while cursor-follow updates (x/y) apply
  * instantly.
  *
@@ -59,15 +59,19 @@ type CSSVars = React.CSSProperties & Record<`--${string}`, string>;
  */
 export function SpotlightPreview({
     target,
+    onReveal,
     children,
 }: {
     target: Locale;
+    onReveal: () => void;
     children: React.ReactNode;
 }) {
     const sources = useSpotlightSources();
     const inOverlay = useInSpotlightOverlay();
     const [pos, setPos] = useState({ x: 0, y: 0 });
     const [hovered, setHovered] = useState(false);
+    const [revealing, setRevealing] = useState(false);
+    const [revealRadius, setRevealRadius] = useState(SPOTLIGHT_RADIUS);
     // Alt-locale content is mounted on hover, kept mounted through the
     // close transition, then torn down on transitionend so idle overlays
     // don't cost render cycles.
@@ -75,6 +79,7 @@ export function SpotlightPreview({
     const [scroll, setScroll] = useState({ y: 0, height: 0 });
     const mounted = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
     const hoveredRef = useRef(false);
+    const navigationStartedRef = useRef(false);
 
     useEffect(() => {
         if (!contentMounted) return;
@@ -103,20 +108,51 @@ export function SpotlightPreview({
 
     const handleLeave = () => {
         hoveredRef.current = false;
-        setHovered(false);
+        if (!revealing) setHovered(false);
+    };
+
+    const handleClick = (e: React.MouseEvent) => {
+        if (revealing) return;
+        const rect = e.currentTarget.getBoundingClientRect();
+        const keyboardClick = e.detail === 0;
+        const x = keyboardClick ? rect.left + rect.width / 2 : e.clientX;
+        const y = keyboardClick ? rect.top + rect.height / 2 : e.clientY;
+        hoveredRef.current = true;
+        setPos({ x, y });
+        setRevealRadius(
+            Math.ceil(
+                Math.hypot(
+                    Math.max(x, window.innerWidth - x),
+                    Math.max(y, window.innerHeight - y),
+                ),
+            ),
+        );
+        setScroll(readScroll());
+        setHovered(true);
+        setContentMounted(true);
+        setRevealing(true);
     };
 
     const handleTransitionEnd = (e: React.TransitionEvent) => {
         // Only react to the radius transition; x/y don't transition so they
         // won't fire this, but guard anyway for forwards-compat.
         if (e.propertyName !== "--spotlight-r") return;
+        if (revealing && !navigationStartedRef.current) {
+            navigationStartedRef.current = true;
+            onReveal();
+            return;
+        }
         if (!hoveredRef.current) setContentMounted(false);
     };
 
     const altMessages = ALT_MESSAGES[target];
 
     const overlayStyle: CSSVars = {
-        "--spotlight-r": hovered ? `${SPOTLIGHT_RADIUS}px` : "0px",
+        "--spotlight-r": revealing
+            ? `${revealRadius}px`
+            : hovered
+                ? `${SPOTLIGHT_RADIUS}px`
+                : "0px",
         "--spotlight-x": `${pos.x}px`,
         "--spotlight-y": `${pos.y}px`,
     };
@@ -126,6 +162,7 @@ export function SpotlightPreview({
             onMouseEnter={handleEnter}
             onMouseMove={handleMove}
             onMouseLeave={handleLeave}
+            onClick={handleClick}
             className="inline-flex"
         >
             {children}
@@ -134,7 +171,7 @@ export function SpotlightPreview({
                     <div
                         aria-hidden="true"
                         onTransitionEnd={handleTransitionEnd}
-                        className="spotlight-overlay"
+                        className={`spotlight-overlay${revealing ? " spotlight-overlay--expanding" : ""}`}
                         style={overlayStyle}
                     >
                         <div

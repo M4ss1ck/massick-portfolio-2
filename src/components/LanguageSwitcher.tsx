@@ -48,10 +48,48 @@ const LanguageSwitcher = () => {
 
         const canonical = toCanonicalPath(stripped, locale);
 
-        router.push(canonical as Parameters<typeof router.push>[0], {
-            locale: target,
-            scroll: false,
+        const navigate = () => {
+            router.push(canonical as Parameters<typeof router.push>[0], {
+                locale: target,
+                scroll: false,
+            });
+        };
+
+        if (!document.startViewTransition) {
+            navigate();
+            return;
+        }
+
+        const prepareTransition = () =>
+            document.documentElement.classList.add("locale-transition");
+
+        prepareTransition();
+        const transition = document.startViewTransition({
+            types: ["locale-swap"],
+            update: () =>
+                new Promise<void>((resolve) => {
+                    const observer = new MutationObserver(() => {
+                        if (document.documentElement.lang !== target) return;
+                        observer.disconnect();
+                        prepareTransition();
+                        resolve();
+                    });
+
+                    observer.observe(document.documentElement, {
+                        attributes: true,
+                        attributeFilter: ["lang"],
+                    });
+                    navigate();
+                }),
         });
+
+        const cleanUp = () => {
+            document.documentElement.classList.remove("locale-transition");
+        };
+        // `ready` rejects with AbortError when the browser skips a transition.
+        // Navigation still completes, so consume that expected rejection.
+        void transition.ready.catch(() => { });
+        transition.finished.then(cleanUp, cleanUp);
     };
 
     const targets = routing.locales.filter((l) => l !== locale) as Locale[];
@@ -62,10 +100,13 @@ const LanguageSwitcher = () => {
             aria-label={t("language")}
         >
             {targets.map((target) => (
-                <SpotlightPreview key={target} target={target}>
+                <SpotlightPreview
+                    key={target}
+                    target={target}
+                    onReveal={() => setLanguage(target)}
+                >
                     <button
                         type="button"
-                        onClick={() => setLanguage(target)}
                         className="inline-flex items-center gap-1.5 underline-animation cursor-pointer"
                         aria-label={`${t("language")}: ${LOCALE_NATIVE_NAMES[target]}`}
                     >
