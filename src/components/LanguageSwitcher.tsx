@@ -50,6 +50,7 @@ const LanguageSwitcher = () => {
 
         router.push(canonical as Parameters<typeof router.push>[0], {
             locale: target,
+            scroll: false,
         });
     };
 
