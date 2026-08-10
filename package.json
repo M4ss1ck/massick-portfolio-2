@@ -8,7 +8,7 @@
         "dev:alt": "next dev --webpack",
         "build": "next build --webpack",
         "start": "next start",
-        "types": "payload generate:types",
+        "types": "payload generate:types && payload generate:importmap",
         "seed": "tsx --env-file=.env scripts/seed.ts",
         "gen:ascii": "tsx scripts/generate-ascii.ts",
         "lint": "eslint .",
