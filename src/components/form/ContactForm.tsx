@@ -1,18 +1,28 @@
 "use client";
-import React, { useMemo, useState } from "react";
-import { setCookie } from "cookies-next/client";
+import React, { useMemo, useState, useSyncExternalStore } from "react";
+import { hasCookie, setCookie } from "cookies-next/client";
 import Field from "./Field";
 import { useTranslations } from "next-intl";
 import { useForm } from "@/hooks/useForm";
 import type { Form as FormType } from "@/payload-types";
 import { CONTACT_FORM_CLASS_NAME } from "./contactFormStyles";
 
+const subscribeToNothing = () => () => {};
+const readContactedCookie = () => hasCookie("contacted");
+const noContactedCookie = () => false;
+
 const ContactForm = ({ initialForm }: { initialForm?: FormType }) => {
     const t = useTranslations();
     const [loading, setLoading] = useState(false);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [data, setData] = useState<Record<string, any>>({});
-    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [justSubmitted, setJustSubmitted] = useState(false);
+    const hasContacted = useSyncExternalStore(
+        subscribeToNothing,
+        readContactedCookie,
+        noContactedCookie,
+    );
+    const isSubmitted = justSubmitted || hasContacted;
 
     // Form ID (manually set for now)
     const formId = 1;
@@ -50,7 +60,7 @@ const ContactForm = ({ initialForm }: { initialForm?: FormType }) => {
             const res = await req.json();
             if (res) {
                 setCookie("contacted", "true");
-                setIsSubmitted(true);
+                setJustSubmitted(true);
             }
         } catch (error) {
             console.error(error);
