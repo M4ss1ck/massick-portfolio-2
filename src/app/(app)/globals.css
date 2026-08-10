@@ -448,6 +448,39 @@
     }
 }
 
+@keyframes chevron-scale {
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes chevron-fade {
+    50% {
+        opacity: 0.6;
+    }
+}
+
+.chevron-pulse use {
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+.chevron-pulse:hover use {
+    animation:
+        chevron-scale 1.2s ease-in-out infinite,
+        chevron-fade 1.2s ease-in-out infinite;
+}
+
+.chevron-pulse:hover .chevron-offbeat {
+    animation-delay: 0s, -0.6s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .chevron-pulse:hover use {
+        animation: none;
+    }
+}
+
 /*
  * Spotlight reveal: radius via @property so only the circle size transitions;
  * position (--spotlight-x/y) updates instantly for cursor-following.

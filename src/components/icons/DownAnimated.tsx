@@ -10,6 +10,7 @@ export function Down(props: SVGProps<SVGSVGElement>) {
             viewBox="0 0 24 24"
             fill="none"
             {...props}
+            className="chevron-pulse"
         >
             <defs>
                 <path
@@ -22,39 +23,10 @@ export function Down(props: SVGProps<SVGSVGElement>) {
                 />
             </defs>
             <g transform="translate(12 0)">
-                <use href="#arrowhead">
-                    <animateTransform
-                        attributeName="transform"
-                        type="scale"
-                        values="1;1.1;1"
-                        dur="1.2s"
-                        begin="0s"
-                        repeatCount="indefinite"
-                    />
-                    <animate
-                        attributeName="opacity"
-                        values="1;0.6;1"
-                        dur="1.2s"
-                        repeatCount="indefinite"
-                    />
-                </use>
+                <use href="#arrowhead" />
             </g>
             <g transform="translate(12 8)">
-                <use href="#arrowhead">
-                    <animateTransform
-                        attributeName="transform"
-                        type="scale"
-                        values="1;1.1;1"
-                        dur="1.2s"
-                        repeatCount="indefinite"
-                    />
-                    <animate
-                        attributeName="opacity"
-                        values="0.6;1;0.6"
-                        dur="1.2s"
-                        repeatCount="indefinite"
-                    />
-                </use>
+                <use href="#arrowhead" className="chevron-offbeat" />
             </g>
         </svg>
     );
