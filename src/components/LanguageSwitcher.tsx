@@ -2,7 +2,8 @@
 import React from "react";
 import { useTranslations } from "next-intl";
 import { useParams, usePathname as useRawPathname } from "next/navigation";
-import { useRouter, routing } from "@/i18n/routing";
+import { useRouter } from "@/i18n/navigation";
+import { routing } from "@/i18n/routing";
 import { useLocaleStore, type Locale } from "@/stores/locale";
 import { Globe } from "@/components/icons/Globe";
 import { SpotlightPreview } from "@/components/SpotlightPreview";

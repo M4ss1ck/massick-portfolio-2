@@ -1,5 +1,6 @@
 "use client";
-import { Link as I18nLink, routing } from "@/i18n/routing";
+import { Link as I18nLink } from "@/i18n/navigation";
+import { routing } from "@/i18n/routing";
 import type { LinkProps } from "next/link";
 import { useNavigateWithTransition } from "@/hooks/useNavigateWithTransition";
 

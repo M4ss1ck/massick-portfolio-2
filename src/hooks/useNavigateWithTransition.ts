@@ -1,6 +1,6 @@
 "use client";
 import { startTransition, addTransitionType } from "react";
-import { useRouter, usePathname } from "@/i18n/routing";
+import { usePathname, useRouter } from "@/i18n/navigation";
 
 function inferNavType(current: string, target: string) {
     const cur = current.split("/").filter(Boolean).length;

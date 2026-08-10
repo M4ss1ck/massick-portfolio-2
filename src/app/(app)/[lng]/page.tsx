@@ -1,9 +1,7 @@
-import { use } from "react";
 import Canvas from "@/components/Canvas";
 import Menu from "@/components/Menu";
 import LettersAnimation from "@/components/LettersAnimation";
 import { useTranslations } from "next-intl";
-import { getTranslations, setRequestLocale } from "next-intl/server";
 import Hacker from "@/components/icons/Hacker";
 import { Block } from "@/components/Block";
 import { ProjectList } from "@/components/ProjectList";
@@ -13,27 +11,7 @@ import { Link } from "@/components/AnimatedLink";
 import { GoToId } from "@/components/GoToId";
 import { DirectionalTransition } from "@/components/DirectionalTransition";
 
-export async function generateMetadata(props: {
-    params: Promise<{
-        lng: string;
-    }>;
-}) {
-    const params = await props.params;
-    const t = await getTranslations({ locale: params.lng });
-
-    return {
-        title: t("portfolio"),
-        description: t("portfolio_description"),
-    };
-}
-
-export default function Page(props: {
-    params: Promise<{
-        lng: string;
-    }>;
-}) {
-    const { lng } = use(props.params);
-    setRequestLocale(lng);
+export default function Page() {
     const t = useTranslations();
     const title = t("titulo_portada");
 

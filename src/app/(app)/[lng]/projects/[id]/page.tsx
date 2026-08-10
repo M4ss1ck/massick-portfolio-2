@@ -1,4 +1,3 @@
-"use server";
 import Navbar from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ProjectDetails } from "@/components/ProjectDetails";

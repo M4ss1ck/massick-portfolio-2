@@ -1,11 +1,10 @@
-import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
+import { getLocale, getMessages, getTranslations } from "next-intl/server";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import localFont from "next/font/local";
 import "../globals.css";
 
 import { routing } from "@/i18n/routing";
-import { notFound } from "next/navigation";
 import { LocaleSync } from "@/components/LocaleSync";
 import IntlErrorHandlingProvider from "@/components/providers/IntlErrorHandlingProvider";
 import QueryProvider from "@/components/providers/QueryProvider";
@@ -37,45 +36,33 @@ export function generateStaticParams() {
     return routing.locales.map((lng) => ({ lng }));
 }
 
-export async function generateMetadata(props: {
-    params: Promise<{
-        lng: string;
-    }>;
-}) {
-    const params = await props.params;
-    const { lng } = params;
-    const t = await getTranslations({ locale: lng });
+export async function generateMetadata() {
+    const t = await getTranslations();
     return {
         title: t("portfolio"),
         description: t("portfolio_description"),
     };
 }
 
-export default async function RootLayout(props: {
-    children: React.ReactNode;
-    params: Promise<{
-        lng: string;
-    }>;
-}) {
-    const params = await props.params;
-    const { lng } = params;
-    const { children } = props;
-
-    if (!routing.locales.includes(lng as "en" | "es")) {
-        notFound();
-    }
-
-    setRequestLocale(lng);
-
-    const messages = await getMessages({ locale: lng });
+export default async function RootLayout({ children }: LayoutProps<"/[lng]">) {
+    const locale = await getLocale();
+    const messages = await getMessages();
 
     return (
-        <html lang={lng} className={`${federant.variable} ${kodeMono.variable}`}>
+        <html
+            lang={locale}
+            className={`${federant.variable} ${kodeMono.variable}`}
+        >
             <body>
                 <QueryProvider>
-                    <IntlErrorHandlingProvider locale={lng} messages={messages}>
+                    <IntlErrorHandlingProvider
+                        locale={locale}
+                        messages={messages}
+                    >
                         <LocaleSync />
-                        <SpotlightSnapshotProvider>{children}</SpotlightSnapshotProvider>
+                        <SpotlightSnapshotProvider>
+                            {children}
+                        </SpotlightSnapshotProvider>
                     </IntlErrorHandlingProvider>
                 </QueryProvider>
                 <Analytics />

@@ -1,6 +1,5 @@
-import { use } from "react";
 import { useTranslations } from "next-intl";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { Link } from "@/components/AnimatedLink";
 import profile from "~/images/profile.jpg";
@@ -8,26 +7,14 @@ import Navbar from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { DirectionalTransition } from "@/components/DirectionalTransition";
 
-export async function generateMetadata(props: {
-    params: Promise<{
-        lng: string;
-    }>;
-}) {
-    const params = await props.params;
-    const { lng } = params;
-    const t = await getTranslations({ locale: lng });
+export async function generateMetadata() {
+    const t = await getTranslations();
     return {
         title: t("about"),
     };
 }
 
-export default function Page(props: {
-    params: Promise<{
-        lng: string;
-    }>;
-}) {
-    const { lng } = use(props.params);
-    setRequestLocale(lng);
+export default function Page() {
     const t = useTranslations();
 
     return (
