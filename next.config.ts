@@ -7,7 +7,10 @@ const withNextIntl = createNextIntlPlugin();
 const NEXT_PUBLIC_SERVER_URL = process.env.VERCEL_URL
     ? `https://${process.env.VERCEL_URL}`
     : process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3000";
-const BLOB_STORE_ID = process.env.BLOB_STORE_ID?.replace(/^store_/, "");
+const BLOB_STORE_ID = process.env.BLOB_STORE_ID?.replace(
+    /^store_/,
+    "",
+).toLowerCase();
 
 const THIRTY_DAYS = 60 * 60 * 24 * 30;
 const ONE_YEAR = 60 * 60 * 24 * 365;
