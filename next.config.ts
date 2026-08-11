@@ -7,17 +7,32 @@ const withNextIntl = createNextIntlPlugin();
 const NEXT_PUBLIC_SERVER_URL = process.env.VERCEL_URL
     ? `https://${process.env.VERCEL_URL}`
     : process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3000";
+const BLOB_STORE_ID = process.env.BLOB_STORE_ID?.replace(/^store_/, "");
 
 const THIRTY_DAYS = 60 * 60 * 24 * 30;
 const ONE_YEAR = 60 * 60 * 24 * 365;
 
 const nextConfig: NextConfig = {
     images: {
-        remotePatterns: [new URL(NEXT_PUBLIC_SERVER_URL)].map((url) => ({
-            hostname: url.hostname,
-            protocol: url.protocol.replace(":", "") as "http" | "https",
-        })),
+        remotePatterns: [
+            ...[new URL(NEXT_PUBLIC_SERVER_URL)].map((url) => ({
+                hostname: url.hostname,
+                protocol: url.protocol.replace(":", "") as "http" | "https",
+            })),
+            ...(BLOB_STORE_ID
+                ? [
+                      {
+                          protocol: "https" as const,
+                          hostname: `${BLOB_STORE_ID}.public.blob.vercel-storage.com`,
+                          pathname: "/**",
+                      },
+                  ]
+                : []),
+        ],
         minimumCacheTTL: THIRTY_DAYS,
+    },
+    experimental: {
+        useTypeScriptCli: false,
     },
     async headers() {
         return [

@@ -19,12 +19,14 @@ export const Card = ({ project }: CardProps) => {
     const t = useTranslations();
     const locale = useLocale();
     const fallbackDate = dayjs();
-    const imageSrc =
-        project.coverImage &&
-            typeof project.coverImage !== "number" &&
-            project.coverImage.filename
-            ? `/media/${project.coverImage.filename}`
-            : "/images/clean.png";
+    let imageSrc = "/images/clean.png";
+    if (project.coverImage && typeof project.coverImage !== "number") {
+        if (project.coverImage.url) {
+            imageSrc = project.coverImage.url;
+        } else if (project.coverImage.filename) {
+            imageSrc = `/media/${project.coverImage.filename}`;
+        }
+    }
     const backdropSrc = `/_next/image?url=${encodeURIComponent(imageSrc)}&w=640&q=75`;
 
     return (

@@ -4,6 +4,7 @@ import { payloadCloudPlugin } from "@payloadcms/payload-cloud";
 import { formBuilderPlugin } from "@payloadcms/plugin-form-builder";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { nodemailerAdapter } from "@payloadcms/email-nodemailer";
+import { vercelBlobStorage } from "@payloadcms/storage-vercel-blob";
 import path from "path";
 import { buildConfig } from "payload";
 import { fileURLToPath } from "url";
@@ -69,6 +70,15 @@ export default buildConfig({
     sharp,
     plugins: [
         payloadCloudPlugin(),
+        vercelBlobStorage({
+            token: process.env.BLOB_READ_WRITE_TOKEN,
+            clientUploads: true,
+            collections: {
+                media: {
+                    disablePayloadAccessControl: true,
+                },
+            },
+        }),
         formBuilderPlugin({
             fields: {
                 payment: false,
