@@ -1,28 +1,22 @@
 "use client";
-import React, { useMemo, useState, useSyncExternalStore } from "react";
-import { hasCookie, setCookie } from "cookies-next/client";
+import React, { useMemo, useState } from "react";
 import Field from "./Field";
 import { useTranslations } from "next-intl";
 import { useForm } from "@/hooks/useForm";
+import {
+    clearContacted,
+    markContacted,
+    useContacted,
+} from "@/hooks/useContacted";
 import type { Form as FormType } from "@/payload-types";
 import { CONTACT_FORM_CLASS_NAME } from "./contactFormStyles";
-
-const subscribeToNothing = () => () => {};
-const readContactedCookie = () => hasCookie("contacted");
-const noContactedCookie = () => false;
 
 const ContactForm = ({ initialForm }: { initialForm?: FormType }) => {
     const t = useTranslations();
     const [loading, setLoading] = useState(false);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [data, setData] = useState<Record<string, any>>({});
-    const [justSubmitted, setJustSubmitted] = useState(false);
-    const hasContacted = useSyncExternalStore(
-        subscribeToNothing,
-        readContactedCookie,
-        noContactedCookie,
-    );
-    const isSubmitted = justSubmitted || hasContacted;
+    const isSubmitted = useContacted();
 
     // Form ID (manually set for now)
     const formId = 1;
@@ -59,13 +53,17 @@ const ContactForm = ({ initialForm }: { initialForm?: FormType }) => {
             });
             const res = await req.json();
             if (res) {
-                setCookie("contacted", "true");
-                setJustSubmitted(true);
+                markContacted();
             }
         } catch (error) {
             console.error(error);
         }
         setLoading(false);
+    };
+
+    const handleReset = () => {
+        setData({});
+        clearContacted();
     };
 
     return (
@@ -104,9 +102,18 @@ const ContactForm = ({ initialForm }: { initialForm?: FormType }) => {
                     </button>
                 </>
             ) : (
-                <p className="text-2xl font-display uppercase">
-                    {t("Thank you for your feedback!")}
-                </p>
+                <>
+                    <p className="text-2xl font-display uppercase">
+                        {t("Thank you for your feedback!")}
+                    </p>
+                    <button
+                        className="uppercase font-display text-secondary underline-animation cursor-pointer w-fit mx-auto [&::after]:bg-secondary"
+                        type="button"
+                        onClick={handleReset}
+                    >
+                        {t("Send another message")}
+                    </button>
+                </>
             )}
         </form>
     );
