@@ -12,7 +12,7 @@ const LettersAnimation = ({ title }: { title: string }) => {
                     return (
                         <span
                             key={index}
-                            className="min-w-[1rem] mr-auto w-full"
+                            className="min-w-4 mr-auto w-full"
                         >
                             {letter}
                         </span>
@@ -23,7 +23,7 @@ const LettersAnimation = ({ title }: { title: string }) => {
                 return (
                     <span
                         key={index}
-                        className="transition duration-300 hover:skew-y-12 hover:even:-skew-y-12 hover:-translate-y-16 hover:even:-translate-y-14 hover:scale-150 min-w-[1rem] cursor-default"
+                        className="transition duration-300 hover:skew-y-12 hover:even:-skew-y-12 hover:-translate-y-16 hover:even:-translate-y-14 hover:scale-150 min-w-4 cursor-default"
                         style={{
                             animation: `letter-drop 500ms ease-in-out ${delay}ms backwards`,
                         }}
