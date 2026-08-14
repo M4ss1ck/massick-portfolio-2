@@ -72,7 +72,7 @@ export const Card = ({ project }: CardProps) => {
                                 href={project.url}
                                 target="_blank"
                                 onClick={(e) => e.stopPropagation()}
-                                className="underline-animation"
+                                className="underline-animation [&::after]:bg-other"
                             >
                                 {t(project.title)}
                             </Link>
