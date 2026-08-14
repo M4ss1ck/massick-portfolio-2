@@ -79,7 +79,7 @@ const ContactForm = ({ initialForm }: { initialForm?: FormType }) => {
                     </h1>
                     <p className="font-display text-secondary">
                         {t(
-                            "Got any questions or suggestions? Fill out this form to reach out",
+                            "reach out request",
                         )}
                     </p>
                     <div className="flex flex-row flex-wrap font-display">
