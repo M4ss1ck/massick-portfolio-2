@@ -1,7 +1,6 @@
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
-import { Link } from "@/components/AnimatedLink";
 import profile from "~/images/profile.jpg";
 import Navbar from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -41,12 +40,6 @@ export default function Page() {
                         {t("extended_bio")}
                     </p>
                 </div>
-                <Link
-                    href="/"
-                    className="font-thin font-body underline-animation text-primary mb-4"
-                >
-                    {t("back")}
-                </Link>
                 <Footer />
             </main>
         </DirectionalTransition>

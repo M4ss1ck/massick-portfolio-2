@@ -104,7 +104,7 @@ const ContactForm = ({ initialForm }: { initialForm?: FormType }) => {
             ) : (
                 <>
                     <p className="text-2xl font-display uppercase">
-                        {t("Thank you for your feedback!")}
+                        {t("Thanks for reaching out!")}
                     </p>
                     <button
                         className="uppercase font-display text-secondary underline-animation cursor-pointer w-fit mx-auto [&::after]:bg-secondary"

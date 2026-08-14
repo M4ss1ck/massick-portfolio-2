@@ -77,6 +77,7 @@ const Field: React.FC<FieldProps> = ({ field, setData }) => {
                     className={CONTACT_FORM_CONTROL_CLASS_NAME}
                     name={field.name}
                     style={{ resize: "none" }}
+                    rows={4}
                     required={isRequired}
                     onChange={(e) => {
                         setData((prevData) => ({
