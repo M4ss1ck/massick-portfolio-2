@@ -21,7 +21,7 @@ export default function Page() {
             <main className="flex flex-col items-center justify-start w-full min-h-screen gap-2">
                 <Navbar />
                 <h1 className="mt-4 text-lg uppercase lg:text-2xl font-display text-primary">
-                    <span>{t("who_am_I")}</span>
+                    <span>{t("whoAmI")}</span>
                 </h1>
                 <div className="fancy-border">
                     <Image
@@ -29,15 +29,15 @@ export default function Page() {
                         src={profile}
                         width={160}
                         height={160}
-                        alt={t("profile")}
+                        alt={t("profilePhoto")}
                     />
                 </div>
                 <div className="grid grid-cols-1 gap-2 space-y-2 py-4 mx-2 space-x-2 grid-flow-row-dense max-w-prose">
                     <p className="px-4 pt-8 text-xl font-semibold font-display md:pt-4 md:text-2xl text-pretty text-secondary indent-8 text-justify">
-                        {t("about_bio")}
+                        {t("aboutBio")}
                     </p>
                     <p className="px-4 pt-8 text-xl font-semibold font-display md:pt-4 md:text-2xl text-pretty text-secondary indent-8 text-justify">
-                        {t("extended_bio")}
+                        {t("extendedBio")}
                     </p>
                 </div>
                 <Footer />

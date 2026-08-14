@@ -9,12 +9,12 @@ export default function Loading() {
     return (
         <main className="relative flex min-h-screen flex-col items-center justify-center">
             <section className="absolute top-1/2 text-center">
-                <h1 className="text-4xl font-display">{t("not_found")}</h1>
+                <h1 className="text-4xl font-display">{t("notFound")}</h1>
                 <Link href="/" className="text-lg hover:underline">
                     {t("back")}
                 </Link>
             </section>
-            <Canvas text={t("not_found")} />
+            <Canvas text={t("notFound")} />
             <Hacker className="absolute bottom-0 w-full opacity-20 -z-10" />
         </main>
     );

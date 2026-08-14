@@ -23,8 +23,8 @@ export const GoUp = () => {
         <div className="fixed right-4 bottom-4 z-30 text-primary hover:text-other">
             <button
                 type="button"
-                aria-label={t("go_up")}
-                title={t("go_up")}
+                aria-label={t("backToTop")}
+                title={t("backToTop")}
                 onClick={() => {
                     window.scrollTo({ top: 0, behavior: "smooth" });
                 }}

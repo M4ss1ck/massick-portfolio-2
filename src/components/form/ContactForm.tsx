@@ -75,11 +75,11 @@ const ContactForm = ({ initialForm }: { initialForm?: FormType }) => {
             {!isSubmitted ? (
                 <>
                     <h1 className="text-2xl font-body uppercase">
-                        {t("Contact Form")}
+                        {t("contactForm")}
                     </h1>
                     <p className="font-display text-secondary">
                         {t(
-                            "reach out request",
+                            "contactDescription",
                         )}
                     </p>
                     <div className="flex flex-row flex-wrap font-display">
@@ -98,20 +98,20 @@ const ContactForm = ({ initialForm }: { initialForm?: FormType }) => {
                         type="submit"
                         disabled={isDisabled || loading}
                     >
-                        {form?.submitButtonLabel ?? t("Submit")}
+                        {form?.submitButtonLabel ?? t("submit")}
                     </button>
                 </>
             ) : (
                 <>
                     <p className="text-2xl font-display uppercase">
-                        {t("Thanks for reaching out!")}
+                        {t("contactSuccess")}
                     </p>
                     <button
                         className="uppercase font-display text-secondary underline-animation cursor-pointer w-fit mx-auto [&::after]:bg-secondary"
                         type="button"
                         onClick={handleReset}
                     >
-                        {t("Send another message")}
+                        {t("sendAnotherMessage")}
                     </button>
                 </>
             )}

@@ -13,7 +13,7 @@ import { DirectionalTransition } from "@/components/DirectionalTransition";
 
 export default function Page() {
     const t = useTranslations();
-    const title = t("titulo_portada");
+    const title = t("heroTitle");
 
     return (
         <DirectionalTransition>

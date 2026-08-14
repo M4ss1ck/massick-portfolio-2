@@ -33,8 +33,8 @@ export const GoToId = ({ id }: { id: string }) => {
     return (
         <button
             type="button"
-            aria-label={t("go_to_projects")}
-            title={t("go_to_projects")}
+            aria-label={t("goToProjects")}
+            title={t("goToProjects")}
             className={`absolute bottom-2 h-12 w-12 text-primary hover:text-other transition-opacity duration-1000 ease-in-out ${visible ? "opacity-100" : "opacity-0 pointer-events-none"}`}
             onClick={() => goToProjects(id)}
         >

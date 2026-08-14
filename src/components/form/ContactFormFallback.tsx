@@ -12,16 +12,16 @@ export default function ContactFormFallback() {
     return (
         <div aria-hidden="true" className={CONTACT_FORM_CLASS_NAME}>
             <h1 className="text-2xl font-body uppercase">
-                {t("Contact Form")}
+                {t("contactForm")}
             </h1>
             <p className="font-display text-secondary">
                 {t(
-                    "reach out request",
+                    "contactDescription",
                 )}
             </p>
             <div className="flex flex-row flex-wrap font-display">
                 <div className={fieldClassName} style={{ width: "50%" }}>
-                    <span>{t("Email")}</span>
+                    <span>{t("email")}</span>
                     <input
                         disabled
                         tabIndex={-1}
@@ -29,7 +29,7 @@ export default function ContactFormFallback() {
                     />
                 </div>
                 <div className={fieldClassName} style={{ width: "50%" }}>
-                    <span>{t("Name")}</span>
+                    <span>{t("name")}</span>
                     <input
                         disabled
                         tabIndex={-1}
@@ -52,7 +52,7 @@ export default function ContactFormFallback() {
                 type="button"
                 className="uppercase bg-secondary p-2 rounded-lg shadow-lg not-disabled:hover:shadow-primary text-white not-disabled:hover:bg-primary not-disabled:hover:text-other disabled:bg-secondary/40 font-display mx-4 transition duration-300"
             >
-                {t("Submit")}
+                {t("submit")}
             </button>
         </div>
     );

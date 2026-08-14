@@ -56,7 +56,7 @@ export const Card = ({ project }: CardProps) => {
                             src={imageSrc}
                             width={160}
                             height={160}
-                            alt={t(project.title)}
+                            alt={project.title}
                         />
                     </ViewTransition>
                     <p className="text-xs border border-current m-2 px-2 py-1 rounded-lg group-hover:text-white text-gray-400 absolute bottom-1 group-hover:bg-secondary/50">
@@ -74,10 +74,10 @@ export const Card = ({ project }: CardProps) => {
                                 onClick={(e) => e.stopPropagation()}
                                 className="underline-animation [&::after]:bg-other"
                             >
-                                {t(project.title)}
+                                {project.title}
                             </Link>
                         ) : (
-                            t(project.title)
+                            project.title
                         )}
                     </h3>
                     <div className="py-1 gap-2 flex items-center justify-start flex-row flex-wrap font-display">
@@ -89,7 +89,7 @@ export const Card = ({ project }: CardProps) => {
                     </div>
                     {project.description ? (
                         <p className="font-display backdrop-filter backdrop-blur-lg bg-background/70 bg-opacity-65 p-2 group-hover:text-white text-gray-300">
-                            {t(project.description)}
+                            {project.description}
                         </p>
                     ) : null}
                     {project.demo ? (
@@ -98,14 +98,14 @@ export const Card = ({ project }: CardProps) => {
                             target="_blank"
                             onClick={(e) => e.stopPropagation()}
                             className="underline-animation text-primary inline-flex items-center min-h-6"
-                            aria-label={`${t("demo")} - ${t(project.title)}`}
+                            aria-label={`${t("demo")} - ${project.title}`}
                         >
                             <span>
                                 <LineMdLink className="w-4 h-4 inline-flex" />
                                 &nbsp;{t("demo")}
                                 <span className="sr-only">
                                     {" "}
-                                    {t(project.title)}
+                                    {project.title}
                                 </span>
                             </span>
                         </Link>

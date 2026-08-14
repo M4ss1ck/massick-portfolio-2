@@ -37,7 +37,7 @@ export const ProjectDetails = ({ id }: { id: string | number }) => {
     return (
         <>
             <ReadingProgress />
-            <title>{t(project.title)}</title>
+            <title>{project.title}</title>
             <ViewTransition name={`project-image-${project.id}`} share="morph">
                 <Image
                     className="rounded-lg blur-none p-2 w-full max-w-2xl h-auto mx-auto scroll-reveal"
@@ -107,7 +107,7 @@ export const ProjectDetails = ({ id }: { id: string | number }) => {
                 )}
 
                 <h2 className="text-xl text-other font-display">
-                    {t("Related Projects")}
+                    {t("relatedProjects")}
                 </h2>
                 <div className="grid grid-cols-1 gap-2 space-y-2 py-4 mx-2 space-x-2 grid-flow-row-dense text-other scroll-reveal">
                     {project.relatedProjects &&
@@ -121,7 +121,7 @@ export const ProjectDetails = ({ id }: { id: string | number }) => {
                                     project={relatedProject}
                                 />
                             ))
-                        : t("No related projects")}
+                        : t("noRelatedProjects")}
                 </div>
             </div>
         </>
