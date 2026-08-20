@@ -2,7 +2,7 @@
 import { ViewTransition } from "react";
 import Image from "next/image";
 import { Card } from "./Card";
-import { Loading } from "./icons/Loading";
+import LoadingWordmark from "./LoadingWordmark";
 import { useTranslations, useLocale } from "next-intl";
 import dayjs from "dayjs";
 import "dayjs/locale/es";
@@ -19,8 +19,9 @@ export const ProjectDetails = ({ id }: { id: string | number }) => {
 
     if (!project || loading)
         return (
-            <div className="grid grid-cols-1 min-h-[50dvh] text-secondary text-lg place-content-center">
-                <Loading />
+            <div className="relative grid grid-cols-1 min-h-[50dvh] text-secondary text-lg place-content-center overflow-hidden">
+                <span className="sr-only">{t("loading")}</span>
+                <LoadingWordmark />
             </div>
         );
 
