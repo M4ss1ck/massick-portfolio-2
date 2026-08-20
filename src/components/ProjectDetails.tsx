@@ -19,7 +19,7 @@ export const ProjectDetails = ({ id }: { id: string | number }) => {
 
     if (!project || loading)
         return (
-            <div className="relative grid grid-cols-1 min-h-[50dvh] text-secondary text-lg place-content-center overflow-hidden">
+            <div className="relative grid grid-cols-1 min-h-screen text-secondary text-lg place-content-center w-full">
                 <span className="sr-only">{t("loading")}</span>
                 <LoadingWordmark />
             </div>
