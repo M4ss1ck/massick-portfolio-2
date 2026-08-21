@@ -140,7 +140,7 @@ export default function LoadingWordmark() {
         <div
             ref={containerRef}
             aria-hidden="true"
-            className="absolute inset-x-0 bottom-1/2 w-full select-none"
+            className="absolute inset-x-0 top-1/2 w-full -translate-y-1/2 select-none"
             style={{ lineHeight: 0 }}
         >
             <canvas ref={canvasRef} className="block" />

@@ -9,7 +9,7 @@ export default function Loading() {
         <ViewTransition exit="fade-out">
             <main
                 role="status"
-                className="relative min-h-screen w-full overflow-hidden"
+                className="relative min-h-dvh w-full overflow-hidden"
             >
                 <span className="sr-only">{t("loading")}</span>
                 <LoadingWordmark />
