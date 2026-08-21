@@ -18,8 +18,8 @@ const MAX_REPEATS = 12;
 // The title starts at the edge the column reads from, so the cut always falls
 // at the far end and only that edge is faded.
 const FADE = {
-    left: "linear-gradient(to bottom, transparent 0%, #000 18%)",
-    right: "linear-gradient(to top, transparent 0%, #000 18%)",
+    left: "linear-gradient(to bottom, transparent 0%, #000 4%)",
+    right: "linear-gradient(to top, transparent 0%, #000 4%)",
 };
 
 // ANSI Shadow only covers printable ASCII, so accented titles are folded down
@@ -76,7 +76,7 @@ export default function TitleWordmark({
                 figlet.default.parseFont("ANSI Shadow", font.default);
                 setArt(figlet.default.textSync(text, { font: "ANSI Shadow" }));
             })
-            .catch(() => {});
+            .catch(() => { });
 
         return () => {
             cancelled = true;
@@ -168,9 +168,8 @@ export default function TitleWordmark({
 
             wrapper.style.left = `${centreX - cssWidth / 2}px`;
             wrapper.style.top = `${centreY}px`;
-            wrapper.style.transform = `translateY(-50%) rotate(${
-                side === "left" ? -90 : 90
-            }deg)`;
+            wrapper.style.transform = `translateY(-50%) rotate(${side === "left" ? -90 : 90
+                }deg)`;
         };
 
         const draw = (now: number) => {
@@ -196,7 +195,7 @@ export default function TitleWordmark({
                         alpha =
                             0.08 +
                             (1 - remaining / FLICKER_LEAD_MS) *
-                                (SETTLED_ALPHA - 0.08);
+                            (SETTLED_ALPHA - 0.08);
                     } else if (glyph === " ") {
                         continue;
                     }
