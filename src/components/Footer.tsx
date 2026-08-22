@@ -325,7 +325,7 @@ export const Footer = () => {
                         key={socialLink.href}
                         href={socialLink.href}
                         target="_blank"
-                        rel="noopener noreferrer"
+                        rel="noopener"
                         title={socialLink.title}
                         className="block p-1 text-xl transition duration-150 hover:text-primary"
                     >

@@ -71,6 +71,7 @@ export const Card = ({ project }: CardProps) => {
                             <Link
                                 href={project.url}
                                 target="_blank"
+                                rel="noopener"
                                 onClick={(e) => e.stopPropagation()}
                                 className="underline-animation [&::after]:bg-other"
                             >
@@ -96,6 +97,7 @@ export const Card = ({ project }: CardProps) => {
                         <Link
                             href={project.demo}
                             target="_blank"
+                            rel="noopener"
                             onClick={(e) => e.stopPropagation()}
                             className="underline-animation text-primary inline-flex items-center min-h-6"
                             aria-label={`${t("demo")} - ${project.title}`}

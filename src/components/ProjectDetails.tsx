@@ -78,6 +78,8 @@ export const ProjectDetails = ({ id }: { id: string | number }) => {
                                 <Link
                                     className="underline-animation"
                                     href={project.url}
+                                    target="_blank"
+                                    rel="noopener"
                                 >
                                     URL
                                 </Link>
@@ -88,6 +90,8 @@ export const ProjectDetails = ({ id }: { id: string | number }) => {
                                 <Link
                                     className="underline-animation"
                                     href={project.demo}
+                                    target="_blank"
+                                    rel="noopener"
                                 >
                                     DEMO
                                 </Link>
